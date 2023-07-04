@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooling<T> : MonoBehaviour
+public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
 {
     [SerializeField]
     GameObject _object;
 
     protected Queue<T> _poolingObjects;
 
-    private void Awake()
+    private void Start()
     {
         _poolingObjects = new Queue<T>();
 
@@ -28,7 +28,7 @@ public class ObjectPooling<T> : MonoBehaviour
     {
         if (_poolingObjects.Count == 0)
         {
-            var o = Instantiate(_object).GetComponent<T>();
+            T o = Instantiate(_object, transform).GetComponent<T>();
             return o;
         }
 
