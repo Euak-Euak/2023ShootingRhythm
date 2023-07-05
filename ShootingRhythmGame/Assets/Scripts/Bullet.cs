@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
 
         Vector2 pos = Camera.main.WorldToViewportPoint(transform.position);
 
-        if (pos.x >= 1.1f || pos.x <= -0.1f ||pos.y >= 1.1f || pos.y <= -0.1f)
+        if (pos.x >= 1.5f || pos.x <= -0.5f ||pos.y >= 1.5f || pos.y <= -0.5f)
         {
             ReturnObject();
         }

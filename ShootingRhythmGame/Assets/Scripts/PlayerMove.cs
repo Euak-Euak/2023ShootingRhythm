@@ -7,11 +7,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private BulletManager _bulletManager;
 
+    Rigidbody2D _rid;
+
     [SerializeField]
     private Sprite _sprite;
 
     private void Start()
     {
+        _rid = GetComponent<Rigidbody2D>();
         StartCoroutine(BulletShoot());
     }
 
@@ -20,7 +23,7 @@ public class PlayerMove : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        transform.position += 5 * Time.deltaTime * new Vector3(x, y);
+        _rid.position += 5 * Time.deltaTime * new Vector2(x, y);
     }
 
     private IEnumerator BulletShoot()

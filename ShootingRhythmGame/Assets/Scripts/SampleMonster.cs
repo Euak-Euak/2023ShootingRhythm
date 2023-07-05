@@ -25,7 +25,8 @@ public class SampleMonster : Monster
 
             for (int i = 0; i <= 360; i += 5)
             {
-                Shoot(transform, 5f, i, _sprite);
+                Shoot(transform, 5f, i);
+                Shoot(transform, 5f, i + 180);
                 yield return new WaitForSeconds(0.1f);
             }
         }
@@ -41,7 +42,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform, 7f, i + j, _sprite);
+                    Shoot(transform, 7f, i + j);
                 }
             }
             for (int i = 90; i >= 10; i -= 10)
@@ -49,7 +50,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform, 7f, i + j, _sprite);
+                    Shoot(transform, 7f, i + j);
                 }
             }
         }
@@ -59,37 +60,34 @@ public class SampleMonster : Monster
     {
         while (true)
         {
-            List<Bullet> bullets = new List<Bullet>();
-
             for (int i = 0; i <= 180; i += 10)
             {
                 yield return new WaitForSeconds(0.1f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    bullets.Add(Shoot(transform, 7f, i + j, _sprite));
+                    StartCoroutine(AttackCircle3_s(i + j));
                 }
-            }
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                bullets[i].Init(bullets[i].transform, 0f, 180, _sprite, LayerMask.NameToLayer("Player"));
-            }
-            yield return new WaitForSeconds(2f);
-
-            for (int i = 0; i <= 180; i += 10)
-            {
-                yield return new WaitForSeconds(0.08f);
-                for (int j = 0; j <= 360; j += 36)
-                {
-                    Shoot(transform, 15f, i + j, _sprite);
-                }
-            }
-
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                bullets[i].Init(bullets[i].transform, 7f, Random.Range(0, 360), _sprite, LayerMask.NameToLayer("Player"));
-                bullets.RemoveAt(i);
             }
             yield return new WaitForSeconds(5f);
         }
+    }
+
+    IEnumerator AttackCircle3_s(float angle)
+    {
+        Bullet bullet = Shoot(transform, 7f, angle);
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            yield return null;
+            if (!bullet.gameObject.activeSelf)
+                yield break;
+        }
+
+        bullet.Init(bullet.transform, 0f, angle, _sprite, LayerMask.NameToLayer("Player"));
+        yield return new WaitForSeconds(3f);
+
+        bullet.Init(bullet.transform, 5f, angle + 180, _sprite, LayerMask.NameToLayer("Player"));
     }
 }
