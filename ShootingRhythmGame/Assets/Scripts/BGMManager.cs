@@ -12,13 +12,12 @@ public class BGMManager : MonoBehaviour
     
     private void Awake()
     {
-        Bpm = 120;
+        Bpm = 130;
     }
 
-    /*
     void Start()
     {
-        _bgm = Resources.Load<AudioClip>("BGM/しさしさししさし");
+        _bgm = Resources.Load<AudioClip>("BGM/Idonthaveanymusic");
 
         musicPlayer = GetComponent<AudioSource>();
         musicPlayer.clip = _bgm;
@@ -34,5 +33,5 @@ public class BGMManager : MonoBehaviour
     public void MusicStart()
     {
         musicPlayer.Play();
-    } */
+    }
 }

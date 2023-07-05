@@ -4,36 +4,47 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
-    private int _bpm;
-    private float _beatInterval;
-
     [SerializeField]
-    private GameObject _note;
+    private NoteManager _noteManager;
+
+    static public int NoteCnt = 0;
+    static public List<bool> IsUsed = new List<bool>();
+
+    private int _bpm;
+    // _노트 등장 간격 기준 (4분 음표 1, 8분 음표 0.5, 2분 음표 2 . . . .)
+    [SerializeField] private int _beat;
+    private float _beatInterval;
 
 
     void Start()
     {
         _bpm = BGMManager.Bpm;
-        _beatInterval = 30 / (float)_bpm;
+        _beatInterval = 60 * _beat / (float)_bpm;
 
-        for (int i = 0; i < 64; i++)
+        StartCoroutine(MakeNoteCor());
+    }
+
+
+    IEnumerator MakeNoteCor()
+    {
+        yield return new WaitForSeconds(2);
+
+        bool half = false;
+        while (true)
         {
-            StartCoroutine(MakeNoteCor(i));
+            yield return new WaitForSeconds(_beatInterval);
+            
+            MakeNote(half);
+            half = !half;
         }
     }
 
 
-    IEnumerator MakeNoteCor(int order)
+    private void MakeNote(bool order)
     {
-        yield return new WaitForSeconds(2f + order * _beatInterval);
+        var note = _noteManager.SpawnObject();
 
-        MakeNote(_note, order);
-    }
-
-
-    private void MakeNote(GameObject note, int order)
-    {
-        if (order % 2 != 0)
+        if (order)
         {
             note.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
         }
@@ -41,7 +52,9 @@ public class NoteSpawner : MonoBehaviour
         {
             note.transform.localScale = Vector3.one;
         }
-        Instantiate(note, this.transform); //음ㅋㅋ
+        IsUsed.Add(false);
+        NoteCnt++;
+        note.Init(transform);
     }
 
 

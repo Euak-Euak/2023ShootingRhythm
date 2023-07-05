@@ -7,20 +7,20 @@ public class ComboManager : MonoBehaviour
     //[SerializeField]
     //private GameObject[] _SkillPanel;
     
-    private KeyCode[] CmdList = { KeyCode.A, KeyCode.A, KeyCode.S, KeyCode.None, KeyCode.A, KeyCode.None, KeyCode.None, KeyCode.None }; //ø°»ﬁ
+    private KeyCode[] CmdList = { KeyCode.A, KeyCode.A, KeyCode.S, KeyCode.A, KeyCode.None, KeyCode.None, KeyCode.None, KeyCode.None }; //ø°»ﬁ
     static public KeyCode _keyCode;
-    private int _comboCnt = 0;
+    static public int ComboCnt = 0;
 
 
     void Start()
     {
-
+        _keyCode = KeyCode.A;
     }
 
 
     void Update()
     {
-        _keyCode = CmdList[_comboCnt];
+        //_keyCode = CmdList[ComboCnt];
 
         /*if (»«∂Û»«∂Û)
         {
