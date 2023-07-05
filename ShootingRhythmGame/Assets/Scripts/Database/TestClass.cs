@@ -5,16 +5,27 @@ using System;
 using System.Data;
 using Mono.Data.Sqlite;
 using System.IO;
-using UnityEngine.Networking;
-using System.Data.Common;
-using Unity.VisualScripting;
+
 
 public class TestClass : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        TestCode();
+        try
+        {
+            CommandData commandData = new CommandData();
+            commandData.Open();
+            Debug.Log(commandData.PowerUpCommand(1));
+            Debug.Log(commandData.NormalCommand(1));
+            commandData.Close();
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+        // TestCode();
     }
 
     // Update is called once per frame
@@ -37,7 +48,7 @@ public class TestClass : MonoBehaviour
             Debug.Log(conn.State == ConnectionState.Open);
 
             IDbCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select Name From Test2 Where ID = '3'";
+            cmd.CommandText = "Select Name From Test2 Where ID = '2'";
 
             IDataReader reader = cmd.ExecuteReader();
 
@@ -45,19 +56,27 @@ public class TestClass : MonoBehaviour
             {
                 Debug.Log(reader.GetString(0));
             }
-            reader.Close();
 
-            cmd.CommandText = "Update Test2 Set Name = '¾ÆÈûµé´ÙÁøÂ¥' Where ID = '2'";
+
+            reader.Dispose();
+            cmd.Dispose();
+            cmd = conn.CreateCommand();
+
+            cmd.CommandText = "Update Test2 Set Name = '’×¾Þ¾Ö' Where ID = '2'";
             reader = cmd.ExecuteReader();
 
-            cmd.CommandText = "Select Name From Test2 Where ID = '3'";
+            reader.Dispose();
+            cmd.Dispose();
+            cmd = conn.CreateCommand();
+
+            cmd.CommandText = "Select Name From Test2 Where ID = '2'";
             reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                 Debug.Log(reader.GetString(0));
             }
-
+            reader.Dispose();
             conn.Close();
         }
         catch (Exception e)
@@ -66,6 +85,7 @@ public class TestClass : MonoBehaviour
         }
 
     }
+    
 
     public int Number(int id)
     {
