@@ -6,6 +6,8 @@ public class BGMManager : MonoBehaviour
 {
     static public int Bpm;
 
+    static public bool _isMusicStart = false;
+
     private AudioClip _bgm;
     AudioSource musicPlayer;
 

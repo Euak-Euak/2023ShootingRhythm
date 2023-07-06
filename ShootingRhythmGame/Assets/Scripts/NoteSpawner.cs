@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private NoteManager _noteManager;
+    [SerializeField] private NoteManager _noteManager;
+    [SerializeField] private float _noteSpeed;
+    static public float NoteSpeed;
 
     static public int NoteCnt = 0;
     static public List<bool> IsUsed = new List<bool>();
@@ -14,6 +15,12 @@ public class NoteSpawner : MonoBehaviour
     // _노트 등장 간격 기준 (4분 음표 1, 8분 음표 0.5, 2분 음표 2 . . . .)
     [SerializeField] private float _beat;
     private float _beatInterval;
+
+
+    private void Awake()
+    {
+        NoteSpeed = _noteSpeed;
+    }
 
 
     void Start()
@@ -30,8 +37,7 @@ public class NoteSpawner : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         bool half = false;
-        //while (true)
-        for (int i = 0; i<9; i++)
+        while (true)
         {
             yield return new WaitForSeconds(_beatInterval);
             
@@ -54,15 +60,13 @@ public class NoteSpawner : MonoBehaviour
             note.transform.localScale = Vector3.one;
         }
         IsUsed.Add(false);
-        NoteCnt++;
         note.Init(transform);
+        NoteCnt++;
     }
 
 
     void Update()
     {
-        for (int i = 0; i < IsUsed.Count; i++)
-        {
-        }
+
     }
 }
