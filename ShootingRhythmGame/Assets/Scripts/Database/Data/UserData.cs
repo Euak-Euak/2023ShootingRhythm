@@ -2,7 +2,7 @@ public class UserData : Data
 {
     public UserData()
     {
-        _tableName = "CoolTimeTable";
+        _tableName = "UserDataTable";
     }
 
     public int GetSkillLevel(int ID)

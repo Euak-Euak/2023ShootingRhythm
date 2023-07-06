@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            _bulletManager.SpawnObject().Init(transform, 10f, 0, _sprite, LayerMask.NameToLayer("Monster"));
+            _bulletManager.SpawnObject().Init(transform.position, 10f, 0, 1,_sprite, LayerMask.NameToLayer("Monster"));
         }
     }
 }

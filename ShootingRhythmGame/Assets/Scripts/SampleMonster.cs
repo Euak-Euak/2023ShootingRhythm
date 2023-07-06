@@ -9,7 +9,7 @@ public class SampleMonster : Monster
     private Sprite _sprite;
     private void Start()
     {
-        Attack();
+        //Attack();
     }
 
     public override void Attack()
@@ -25,8 +25,8 @@ public class SampleMonster : Monster
 
             for (int i = 0; i <= 360; i += 5)
             {
-                Shoot(transform, 5f, i);
-                Shoot(transform, 5f, i + 180);
+                Shoot(transform.position, 5f, i);
+                Shoot(transform.position, 5f, i + 180);
                 yield return new WaitForSeconds(0.1f);
             }
         }
@@ -42,7 +42,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform, 7f, i + j);
+                    Shoot(transform.position, 7f, i + j);
                 }
             }
             for (int i = 90; i >= 10; i -= 10)
@@ -50,7 +50,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform, 7f, i + j);
+                    Shoot(transform.position, 7f, i + j);
                 }
             }
         }
@@ -74,7 +74,7 @@ public class SampleMonster : Monster
 
     IEnumerator AttackCircle3_s(float angle)
     {
-        Bullet bullet = Shoot(transform, 7f, angle);
+        Bullet bullet = Shoot(transform.position, 7f, angle);
         float t = 0f;
 
         while (t < 1f)
@@ -85,9 +85,9 @@ public class SampleMonster : Monster
                 yield break;
         }
 
-        bullet.Init(bullet.transform, 0f, angle, _sprite, LayerMask.NameToLayer("Player"));
+        bullet.Init(bullet.transform.position, 0f, angle, 1, _sprite, LayerMask.NameToLayer("Player"));
         yield return new WaitForSeconds(3f);
 
-        bullet.Init(bullet.transform, 5f, angle + 180, _sprite, LayerMask.NameToLayer("Player"));
+        bullet.Init(bullet.transform.position, 5f, angle + 180, 1, _sprite, LayerMask.NameToLayer("Player"));
     }
 }

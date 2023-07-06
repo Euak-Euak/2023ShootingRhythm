@@ -14,14 +14,14 @@ public abstract class Monster : Attackable
 
     public abstract void Attack();
 
-    public Bullet Shoot(Transform pos, float speed, float angle, Sprite sprite = null)
+    public Bullet Shoot(Vector3 pos, float speed, float angle, Sprite sprite = null)
     {
         Bullet bullet = BulletManager.Instance.SpawnObject();
         
         if (sprite == null)
             sprite = _bulletSprite;
         
-        bullet.Init(pos, speed, angle, sprite, LayerMask.NameToLayer("Player"));
+        bullet.Init(pos, speed, angle, 1, sprite, LayerMask.NameToLayer("Player"));
         return bullet;
     }
 }

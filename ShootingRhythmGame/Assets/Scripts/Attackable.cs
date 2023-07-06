@@ -6,7 +6,7 @@ public abstract class Attackable : MonoBehaviour
 {
     [SerializeField]
     private int _maxHp;
-    private int _hp;
+    public int _hp;
 
     private void Awake()
     {

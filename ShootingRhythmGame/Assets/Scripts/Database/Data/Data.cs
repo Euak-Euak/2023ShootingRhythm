@@ -33,7 +33,6 @@ public class Data
     }
     public void Close()
     {
-        reader.Dispose();
         conn.Close();
     }
 }

@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     SpriteRenderer _renderer;
     private int _layer;
     private float _angle;
+    private int _damage;
     private bool _isMove;
 
     private void Awake()
@@ -17,14 +18,25 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Init(Transform pos, float speed, float angle, Sprite sprite, int layer)
+    public void Init(Vector3 pos, float speed, float angle, int damage, Sprite sprite, int layer)
     {
-        transform.position = pos.position;
+        transform.position = pos;
         _speed = speed;
         transform.rotation = Quaternion.Euler(0, 0,  - angle);
         _angle = angle;
         _renderer.sprite = sprite;
+        _damage = damage;
         _layer = layer;
+        gameObject.SetActive(true);
+    }
+
+    public void Init(Transform pos, float speed, float angle, int damage)
+    {
+        transform.position = pos.position;
+        _speed = speed;
+        transform.rotation = Quaternion.Euler(0, 0, -angle);
+        _angle = angle;
+        _damage = damage;
         gameObject.SetActive(true);
     }
 
@@ -50,7 +62,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == _layer)
         {
-            collision.GetComponent<Attackable>().Attacked(1);
+            collision.GetComponent<Attackable>().Attacked(_damage);
 
             ReturnObject();
         }
