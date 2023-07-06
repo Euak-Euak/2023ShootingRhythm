@@ -12,7 +12,7 @@ public class ComboManager : MonoBehaviour
     static public int ComboCnt = 0;
 
 
-    void Start()
+    void Awake()
     {
         _keyCode = KeyCode.A;
     }

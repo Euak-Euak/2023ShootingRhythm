@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; ///
 
 public class NoteController : MonoBehaviour
 {
@@ -16,12 +17,17 @@ public class NoteController : MonoBehaviour
 
     [SerializeField]
     private float _speed;
+    private Image _img;
 
     private BGMManager _BGMManager;
 
 
     public void Init(Transform pos)
     {
+        _noteCnt = NoteSpawner.NoteCnt - 1;
+        if (_noteCnt == 0) _canUsed = true;
+        else _canUsed = false;
+
         transform.position = pos.position;
         gameObject.SetActive(true);
     }
@@ -29,15 +35,10 @@ public class NoteController : MonoBehaviour
 
     void Start()
     {
-        _keyCode = ComboManager._keyCode;
+        _img = this.GetComponent<Image>(); 
+
+        _keyCode = ComboManager._keyCode; //
         //_comboCnt = ComboManager.ComboCnt;
-
-        _noteCnt = NoteSpawner.NoteCnt - 1;
-        _isUsed = NoteSpawner.IsUsed[_noteCnt];
-        if (_noteCnt == 0) _canUsed = true;
-        else _canUsed = false;
-
-        Debug.Log(_canUsed + " " + _isUsed);
 
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
@@ -45,7 +46,16 @@ public class NoteController : MonoBehaviour
 
     void Update()
     {
+        _isUsed = NoteSpawner.IsUsed[_noteCnt];
         if (!_canUsed) _canUsed = NoteSpawner.IsUsed[_noteCnt-1];
+        Debug.Log(_noteCnt + " " + _canUsed);
+
+        if (_isUsed)
+        {
+            _img.color = Color.black;
+        }
+        else _img.color = Color.white;
+
         transform.Translate(new Vector2(_speed * Time.deltaTime, 0f));
 
         if (_canUsed && !_isUsed)
@@ -80,7 +90,6 @@ public class NoteController : MonoBehaviour
         }
         else if (other.name == "Miss")
         {
-            //_isUsed = false;
             _judge = judges.None;
             ReturnObject();
         }
@@ -90,7 +99,6 @@ public class NoteController : MonoBehaviour
 
     private judges ProcessJudge(judges judge)
     {
-        Debug.Log(_canUsed + "" + _isUsed);
         if (judge == judges.None) { return judges.None; }
         else
         {
@@ -103,16 +111,15 @@ public class NoteController : MonoBehaviour
                 Debug.Log("Near");
             }
             //_comboCnt++;
-            _isUsed = true;
+            NoteSpawner.IsUsed[_noteCnt] = true;
         }
-        ///////
-        ReturnObject();
         return judge;
     }
 
 
     public void ReturnObject()
     {
+        NoteSpawner.IsUsed[_noteCnt] = true;
         NoteManager.Instance.ReturnObject(this);
         gameObject.SetActive(false);
     }

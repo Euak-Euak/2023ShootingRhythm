@@ -573,7 +573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6, y: 0}
+  m_AnchoredPosition: {x: 3, y: 0}
   m_SizeDelta: {x: 6, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &47238970
@@ -600,7 +600,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 36}
+  m_Size: {x: 6, y: 36}
   m_EdgeRadius: 0
 --- !u!222 &47238972
 CanvasRenderer:
@@ -1013,9 +1013,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194541172}
+  - component: {fileID: 194541177}
   - component: {fileID: 194541176}
   - component: {fileID: 194541175}
-  - component: {fileID: 194541177}
   - component: {fileID: 194541178}
   m_Layer: 5
   m_Name: NoteSpawner
@@ -1037,7 +1037,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348403637}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noteManager: {fileID: 1030608678}
-  _beat: 2
+  _beat: 0.5
 --- !u!61 &194541178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1419,7 +1419,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 36, y: 76}
+  m_Size: {x: 28, y: 76}
   m_EdgeRadius: 0
 --- !u!114 &253817770
 MonoBehaviour:
@@ -1803,8 +1803,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 194541172}
   - {fileID: 2038676512}
+  - {fileID: 194541172}
   - {fileID: 1554512318}
   m_Father: {fileID: 1444278919}
   m_RootOrder: 1
@@ -2422,7 +2422,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 64, y: 76}
+  m_Size: {x: 56, y: 76}
   m_EdgeRadius: 0
 --- !u!222 &520791178
 CanvasRenderer:
@@ -3924,10 +3924,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1030608677}
+  - component: {fileID: 1030608678}
   - component: {fileID: 1030608676}
   - component: {fileID: 1030608675}
   - component: {fileID: 1030608674}
-  - component: {fileID: 1030608678}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4030,6 +4030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _object: {fileID: 7435640800149906260, guid: af6c0cf138eba10438d3d4ae45d970ed, type: 3}
+  _parent: {fileID: 194541172}
 --- !u!1 &1062409752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,7 +5427,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 95.45, y: 76}
+  m_Size: {x: 62, y: 76}
   m_EdgeRadius: 0
 --- !u!222 &1450242437
 CanvasRenderer:
@@ -7054,7 +7055,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348403637}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

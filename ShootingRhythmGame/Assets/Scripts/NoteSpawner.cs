@@ -12,7 +12,7 @@ public class NoteSpawner : MonoBehaviour
 
     private int _bpm;
     // _노트 등장 간격 기준 (4분 음표 1, 8분 음표 0.5, 2분 음표 2 . . . .)
-    [SerializeField] private int _beat;
+    [SerializeField] private float _beat;
     private float _beatInterval;
 
 
@@ -27,10 +27,11 @@ public class NoteSpawner : MonoBehaviour
 
     IEnumerator MakeNoteCor()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.1f);
 
         bool half = false;
-        while (true)
+        //while (true)
+        for (int i = 0; i<9; i++)
         {
             yield return new WaitForSeconds(_beatInterval);
             
@@ -60,6 +61,8 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
-
+        for (int i = 0; i < IsUsed.Count; i++)
+        {
+        }
     }
 }

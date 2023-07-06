@@ -5,12 +5,18 @@ using UnityEngine;
 public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
 {
     [SerializeField]
-    GameObject _object;
+    private GameObject _object;
+
+    [SerializeField]
+    protected Transform _parent;
 
     protected Queue<T> _poolingObjects;
 
     private void Start()
     {
+        if (_parent == null)
+            _parent = this.transform;
+
         _poolingObjects = new Queue<T>();
 
         for (int i = 0; i < transform.childCount; i++)
@@ -24,11 +30,11 @@ public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
         }
     }
 
-    public T SpawnObject()
+    public virtual T SpawnObject()
     {
         if (_poolingObjects.Count == 0)
         {
-            T o = Instantiate(_object, transform).GetComponent<T>();
+            T o = Instantiate(_object, _parent).GetComponent<T>();
             return o;
         }
 
