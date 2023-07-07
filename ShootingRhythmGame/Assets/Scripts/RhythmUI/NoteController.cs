@@ -7,7 +7,7 @@ public class NoteController : MonoBehaviour
 {
     private float _speed;
 
-    private enum judges { None, Near, Just };
+    private enum judges { None, Near, Just, Pass, Miss };
     private judges _judge;
 
     private int _noteCnt;
@@ -16,7 +16,6 @@ public class NoteController : MonoBehaviour
 
     private string _inputKeyCode;
     private List<KeyCode> _nowKeyList;
-    //private int _comboCnt;
 
     private Image _img;
 
@@ -32,13 +31,13 @@ public class NoteController : MonoBehaviour
         _img = this.GetComponent<Image>();
         _img.color = Color.white;
         transform.position = pos.position;
+
+        _judge = judges.None;
         gameObject.SetActive(true);
     }
 
     void Start()
     {
-        //_keyCode = ComboManager._keyCode; //
-        //_comboCnt = ComboManager.ComboCnt;
         _speed = NoteSpawner.NoteSpeed;
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
@@ -51,23 +50,21 @@ public class NoteController : MonoBehaviour
         transform.Translate(new Vector2(_speed * Time.deltaTime, 0f));
 
         _nowKeyList = ComboManager.NowKeyList;
-        _inputKeyCode = Input.inputString.ToUpper();
+
+        if (Input.inputString == "") { _inputKeyCode = "None"; }
+        else _inputKeyCode = Input.inputString.ToUpper();
 
         for (int i = 0; i < _nowKeyList.Count; i++)
         {
-            Debug.Log(_nowKeyList[i]);
             if (_inputKeyCode == _nowKeyList[i].ToString())
             {
+                Debug.Log("??" + _nowKeyList[i]);
                 if (_canUsed && !_isUsed)
                 {
-                    ProcessJudge(_judge);
-                    //Destroy(this);
+                    ProcessJudge(_judge, i);
                 }
             }
         }
-
-        /*if (_isUsed) _img.color = Color.black;
-        else _img.color = Color.white;*/
     }
 
 
@@ -88,7 +85,8 @@ public class NoteController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1];
+        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1]; //이거왜여깄지
+
         if (other.name == "Just")
         {
             _judge = judges.Just;
@@ -99,8 +97,15 @@ public class NoteController : MonoBehaviour
         }
         else if (other.name == "Miss")
         {
-            _judge = judges.None;
-            NoteSpawner.IsUsed[_noteCnt] = true;
+            /*if (_inputKeyCode != "None")
+            {
+                _judge = judges.Miss;
+                NoteSpawner.IsUsed[_noteCnt] = true;
+            }
+            else
+            {
+                _judge = judges.Pass;
+            }*/
         }
         else if (other.name == "Dismiss")
         {
@@ -109,24 +114,22 @@ public class NoteController : MonoBehaviour
     }
 
 
-    private judges ProcessJudge(judges judge)
+    private judges ProcessJudge(judges judge, int skillNum)
     {
         if (judge == judges.None) { return judges.None; }
-        else
+        if (judge == judges.Just)
         {
-            if (judge == judges.Just)
-            {
-                Debug.Log("Just");
-            }
-            else if (judge == judges.Near)
-            {
-                Debug.Log("Near");
-            }
-            _img.color = Color.black;
-
-            NoteSpawner.IsUsed[_noteCnt] = true;
-            ComboManager.ComboCnt++;
+            Debug.Log("Just");
         }
+        else if (judge == judges.Near)
+        {
+            Debug.Log("Near");
+        }
+        if (judge == judges.Pass)
+        {
+            Debug.Log("Pass");
+        }
+        EndJudgement(skillNum);
         return judge;
     }
 
@@ -138,7 +141,11 @@ public class NoteController : MonoBehaviour
     }
 
 
-    /*public void SyncControll(float delta)
+    private void EndJudgement(int skillNum)
     {
-    }*/
+        _img.color = Color.black;
+
+        NoteSpawner.IsUsed[_noteCnt] = true;
+        ComboManager.ComboList[skillNum]++;
+    }
 }
