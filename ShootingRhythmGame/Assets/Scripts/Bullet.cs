@@ -30,9 +30,9 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void Init(Transform pos, float speed, float angle, int damage)
+    public void Init(Vector3 pos, float speed, float angle, int damage)
     {
-        transform.position = pos.position;
+        transform.position = pos;
         _speed = speed;
         transform.rotation = Quaternion.Euler(0, 0, -angle);
         _angle = angle;

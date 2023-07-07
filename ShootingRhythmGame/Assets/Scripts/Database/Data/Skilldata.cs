@@ -5,6 +5,13 @@ public class SkillData : Data
         _tableName = "From SkillDataTable";
     }
 
+    public int SkilCountName()
+    {
+        string sql = $"Select count(*) {_tableName}";
+        ExecuteSQL(sql);
+        return reader.GetInt32(0);
+    }
+
     public string SkillName(int ID)
     {
         string sql = $"Select Name {_tableName} Where ID = '{ID}'";
@@ -36,5 +43,12 @@ public class SkillData : Data
         string sql = $"Select Image {_tableName} Where ID = '{ID}'";
         ExecuteSQL(sql);
         return reader.GetString(0);
+    }
+
+    public int BulletType(int ID)
+    {
+        string sql = $"Select BulletType {_tableName} Where ID = '{ID}'";
+        ExecuteSQL(sql);
+        return reader.GetInt32(0);
     }
 }

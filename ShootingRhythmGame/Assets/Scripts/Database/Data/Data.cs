@@ -23,8 +23,9 @@ public class Data
         cmd = conn.CreateCommand();
         cmd.CommandText = sql;
         reader = cmd.ExecuteReader();
-        reader.Read();
         cmd.Dispose();
+        Debug.Log(sql);
+        reader.Read();
     }
 
     public void Open()
