@@ -12,20 +12,7 @@ public class TestClass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        try
-        {
-            CommandData commandData = new CommandData();
-            commandData.Open();
-            Debug.Log(commandData.PowerUpCommand(1));
-            Debug.Log(commandData.NormalCommand(1));
-            commandData.Close();
-
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-        // TestCode();
+       
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ public class DataManager : Singleton<DataManager>
     private UserData _userData;
     private SkillGrowthValueData _skillGrowthValueData;
 
-    protected void Awake()
+    new void Awake()
     {
         base.Awake();
         _commandData = new CommandData();
@@ -42,6 +42,35 @@ public class DataManager : Singleton<DataManager>
         _skillGrowthValueData.Close();
     }
 
+    public int SkillCount()
+    {
+        return _skillData.SkilCountName();
+    }
+
+    public string SkillName(int ID)
+    {
+        return _skillData.SkillName(ID);
+    }
+
+    public int BulletType(int ID)
+    {
+        return _skillData.BulletType(ID);
+    }
+
+    public bool IsPowerUp(int ID)
+    {
+        return _userData.GetPowerUp(ID);
+    }
+
+    public string CommandNormal(int ID)
+    {
+        return _commandData.NormalCommand(ID);
+    }
+
+    public string CommandPowerUp(int ID)
+    {
+        return _commandData.PowerUpCommand(ID);
+    }
 
     public int SkillValue(int ID)
     {

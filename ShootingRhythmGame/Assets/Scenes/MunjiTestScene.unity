@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 5
+  _hp: 0
 --- !u!58 &117917523
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 803
+  _hp: 0
   _bulletSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   _sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
 --- !u!61 &447401280
@@ -642,10 +644,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 634874206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2b234c149b9d94a8d87b590f95860a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c40dd79442858c42b569e0fd92b589a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSprite: {fileID: 21300000, guid: 68e5a78013e33f247822a837e55b0ab4, type: 3}
 --- !u!1 &1012884794
 GameObject:
   m_ObjectHideFlags: 0

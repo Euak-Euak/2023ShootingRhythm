@@ -7,6 +7,23 @@ public abstract class PlayerSkill : MonoBehaviour
     [SerializeField]
     private Sprite _bulletSprite;
 
+    public string _skillName;
+    public string _commandNormal;
+    public string _commandPowerUp;
+    public int _skillDamage;
+    public int _bulletType;
+    public bool _isPowerUp;
+
+    public void Init(int ID)
+    {
+        _skillName = DataManager.Instance.SkillName(ID);
+        _commandNormal = DataManager.Instance.CommandNormal(ID);
+        _commandPowerUp = DataManager.Instance.CommandPowerUp(ID);
+        _skillDamage = DataManager.Instance.SkillValue(ID);
+        _bulletType = DataManager.Instance.BulletType(ID);
+        _isPowerUp = DataManager.Instance.IsPowerUp(ID);
+    }
+
     public Bullet Shoot(Vector3 pos, float speed, float angle, int damage, Sprite sprite = null)
     {
         Bullet bullet = BulletManager.Instance.SpawnObject();
@@ -18,5 +35,18 @@ public abstract class PlayerSkill : MonoBehaviour
         return bullet;
     }
 
-    public abstract void SkillUse();
+    public void SkillUse()
+    {
+        if (_isPowerUp)
+        {
+            SkillUsePowerUp();
+        }
+        else
+        {
+            SkillUseNormal();
+        }
+    }
+
+    protected abstract void SkillUseNormal();
+    protected abstract void SkillUsePowerUp();
 }
