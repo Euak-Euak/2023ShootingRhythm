@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NoteController : MonoBehaviour
 {
-    private float _speed;
+    [SerializeField] private float _speed;
 
     private enum judges { None, Near, Just, Pass, Miss };
     private judges _judge;
@@ -13,6 +13,7 @@ public class NoteController : MonoBehaviour
     private int _noteCnt;
     private bool _isUsed;
     private bool _canUsed;
+    private bool _alreadyPass;
 
     private string _inputKeyCode;
     private List<KeyCode> _nowKeyList;
@@ -20,6 +21,7 @@ public class NoteController : MonoBehaviour
     private Image _img;
 
     private BGMManager _BGMManager;
+    private ComboManager _comboManager;
 
 
     public void Init(Transform pos)
@@ -27,6 +29,7 @@ public class NoteController : MonoBehaviour
         _noteCnt = NoteSpawner.NoteCnt;
         if (_noteCnt == 0) _canUsed = true;
         else _canUsed = false;
+        _alreadyPass = false;
 
         _img = this.GetComponent<Image>();
         _img.color = Color.white;
@@ -39,6 +42,7 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
+        _comboManager = GameObject.Find("CommandPanel").GetComponent<ComboManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
 
@@ -50,15 +54,12 @@ public class NoteController : MonoBehaviour
         transform.Translate(new Vector2(_speed * Time.deltaTime, 0f));
 
         _nowKeyList = ComboManager.NowKeyList;
-
-        if (Input.inputString == "") { _inputKeyCode = "None"; }
-        else _inputKeyCode = Input.inputString.ToUpper();
+        _inputKeyCode = Input.inputString.ToUpper();
 
         for (int i = 0; i < _nowKeyList.Count; i++)
         {
             if (_inputKeyCode == _nowKeyList[i].ToString())
             {
-                Debug.Log("??" + _nowKeyList[i]);
                 if (_canUsed && !_isUsed)
                 {
                     ProcessJudge(_judge, i);
@@ -72,40 +73,24 @@ public class NoteController : MonoBehaviour
     {
         if (other.name == "Perf")
         {
-            if (!BGMManager._isMusicStart)
-            {
-                _BGMManager.GetComponent<BGMManager>().MusicStart();
-                BGMManager._isMusicStart = true;
-            }
-                
-            //Destroy(other.gameObject);
-        }
-    }
-
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1]; //이거왜여깄지
-
-        if (other.name == "Just")
-        {
-            _judge = judges.Just;
-        }
-        else if (other.name == "Near" || other.name == "Perf")
-        {
-            _judge = judges.Near;
+            _BGMManager.GetComponent<BGMManager>().MusicStart();
+            Destroy(other.gameObject);
         }
         else if (other.name == "Miss")
         {
-            /*if (_inputKeyCode != "None")
+            for (int i = 0; i < _nowKeyList.Count; i++)
             {
-                _judge = judges.Miss;
-                NoteSpawner.IsUsed[_noteCnt] = true;
+                if (_nowKeyList[i] == KeyCode.None && !_isUsed)
+                {
+                    _judge = judges.Pass;
+                    ProcessJudge(_judge, i);
+                }
+                else if (!_isUsed)//( && !_nowKeyList.Contains(KeyCode.None))
+                {
+                    _judge = judges.Miss;
+                    EndJudgement(false, i);
+                }
             }
-            else
-            {
-                _judge = judges.Pass;
-            }*/
         }
         else if (other.name == "Dismiss")
         {
@@ -114,23 +99,60 @@ public class NoteController : MonoBehaviour
     }
 
 
-    private judges ProcessJudge(judges judge, int skillNum)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (judge == judges.None) { return judges.None; }
-        if (judge == judges.Just)
+        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1];
+
+        if (other.name == "Just" || other.name == "Perf")
         {
-            Debug.Log("Just");
+            _judge = judges.Just;
         }
-        else if (judge == judges.Near)
+        else if (other.name == "Near")
         {
-            Debug.Log("Near");
+            _judge = judges.Near;
         }
-        if (judge == judges.Pass)
+        
+    }
+
+
+    //private judges ProcessJudge(judges judge, int skillNum)
+    private void ProcessJudge(judges judge, int skillNum)
+    {
+        if (_nowKeyList[skillNum] != KeyCode.None)
         {
-            Debug.Log("Pass");
+            if (judge == judges.Just || judge == judges.Near)
+            {
+                EndJudgement(true, skillNum);
+            }
         }
-        EndJudgement(skillNum);
-        return judge;
+        else if (judge == judges.Pass)
+        {
+            EndJudgement(true, skillNum);
+        }
+    }
+
+
+    private void EndJudgement(bool someoneSucceeded, int skillNum)
+    {
+        if (someoneSucceeded)
+        {
+            _img.color = Color.yellow;
+            _alreadyPass = true;
+            ComboManager.ComboList[skillNum]++;
+
+            for (int ImBbackchu = 0; ImBbackchu < _nowKeyList.Count; ImBbackchu++)
+            {
+                if (_nowKeyList[skillNum] != _nowKeyList[ImBbackchu])
+                    _comboManager.ComboFailed(ImBbackchu);
+            }
+        }
+        else
+        {
+            if (!_alreadyPass) { _img.color = Color.black; }
+            ComboManager.ComboList[skillNum] = 0;
+        }
+
+        NoteSpawner.IsUsed[_noteCnt] = true;
     }
 
 
@@ -138,14 +160,5 @@ public class NoteController : MonoBehaviour
     {
         NoteManager.Instance.ReturnObject(this);
         gameObject.SetActive(false);
-    }
-
-
-    private void EndJudgement(int skillNum)
-    {
-        _img.color = Color.black;
-
-        NoteSpawner.IsUsed[_noteCnt] = true;
-        ComboManager.ComboList[skillNum]++;
     }
 }

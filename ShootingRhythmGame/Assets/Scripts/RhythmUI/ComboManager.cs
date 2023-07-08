@@ -25,7 +25,7 @@ public class ComboManager : MonoBehaviour
 
     void Awake()
     {
-        KeyCode[] skill_1 = { KeyCode.None, KeyCode.A, KeyCode.S, KeyCode.None, KeyCode.A, KeyCode.None};
+        KeyCode[] skill_1 = { KeyCode.A, KeyCode.S, KeyCode.None, KeyCode.A, KeyCode.S, KeyCode.None, };
         KeyCode[] skill_2 = { KeyCode.A, KeyCode.A, KeyCode.A, KeyCode.A, KeyCode.D, KeyCode.D, KeyCode.D, KeyCode.D };
         //커맨드는 문지가 어떻게 잘  주겠지
 
@@ -79,11 +79,24 @@ public class ComboManager : MonoBehaviour
         {
             if (ComboList[i] == KeyList[i].Skill.Count)
             {
-                Debug.Log("해냈다.");
-                ComboList[i] = 0;
+                ComboSucceeded(i);
             }
             NowKeyList[i] = KeyList[i].Skill[ComboList[i]];
         }
+    }
+
+
+    private void ComboSucceeded(int skillNum)
+    {
+        Debug.Log("해냈다.");
+        ComboList[skillNum] = 0;
+    }
+
+
+    public void ComboFailed(int skillNum)
+    {
+        Debug.Log("실패했군.");
+        ComboList[skillNum] = 0;
     }
 
 

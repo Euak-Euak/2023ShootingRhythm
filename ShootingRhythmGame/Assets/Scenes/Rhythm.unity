@@ -464,8 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noteManager: {fileID: 1030608678}
-  _noteSpeed: 2
-  _beat: 1
+  _noteSpeed: 1.7
+  _beat: 2
 --- !u!61 &194541178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 62, y: 76}
+  m_Size: {x: 64, y: 76}
   m_EdgeRadius: 0
 --- !u!222 &520791178
 CanvasRenderer:
@@ -2182,7 +2182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 36, y: 76}
+  m_Size: {x: 32, y: 76}
   m_EdgeRadius: 0
 --- !u!222 &1450242437
 CanvasRenderer:
