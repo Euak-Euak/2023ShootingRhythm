@@ -8,7 +8,7 @@ public class SkillManager : MonoBehaviour
     public Dictionary<int, PlayerSkill> SkillSet;
     public Sprite _bulletSprite;
 
-    void Start()
+    public void Init()
     {
         SkillSet = new Dictionary<int, PlayerSkill>();
         DataManager.Instance.OpenDB();
