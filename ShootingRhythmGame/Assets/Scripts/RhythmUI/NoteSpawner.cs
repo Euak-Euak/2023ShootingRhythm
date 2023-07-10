@@ -19,6 +19,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void Awake()
     {
+        Reset();
         NoteSpeed = _noteSpeed;
     }
 
@@ -68,5 +69,12 @@ public class NoteSpawner : MonoBehaviour
     void Update()
     {
 
+    }
+
+
+    private void Reset()
+    {
+        NoteCnt = 0;
+        IsUsed.Clear();
     }
 }

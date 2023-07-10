@@ -21,7 +21,7 @@ public class LightUpSkillCmdPanel : MonoBehaviour
 
     private void Update()
     {
-        if (ComboManager.ComboList[PanelSkillNum] == PanelCmdNum)
+        if (CommandManager.ComboList[PanelSkillNum] == PanelCmdNum)
         {
             Img.color = Color.white;
         }

@@ -21,7 +21,7 @@ public class NoteController : MonoBehaviour
     private Image _img;
 
     private BGMManager _BGMManager;
-    private ComboManager _comboManager;
+    private CommandManager _commandManager;
 
 
     public void Init(Transform pos)
@@ -42,7 +42,7 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
-        _comboManager = GameObject.Find("CommandPanel").GetComponent<ComboManager>();
+        _commandManager = GameObject.Find("SkillListPanel").GetComponent<CommandManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
 
@@ -53,8 +53,9 @@ public class NoteController : MonoBehaviour
 
         transform.Translate(new Vector2(_speed * Time.deltaTime, 0f));
 
-        _nowKeyList = ComboManager.NowKeyList;
+        _nowKeyList = CommandManager.NowKeyList;
         _inputKeyCode = Input.inputString.ToUpper();
+
 
         for (int i = 0; i < _nowKeyList.Count; i++)
         {
@@ -138,18 +139,20 @@ public class NoteController : MonoBehaviour
         {
             _img.color = Color.yellow;
             _alreadyPass = true;
-            ComboManager.ComboList[skillNum]++;
+            CommandManager.ComboList[skillNum]++;
 
             for (int ImBbackchu = 0; ImBbackchu < _nowKeyList.Count; ImBbackchu++)
-            {
-                if (_nowKeyList[skillNum] != _nowKeyList[ImBbackchu])
-                    _comboManager.ComboFailed(ImBbackchu);
+            {///////////////////
+                if (CommandManager.ComboList[ImBbackchu] > 0 && _nowKeyList[skillNum] != _nowKeyList[ImBbackchu])
+                {
+                    _commandManager.ComboFailed(ImBbackchu);
+                }
             }
         }
         else
         {
             if (!_alreadyPass) { _img.color = Color.black; }
-            ComboManager.ComboList[skillNum] = 0;
+            CommandManager.ComboList[skillNum] = 0;
         }
 
         NoteSpawner.IsUsed[_noteCnt] = true;
