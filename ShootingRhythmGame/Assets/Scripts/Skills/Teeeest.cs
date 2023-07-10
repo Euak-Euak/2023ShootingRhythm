@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Teeeest : MonoBehaviour
 {
-    // Start is called before the first frame update
+    SkillManager manager;
     void Start()
     {
+        manager = GetComponent<SkillManager>();
+        manager.Init();
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            manager.SkillSet[4].SkillUse();
+        }
     }
 }

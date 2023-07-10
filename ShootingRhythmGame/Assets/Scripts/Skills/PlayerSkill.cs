@@ -43,6 +43,16 @@ public abstract class PlayerSkill : MonoBehaviour
 
     public void SkillUse()
     {
+        if (Input.GetKey(KeyCode.E))
+        {
+            SkillUsePowerUp();
+        }
+        else
+        {
+            SkillUseNormal();
+        }
+        return;
+
         if (_isPowerUp)
         {
             SkillUsePowerUp();

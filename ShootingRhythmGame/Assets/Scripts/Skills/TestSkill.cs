@@ -99,28 +99,6 @@ public class TestSkill : PlayerSkill
         yield return null;
     }
 
-    IEnumerator Skill6()
-    {
-        Bullet bullet = Shoot(transform.position, 5f, 0, _skillDamage);
-
-        float t = 0f;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            yield return null;
-            if (!bullet.gameObject.activeSelf)
-                yield break;
-        }
-
-        for (int i = 0; i <= 360; i += 5)
-        {
-            Shoot(bullet.transform.position, 5f, i, _skillDamage);
-            bullet.gameObject.SetActive(false);
-        }
-        yield return null;
-    }
-
     IEnumerator Skill7()
     {
         Bullet bullet = Shoot(transform.position, 0, 0, _skillDamage);
@@ -155,42 +133,6 @@ public class TestSkill : PlayerSkill
         }
 
         bullet.gameObject.SetActive(false);
-        yield return null;
-    }
-
-    IEnumerator Skill8()
-    {
-        for (float t = 0; t < 2 * Mathf.PI; t += 0.05f * Mathf.PI)
-        {
-            float x = 16 * Mathf.Sin(t) * Mathf.Sin(t) * Mathf.Sin(t);
-            float y = 13 * Mathf.Cos(t) - 5 * Mathf.Cos(2 * t) - 2 * Mathf.Cos(3 * t) - Mathf.Cos(4 * t);
-
-            Vector2 vector = new Vector2(x + transform.position.x , y + transform.position.y);
-            Vector2 angle = (Vector2)transform.position - vector; 
-            float de = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg + 90;
-            float dis = Vector2.Distance(transform.position, vector);
-
-            Shoot(transform.position, dis /4, de, _skillDamage);
-        }
-
-        yield return null;
-    }
-
-    IEnumerator Skill9()
-    {
-        for (float t = 0; t < 2 * Mathf.PI; t += 0.05f * Mathf.PI)
-        {
-            float x = 5 * Mathf.Cos(2 * t) + 2 * Mathf.Cos(3 * t);
-            float y = 2 * Mathf.Sin(3 * t) - 5 * Mathf.Sin(2 * t);
-
-            Vector2 vector = new Vector2(x + transform.position.x, y + transform.position.y);
-            Vector2 angle = (Vector2)transform.position - vector;
-            float de = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg + 90;
-            float dis = Vector2.Distance(transform.position, vector);
-
-            Shoot(transform.position, dis / 4, de, _skillDamage);
-        }
-
         yield return null;
     }
 
@@ -293,7 +235,22 @@ public class TestSkill : PlayerSkill
     protected override void SkillUseNormal()
     {
         Debug.Log("Skillused");
-        StartCoroutine(Skill8());
+        /*
+         Bullet bullet = Shoot(transform.position, 2.5f, 0, _skillDamage);
+
+        float t = 0f;
+
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            yield return null;
+            if (!bullet.gameObject.activeSelf)
+                yield break;
+        }
+
+        bullet.gameObject.SetActive(false);
+
+         */
     }
 
     protected override void SkillUsePowerUp()

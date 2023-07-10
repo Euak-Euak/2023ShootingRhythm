@@ -14,8 +14,11 @@ public class SkillManager : MonoBehaviour
         DataManager.Instance.OpenDB();
         //Debug.Log(DataManager.Instance.SkillCount());
 
-        AddSkill<TestSkill>(1);
-        
+        AddSkill<LudditeSkill>(1);
+        AddSkill<MMDSkill>(2);
+        AddSkill<DancingStarFallSkill>(3);
+        AddSkill<FourLanguageSkill>(4);
+
         DataManager.Instance.CloseDB();
     }
 
