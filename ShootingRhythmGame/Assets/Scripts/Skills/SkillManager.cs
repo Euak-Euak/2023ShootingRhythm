@@ -12,7 +12,7 @@ public class SkillManager : MonoBehaviour
     {
         SkillSet = new Dictionary<int, PlayerSkill>();
         DataManager.Instance.OpenDB();
-        Debug.Log(DataManager.Instance.SkillCount());
+        //Debug.Log(DataManager.Instance.SkillCount());
 
         AddSkill<TestSkill>(1);
         
