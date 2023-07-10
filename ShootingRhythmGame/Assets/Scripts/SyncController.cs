@@ -22,6 +22,7 @@ public class SyncController : MonoBehaviour
     {
         for (int i = 0; i < _judgementZones.Length; i++)
         {
+            //ÈæÈæ¾¾¹ß
             _colliders[i].offset = new Vector2(Sync * NoteSpawner.NoteSpeed *  60 / BGMManager.Bpm, 0);
         }
     }

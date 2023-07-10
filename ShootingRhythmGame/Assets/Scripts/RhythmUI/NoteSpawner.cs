@@ -11,6 +11,9 @@ public class NoteSpawner : MonoBehaviour
     static public int NoteCnt = 0;
     static public List<bool> IsUsed = new List<bool>();
 
+    private int _beatIndex = 0;
+    [SerializeField] private List<bool> _rhythm = new List<bool>() { true };
+
     private int _bpm;
     // _노트 등장 간격 기준 (4분 음표 1, 8분 음표 0.5, 2분 음표 2 . . . .)
     [SerializeField] private float _beat;
@@ -29,6 +32,8 @@ public class NoteSpawner : MonoBehaviour
         _bpm = BGMManager.Bpm;
         _beatInterval = 60 * _beat / (float)_bpm;
 
+        //_rhythm = new List<bool> { true, true, true, false };
+
         StartCoroutine(MakeNoteCor());
     }
 
@@ -41,9 +46,14 @@ public class NoteSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_beatInterval);
-            
-            MakeNote(half);
+            if (_rhythm[_beatIndex])
+            {
+                MakeNote(half);
+            }
+
             half = !half;
+            if (_beatIndex == _rhythm.Count - 1) _beatIndex = 0;
+            else _beatIndex++;
         }
     }
 
