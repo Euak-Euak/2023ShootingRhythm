@@ -66,30 +66,6 @@ public class TestSkill : PlayerSkill
         yield return null;
     }
 
-    IEnumerator Skill4()
-    {
-        for (int j = 0; j < 5; j++)
-        {
-            Vector3 trans;
-
-
-            for (float i = -0.4f; i <= 0.4f; i += 0.2f)
-            {
-                trans = new Vector3(transform.position.x + i, transform.position.y);
-                Shoot(trans, 5f, 0, _skillDamage);
-
-
-                trans = new Vector3(transform.position.x - i, transform.position.y);
-                Shoot(trans, 5f, 0, _skillDamage);
-
-                yield return new WaitForSeconds(0.07f);
-            }
-            trans = new Vector3(transform.position.x, transform.position.y + 0.23f);
-            Shoot(trans, 5f, 0, _skillDamage);
-        }
-        yield return null;
-    }
-
     IEnumerator Skill5()
     {
         for (int i = 0; i <= 360; i += 5)
