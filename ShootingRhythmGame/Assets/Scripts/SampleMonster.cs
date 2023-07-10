@@ -7,9 +7,11 @@ public class SampleMonster : Monster
 {
     [SerializeField]
     private Sprite _sprite;
+    [SerializeField]
+    private BulletData _bullet;
     private void Start()
     {
-        //Attack();
+        Attack();
     }
 
     public override void Attack()
@@ -75,6 +77,7 @@ public class SampleMonster : Monster
     IEnumerator AttackCircle3_s(float angle)
     {
         Bullet bullet = Shoot(transform.position, 7f, angle);
+        bullet.SetBulletData(_bullet, false);
         float t = 0f;
 
         while (t < 1f)

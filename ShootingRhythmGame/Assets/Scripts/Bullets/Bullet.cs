@@ -6,15 +6,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private float _speed = 0f;
-    SpriteRenderer _renderer;
     private int _layer;
     private float _angle;
     private int _damage;
-    private bool _isMove;
+    private bool _penetrate;
+
+    SpriteRenderer _renderer;
+    private CapsuleCollider2D _collider;
 
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<CapsuleCollider2D>();
         gameObject.SetActive(false);
     }
 
@@ -46,6 +49,13 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void SetBulletData(BulletData bulletData, bool isPenetrate)
+    {
+        _collider.size = bulletData.Size;
+        _renderer.sprite = bulletData.Sprite;
+        _penetrate = isPenetrate;
+    }
+
     void Update()
     {
         transform.position += new Vector3(Mathf.Sin(Mathf.Deg2Rad * _angle), Mathf.Cos(Mathf.Deg2Rad * _angle)) * _speed * Time.deltaTime;
@@ -64,7 +74,8 @@ public class Bullet : MonoBehaviour
         {
             collision.GetComponent<Attackable>().Attacked(_damage);
 
-            ReturnObject();
+            if(!_penetrate)
+                ReturnObject();
         }
     }
 }

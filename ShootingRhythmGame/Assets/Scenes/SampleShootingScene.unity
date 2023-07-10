@@ -391,8 +391,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 10
+  _hp: 0
   _bulletSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   _sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  _bullet: {fileID: 4207578085337739541, guid: 6452bb03cb07c91458e67feeab2f3980, type: 3}
 --- !u!1001 &66898028
 PrefabInstance:
   m_ObjectHideFlags: 0
