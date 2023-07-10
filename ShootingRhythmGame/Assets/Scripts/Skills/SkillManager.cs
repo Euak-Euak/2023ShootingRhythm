@@ -6,31 +6,24 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public Dictionary<int, PlayerSkill> SkillSet;
+    public Sprite _bulletSprite;
 
     void Start()
     {
         SkillSet = new Dictionary<int, PlayerSkill>();
         DataManager.Instance.OpenDB();
         Debug.Log(DataManager.Instance.SkillCount());
-        for (int ID = 1; ID < DataManager.Instance.SkillCount(); ++ID)
-        {
-            PlayerSkill skill;
-            switch (ID)
-            {
-                case 1:
-                    skill = gameObject.AddComponent<TestSkill>();
-                    break;
-                default:
-                    skill = gameObject.AddComponent<TestSkill>();
-                    break;
-            }
-            skill.Init(ID);
 
-            Debug.Log(skill + " " + ID);
-
-            SkillSet.Add(ID, skill);
-        }
-
+        AddSkill<TestSkill>(1);
+        
         DataManager.Instance.CloseDB();
+    }
+
+    private void AddSkill<T>(int ID) where T : PlayerSkill
+    {
+        PlayerSkill skill = gameObject.AddComponent<T>();
+        skill.Init(ID);
+        skill._bulletSprite = _bulletSprite;
+        SkillSet.Add(ID, skill);
     }
 }

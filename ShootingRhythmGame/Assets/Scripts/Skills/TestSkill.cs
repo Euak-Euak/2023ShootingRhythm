@@ -160,8 +160,12 @@ public class TestSkill : PlayerSkill
 
     IEnumerator Skill8()
     {
+        Debug.Log("Skillusued");
+
         for (float t = 0; t < 2 * Mathf.PI; t += 0.05f * Mathf.PI)
         {
+            Debug.Log("Skill used");
+
             float x = 16 * Mathf.Sin(t) * Mathf.Sin(t) * Mathf.Sin(t);
             float y = 13 * Mathf.Cos(t) - 5 * Mathf.Cos(2 * t) - 2 * Mathf.Cos(3 * t) - Mathf.Cos(4 * t);
 
@@ -292,7 +296,8 @@ public class TestSkill : PlayerSkill
 
     protected override void SkillUseNormal()
     {
-        StartCoroutine(Skill13());
+        Debug.Log("Skillused");
+        StartCoroutine(Skill8());
     }
 
     protected override void SkillUsePowerUp()

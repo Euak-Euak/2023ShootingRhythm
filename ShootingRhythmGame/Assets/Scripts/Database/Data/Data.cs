@@ -24,7 +24,6 @@ public class Data
         cmd.CommandText = sql;
         reader = cmd.ExecuteReader();
         cmd.Dispose();
-        Debug.Log(sql);
         reader.Read();
     }
 

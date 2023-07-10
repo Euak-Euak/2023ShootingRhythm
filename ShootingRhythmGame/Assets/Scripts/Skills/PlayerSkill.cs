@@ -5,9 +5,10 @@ using UnityEngine;
 public abstract class PlayerSkill : MonoBehaviour
 {
     [SerializeField]
-    private Sprite _bulletSprite;
+    public Sprite _bulletSprite;
 
     public string _skillName;
+    public string _skillImage;
     public string _commandNormal;
     public string _commandPowerUp;
     public int _skillDamage;
@@ -22,6 +23,7 @@ public abstract class PlayerSkill : MonoBehaviour
         _skillDamage = DataManager.Instance.SkillValue(ID);
         _bulletType = DataManager.Instance.BulletType(ID);
         _isPowerUp = DataManager.Instance.IsPowerUp(ID);
+        _skillImage = DataManager.Instance.SkillImage(ID);
     }
 
     public Bullet Shoot(Vector3 pos, float speed, float angle, int damage, Sprite sprite = null)

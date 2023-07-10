@@ -72,6 +72,11 @@ public class DataManager : Singleton<DataManager>
         return _commandData.PowerUpCommand(ID);
     }
 
+    public string SkillImage(int ID)
+    {
+        return _skillData.SkillImage(ID);
+    }
+
     public int SkillValue(int ID)
     {
         int initValue = _skillGrowthValueData.InitValue(ID);
