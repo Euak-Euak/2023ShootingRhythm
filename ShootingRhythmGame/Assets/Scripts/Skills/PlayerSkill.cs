@@ -13,6 +13,8 @@ public abstract class PlayerSkill : MonoBehaviour
     public string _commandPowerUp;
     public int _skillDamage;
     public int _bulletType;
+    public int _cooltimeBySkill;
+    public float _cooltimeByTime;
     public bool _isPowerUp;
 
     public void Init(int ID)
@@ -24,6 +26,8 @@ public abstract class PlayerSkill : MonoBehaviour
         _bulletType = DataManager.Instance.BulletType(ID);
         _isPowerUp = DataManager.Instance.IsPowerUp(ID);
         _skillImage = DataManager.Instance.SkillImage(ID);
+        _cooltimeBySkill = DataManager.Instance.CooltimeBySkill(ID);
+        _cooltimeByTime = DataManager.Instance.CooltimeByTime(ID);
     }
 
     public Bullet Shoot(Vector3 pos, float speed, float angle, int damage, Sprite sprite = null)

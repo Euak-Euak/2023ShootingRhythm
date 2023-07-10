@@ -95,6 +95,16 @@ public class DataManager : Singleton<DataManager>
         return skillValue;
     }
 
+    public int CooltimeBySkill(int ID)
+    {
+        return _coolTimeData.SkillCountCool(ID);
+    }
+    public float CooltimeByTime(int ID)
+    {
+        return _coolTimeData.RealTimeCool(ID);
+    }
+
+
     //스킬 숫자 기본치
     public int SkillInitValue(int ID)
     {
