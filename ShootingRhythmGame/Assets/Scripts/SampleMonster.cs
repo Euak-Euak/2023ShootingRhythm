@@ -11,7 +11,7 @@ public class SampleMonster : Monster
     private BulletData _bullet;
     private void Start()
     {
-        Attack();
+        //Attack();
     }
 
     public override void Attack()
