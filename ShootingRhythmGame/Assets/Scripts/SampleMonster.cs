@@ -27,8 +27,8 @@ public class SampleMonster : Monster
 
             for (int i = 0; i <= 360; i += 5)
             {
-                Shoot(transform.position, 5f, i);
-                Shoot(transform.position, 5f, i + 180);
+                Shoot(transform.position, 5f, i, 1);
+                Shoot(transform.position, 5f, i + 180, 1);
                 yield return new WaitForSeconds(0.1f);
             }
         }
@@ -44,7 +44,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform.position, 7f, i + j);
+                    Shoot(transform.position, 7f, i + j, 1);
                 }
             }
             for (int i = 90; i >= 10; i -= 10)
@@ -52,7 +52,7 @@ public class SampleMonster : Monster
                 yield return new WaitForSeconds(0.05f);
                 for (int j = 0; j <= 360; j += 36)
                 {
-                    Shoot(transform.position, 7f, i + j);
+                    Shoot(transform.position, 7f, i + j, 1);
                 }
             }
         }
@@ -76,7 +76,7 @@ public class SampleMonster : Monster
 
     IEnumerator AttackCircle3_s(float angle)
     {
-        Bullet bullet = Shoot(transform.position, 7f, angle);
+        Bullet bullet = Shoot(transform.position, 7f, angle, 1);
         bullet.SetBulletData(_bullet, false);
         float t = 0f;
 

@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Init(Vector3 pos, float speed, float angle, int damage, Sprite sprite, int layer)
+    public void Init(Vector3 pos, float speed, float angle, int damage, Sprite sprite = null, int layer = 0)
     {
         transform.position = pos;
         _speed = speed;
@@ -30,16 +30,6 @@ public class Bullet : MonoBehaviour
         _renderer.sprite = sprite;
         _damage = damage;
         _layer = layer;
-        gameObject.SetActive(true);
-    }
-
-    public void Init(Vector3 pos, float speed, float angle, int damage)
-    {
-        transform.position = pos;
-        _speed = speed;
-        transform.rotation = Quaternion.Euler(0, 0, -angle);
-        _angle = angle;
-        _damage = damage;
         gameObject.SetActive(true);
     }
 

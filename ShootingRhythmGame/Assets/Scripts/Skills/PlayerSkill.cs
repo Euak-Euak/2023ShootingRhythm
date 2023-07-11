@@ -41,6 +41,18 @@ public abstract class PlayerSkill : MonoBehaviour
         return bullet;
     }
 
+    public Laser Beam(Vector3 pos, float angle, int damage, float time, float stayTime, Sprite sprite = null)
+    {
+        Laser laser = LaserManager.Instance.SpawnObject();
+
+        if (sprite == null)
+            sprite = _bulletSprite;
+
+        laser.Init(pos, angle, damage, sprite, LayerMask.NameToLayer("Monster"));
+        laser.Shoot(time, stayTime);
+        return laser;
+    }
+
     public void SkillUse()
     {
         if (Input.GetKey(KeyCode.E))
