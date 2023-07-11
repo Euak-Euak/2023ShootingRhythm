@@ -9,7 +9,6 @@ public class Teeeest : MonoBehaviour
     {
         manager = GetComponent<SkillManager>();
         manager.Init();
-        
     }
 
     void Update()

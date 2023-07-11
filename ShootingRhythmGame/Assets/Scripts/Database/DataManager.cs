@@ -51,6 +51,18 @@ public class DataManager : Singleton<DataManager>
     {
         return _skillData.SkillName(ID);
     }
+    public string SkillDescript(int ID)
+    {
+        return _skillData.SkillDescript(ID);
+    }
+    public string SkillUseDescript(int ID)
+    {
+        return _skillData.UseSkillDescript(ID);
+    }
+    public string SkillPowerUpDescript(int ID)
+    {
+        return _skillData.UsePowerUpSkillDescript(ID);
+    }
 
     public int BulletType(int ID)
     {
@@ -61,6 +73,17 @@ public class DataManager : Singleton<DataManager>
     {
         return _userData.GetPowerUp(ID);
     }
+
+    public void SetSkillLevelUp(int ID)
+    {
+        _userData.SetSkillLevel(ID, _userData.GetSkillLevel(ID) + 1);
+    }
+
+    public void SetPowerUpChange(int ID)
+    {
+        _userData.SetPowerUp(ID, !_userData.GetPowerUp(ID));
+    }
+
 
     public string CommandNormal(int ID)
     {
@@ -95,6 +118,11 @@ public class DataManager : Singleton<DataManager>
         return skillValue;
     }
 
+    public int SkillLevel(int ID)
+    {
+        return _userData.GetSkillLevel(ID);
+    }
+
     public int CooltimeBySkill(int ID)
     {
         return _coolTimeData.SkillCountCool(ID);
@@ -104,11 +132,14 @@ public class DataManager : Singleton<DataManager>
         return _coolTimeData.RealTimeCool(ID);
     }
 
+    public int SkillUpgradeMoney(int ID)
+    {
+        return _upgradeMoneyData.SkillUpgradeMoney(ID);
+    }
 
     //스킬 숫자 기본치
     public int SkillInitValue(int ID)
     {
-        _skillGrowthValueData.Open();
         return _skillGrowthValueData.InitValue(ID);
     }
 
