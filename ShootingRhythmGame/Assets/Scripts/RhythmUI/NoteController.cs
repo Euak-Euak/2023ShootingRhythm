@@ -16,7 +16,8 @@ public class NoteController : MonoBehaviour
     private bool _alreadyPass;
 
     private string _inputKeyCode;
-    private List<KeyCode> _nowKeyList;
+    private List<string> _nowKeyList;
+    private List<string> _allKeyList = new List<string> { "A", "S", "D", "F" };
 
     private Image _img;
 
@@ -42,7 +43,7 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
-        _commandManager = GameObject.Find("SkillListPanel").GetComponent<CommandManager>();
+        _commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
 
@@ -57,16 +58,25 @@ public class NoteController : MonoBehaviour
         _inputKeyCode = Input.inputString.ToUpper();
 
 
-        for (int i = 0; i < _nowKeyList.Count; i++)
+        if (_canUsed && !_isUsed)
         {
-            if (_inputKeyCode == _nowKeyList[i].ToString())
+            if (Input.anyKeyDown)
             {
-                if (_canUsed && !_isUsed)
-                {
-                    ProcessJudge(_judge, i);
+                for (int i = 0; i < _nowKeyList.Count; i++)
+                {   
+                    if (_inputKeyCode == _nowKeyList[i])
+                    {
+                        ProcessJudge(_judge, i);
+                    }
+                    else if (_allKeyList.Contains(_inputKeyCode) && !_nowKeyList.Contains(_inputKeyCode))
+                    {
+                        EndJudgement(false, i);
+                    }
                 }
             }
         }
+
+        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1];
     }
 
 
@@ -81,7 +91,7 @@ public class NoteController : MonoBehaviour
         {
             for (int i = 0; i < _nowKeyList.Count; i++)
             {
-                if (_nowKeyList[i] == KeyCode.None && !_isUsed)
+                if (_nowKeyList[i] == "-" && !_isUsed)
                 {
                     _judge = judges.Pass;
                     ProcessJudge(_judge, i);
@@ -102,8 +112,6 @@ public class NoteController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (_noteCnt != 0) _canUsed = NoteSpawner.IsUsed[_noteCnt - 1];
-
         if (other.name == "Just" || other.name == "Perf")
         {
             _judge = judges.Just;
@@ -116,14 +124,17 @@ public class NoteController : MonoBehaviour
     }
 
 
-    //private judges ProcessJudge(judges judge, int skillNum)
     private void ProcessJudge(judges judge, int skillNum)
     {
-        if (_nowKeyList[skillNum] != KeyCode.None)
+        if (_nowKeyList[skillNum] != "-")
         {
             if (judge == judges.Just || judge == judges.Near)
             {
                 EndJudgement(true, skillNum);
+            }
+            else if (judge == judges.None)
+            {
+                EndJudgement(false, skillNum);
             }
         }
         else if (judge == judges.Pass)
@@ -137,12 +148,15 @@ public class NoteController : MonoBehaviour
     {
         if (someoneSucceeded)
         {
-            _img.color = Color.yellow;
-            _alreadyPass = true;
-            CommandManager.ComboList[skillNum]++;
+            if (!CommandManager.IsCmdCoolTime[skillNum])
+            {
+                _img.color = Color.yellow;
+                _alreadyPass = true;
+                CommandManager.ComboList[skillNum]++;
+            }
 
             for (int ImBbackchu = 0; ImBbackchu < _nowKeyList.Count; ImBbackchu++)
-            {///////////////////
+            {
                 if (CommandManager.ComboList[ImBbackchu] > 0 && _nowKeyList[skillNum] != _nowKeyList[ImBbackchu])
                 {
                     _commandManager.ComboFailed(ImBbackchu);

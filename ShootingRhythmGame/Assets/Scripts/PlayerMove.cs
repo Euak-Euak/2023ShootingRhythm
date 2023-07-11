@@ -20,8 +20,17 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = 0;
+        float y = 0;
+
+        if (Input.GetKey(KeyCode.UpArrow))
+            y = 1;
+        if (Input.GetKey(KeyCode.DownArrow))
+            y = -1;
+        if (Input.GetKey(KeyCode.LeftArrow))
+            x = -1;
+        if (Input.GetKey(KeyCode.RightArrow))
+            x = 1;
 
         _rid.position += 5 * Time.deltaTime * new Vector2(x, y);
     }

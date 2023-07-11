@@ -10,15 +10,22 @@ public class SkillSelectionButton : tempSkillSelect
     private Color _selectedColor = Color.yellow;
     private bool _isSelected = false;
 
-    private //뭐적으려한거지.....ㅅㅂ
+    public int _idNum;
+    private Text _skillNameText;
+
 
     void Start()
     {
+        _skillNameText = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         _image = this.GetComponent<Image>();
+
+        _skillManager = this.gameObject.AddComponent<SkillManager>();
+        _skillManager.Init();
     }
 
     void Update()
     {
+        _skillNameText.text = _skillManager.SkillSet[_idNum]._skillName;
 
         if (_isSelected)
         {
@@ -36,13 +43,14 @@ public class SkillSelectionButton : tempSkillSelect
         {
             if (!IsSelectionMax)
             {
-                SelectedSkillCnt++;
+                SelectedSkillIdList.Add(_idNum);
+                _isSelected = true;
             }
         }
         else
         {
-            SelectedSkillCnt--;
+            SelectedSkillIdList.Remove(_idNum);
+            _isSelected = false;
         }
-        _isSelected = !_isSelected;
     }
 }
