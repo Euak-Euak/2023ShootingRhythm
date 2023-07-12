@@ -16,7 +16,7 @@ public class DeusExMachinaSkill : PlayerSkill
 
     IEnumerator NormalSkill()
     {
-
+        Beam(transform.position, 0, _skillDamage, 0.2f, 1f);
         yield return null;
     }
 

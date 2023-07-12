@@ -33,6 +33,16 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Init(Vector3 pos, float speed, float angle, int damage)
+    {
+        transform.position = pos;
+        _speed = speed;
+        transform.rotation = Quaternion.Euler(0, 0, -angle);
+        _angle = angle;
+        _damage = damage;
+        gameObject.SetActive(true);
+    }
+
     public void ReturnObject()
     {
         BulletManager.Instance.ReturnObject(this);
