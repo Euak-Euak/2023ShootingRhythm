@@ -41,6 +41,15 @@ public class Laser : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void SetBulletData(GameObject game)
+    {
+        BulletData bulletData = BulletDataManager.Instance.ReturnData(game.name);
+        _collider.size = bulletData.Size.size;
+        _collider.offset = bulletData.Size.offset;
+        _collider.direction = bulletData.Size.direction;
+        _renderer.sprite = bulletData.Sprite;
+    }
+
     public void Shoot(float time = 0, float stayTime = 0)
     {
         _renderer.material.SetFloat("_Y", 0);
