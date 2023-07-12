@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6417792805886708219}
   - component: {fileID: 6417792805886708218}
-  - component: {fileID: 9155888457211708426}
-  - component: {fileID: 5610765509371938179}
+  - component: {fileID: 7990077251470863138}
   - component: {fileID: 5590854538930548237}
+  - component: {fileID: 5610765509371938179}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9155888457211708426
+--- !u!114 &7990077251470863138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +96,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6417792805886708221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60498471f013f944c808365328a9748d, type: 3}
+  m_Script: {fileID: 11500000, guid: 07162398080a6e64781048e1e4a7337f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPenetrate: 0
+--- !u!70 &5590854538930548237
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417792805886708221}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
 --- !u!50 &5610765509371938179
 Rigidbody2D:
   serializedVersion: 4
@@ -117,22 +134,6 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &5590854538930548237
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417792805886708221}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.21133333}
-  m_Size: {x: 1, y: 1}
-  m_Direction: 0

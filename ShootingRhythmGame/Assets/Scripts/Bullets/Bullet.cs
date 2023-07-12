@@ -21,13 +21,12 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Init(Vector3 pos, float speed, float angle, int damage, Sprite sprite = null, int layer = 0)
+    public void Init(Vector3 pos, float speed, float angle, int damage, int layer = 0)
     {
         transform.position = pos;
         _speed = speed;
         transform.rotation = Quaternion.Euler(0, 0,  - angle);
         _angle = angle;
-        _renderer.sprite = sprite;
         _damage = damage;
         _layer = layer;
         gameObject.SetActive(true);
@@ -49,11 +48,14 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetBulletData(BulletData bulletData, bool isPenetrate)
+    public void SetBulletData(GameObject game)
     {
+        BulletData bulletData = BulletDataManager.Instance.ReturnData(game.name);
         _collider.size = bulletData.Size.size;
+        _collider.offset = bulletData.Size.offset;
+        _collider.direction = bulletData.Size.direction;
         _renderer.sprite = bulletData.Sprite;
-        _penetrate = isPenetrate;
+        _penetrate = bulletData.IsPenetrate;
     }
 
     void Update()

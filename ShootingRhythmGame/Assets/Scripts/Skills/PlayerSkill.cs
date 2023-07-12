@@ -37,7 +37,7 @@ public abstract class PlayerSkill : MonoBehaviour
         if (sprite == null)
             sprite = _bulletSprite;
 
-        bullet.Init(pos, speed, angle, damage, sprite, LayerMask.NameToLayer("Monster"));
+        bullet.Init(pos, speed, angle, damage, LayerMask.NameToLayer("Monster"));
         return bullet;
     }
 

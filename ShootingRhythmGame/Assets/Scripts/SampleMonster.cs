@@ -8,15 +8,15 @@ public class SampleMonster : Monster
     [SerializeField]
     private Sprite _sprite;
     [SerializeField]
-    private BulletData _bullet;
+    private GameObject _bullet;
     private void Start()
     {
-        //Attack();
+        Attack();
     }
 
     public override void Attack()
     {
-        StartCoroutine(AttackCircle3());
+        StartCoroutine(AttackCircle2());
     }
 
     IEnumerator AttackCircle()
@@ -64,7 +64,7 @@ public class SampleMonster : Monster
         {
             for (int i = 0; i <= 180; i += 10)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(01f);
                 for (int j = 0; j <= 360; j += 36)
                 {
                     StartCoroutine(AttackCircle3_s(i + j));
@@ -77,7 +77,7 @@ public class SampleMonster : Monster
     IEnumerator AttackCircle3_s(float angle)
     {
         Bullet bullet = Shoot(transform.position, 7f, angle, 1);
-        bullet.SetBulletData(_bullet, false);
+        bullet.SetBulletData(_bullet);
         float t = 0f;
 
         while (t < 1f)
@@ -88,9 +88,9 @@ public class SampleMonster : Monster
                 yield break;
         }
 
-        bullet.Init(bullet.transform.position, 0f, angle, 1, _sprite, LayerMask.NameToLayer("Player"));
+        bullet.Init(bullet.transform.position, 0f, angle, 1, LayerMask.NameToLayer("Player"));
         yield return new WaitForSeconds(3f);
 
-        bullet.Init(bullet.transform.position, 5f, angle + 180, 1, _sprite, LayerMask.NameToLayer("Player"));
+        bullet.Init(bullet.transform.position, 5f, angle + 180, 1, LayerMask.NameToLayer("Player"));
     }
 }

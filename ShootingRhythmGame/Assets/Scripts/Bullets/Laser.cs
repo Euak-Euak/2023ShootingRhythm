@@ -7,6 +7,7 @@ public class Laser : MonoBehaviour
 {
     private int _layer;
     private int _damage;
+    private float _angle;
 
     SpriteRenderer _renderer;
     private CapsuleCollider2D _spriteCollider;
@@ -32,6 +33,7 @@ public class Laser : MonoBehaviour
     public void Init(Vector3 pos, float angle, int damage, Sprite sprite = null, int layer = 0)
     {
         transform.position = pos;
+        _angle = angle;
         transform.rotation = Quaternion.Euler(0, 0, -angle);
         _renderer.sprite = sprite;
         _damage = damage;
@@ -42,13 +44,13 @@ public class Laser : MonoBehaviour
     public void Shoot(float time = 0, float stayTime = 0)
     {
         _renderer.material.SetFloat("_Y", 0);
+        StartCoroutine(Attack());
         StartCoroutine(ShootAnimation(time, stayTime));
     }
 
     private IEnumerator ShootAnimation(float time, float stayTime = 0)
     {
         float t = 0f;
-
         while (t < time)
         {
             t += Time.deltaTime;
@@ -81,19 +83,23 @@ public class Laser : MonoBehaviour
         _renderer.sprite = bulletData.Sprite;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private IEnumerator Attack()
     {
-        if (collision.gameObject.layer == _layer && _isAttackable)
+        while (true)
         {
-            collision.GetComponent<Attackable>().Attacked(_damage);
-            _isAttackable = false;
-            StartCoroutine(AttackDalay());
-        }
-    }
+            Vector2 pos = (Vector2)transform.position + new Vector2(Mathf.Sin(Mathf.Deg2Rad * _angle) * _collider.offset.y, Mathf.Cos(Mathf.Deg2Rad * _angle) * _collider.offset.y);
+            RaycastHit2D[] hit = Physics2D.BoxCastAll(pos, _collider.size, -_angle, Vector2.zero);
+            foreach (RaycastHit2D ray in hit)
+            {
+                if (ray.collider == null)
+                    continue;
 
-    private IEnumerator AttackDalay()
-    {
-        yield return new WaitForSeconds(0.2f);
-        _isAttackable = true;
+                if (ray.collider.gameObject.layer == _layer)
+                {
+                    ray.collider.GetComponent<Attackable>().Attacked(_damage);
+                }
+            }
+            yield return new WaitForSeconds(0.2f);  
+        }
     }
 }
