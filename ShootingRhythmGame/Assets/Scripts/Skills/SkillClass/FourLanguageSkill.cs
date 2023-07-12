@@ -22,7 +22,7 @@ public class FourLanguageSkill : PlayerSkill
             {
                 for (float i = -22.5f; i <= 22.5f; i += 15)
                 {
-                    Shoot(transform.position, 5f, i, _skillDamage);
+                    Shoot(transform.position, 5f, i, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 }
                 yield return new WaitForSeconds(0.04f);
             }
@@ -38,7 +38,7 @@ public class FourLanguageSkill : PlayerSkill
             {
                 for (float i = -22.5f; i <= 22.5f; i += 15)
                 {
-                    Shoot(transform.position, 5f, i, _skillDamage);
+                    Shoot(transform.position, 5f, i, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 }
                 yield return new WaitForSeconds(0.04f);
             }
@@ -47,7 +47,7 @@ public class FourLanguageSkill : PlayerSkill
             {
                 for (float i = -30f; i <= 30f; i += 15)
                 {
-                    Shoot(transform.position, 5f, i, _skillDamage);
+                    Shoot(transform.position, 5f, i, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
                 }
                 yield return new WaitForSeconds(0.02f);
             }

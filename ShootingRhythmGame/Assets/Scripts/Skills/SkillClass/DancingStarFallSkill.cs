@@ -34,6 +34,7 @@ public class DancingStarFallSkill : PlayerSkill
             for (int i = 0; i < bulletVector.Length; i++)
             {
                 Bullet bullet = Shoot(bulletVector[i], dis / 4, de, _skillDamage);
+                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 StartCoroutine(NormalSkill_s(bullet));
             }
         }
@@ -87,6 +88,7 @@ public class DancingStarFallSkill : PlayerSkill
             for (int i = 0; i < bulletVector.Length; i++)
             {
                 Bullet bullet = Shoot(bulletVector[i], dis / 4, de, _skillDamage);
+                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 StartCoroutine(NormalSkill_s(bullet));
             }
         }

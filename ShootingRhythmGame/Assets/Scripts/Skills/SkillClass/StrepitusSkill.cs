@@ -20,7 +20,7 @@ public class StrepitusSkill : PlayerSkill
         {
             for(int j = -45; j <= 45; j += 5)
             {
-                Shoot(transform.position, 6.5f, j, _skillDamage);
+                Shoot(transform.position, 6.5f, j, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             }
             yield return new WaitForSecondsRealtime(i * 0.05f);
         }
@@ -33,7 +33,7 @@ public class StrepitusSkill : PlayerSkill
         {
             for (int j = -45; j <= 45; j += 3)
             {
-                Shoot(transform.position, 6.5f, j, _skillDamage);
+                Shoot(transform.position, 6.5f, j, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             }
             yield return new WaitForSecondsRealtime(i * 0.02f);
         }

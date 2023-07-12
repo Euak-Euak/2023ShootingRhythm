@@ -15,7 +15,7 @@ public class Teeeest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            manager.SkillSet[14].SkillUse();
+            manager.SkillSet[9].SkillUse();
         }
     }
 }

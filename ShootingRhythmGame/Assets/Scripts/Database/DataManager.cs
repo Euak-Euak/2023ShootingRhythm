@@ -64,9 +64,14 @@ public class DataManager : Singleton<DataManager>
         return _skillData.UsePowerUpSkillDescript(ID);
     }
 
-    public int BulletType(int ID)
+    public string BulletType(int ID)
     {
         return _skillData.BulletType(ID);
+    }
+
+    public string BulletType2(int ID)
+    {
+        return _skillData.BulletType2(ID);
     }
 
     public bool IsPowerUp(int ID)

@@ -12,7 +12,8 @@ public abstract class PlayerSkill : MonoBehaviour
     public string _commandNormal;
     public string _commandPowerUp;
     public int _skillDamage;
-    public int _bulletType;
+    public string _bulletType;
+    public string _bulletType2;
     public int _cooltimeBySkill;
     public float _cooltimeByTime;
     public bool _isPowerUp;
@@ -24,6 +25,7 @@ public abstract class PlayerSkill : MonoBehaviour
         _commandPowerUp = DataManager.Instance.CommandPowerUp(ID);
         _skillDamage = DataManager.Instance.SkillValue(ID);
         _bulletType = DataManager.Instance.BulletType(ID);
+        _bulletType2 = DataManager.Instance.BulletType2(ID);
         _isPowerUp = DataManager.Instance.IsPowerUp(ID);
         _skillImage = DataManager.Instance.SkillImage(ID);
         _cooltimeBySkill = DataManager.Instance.CooltimeBySkill(ID);

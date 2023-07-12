@@ -26,6 +26,7 @@ public class MicDropSkill : PlayerSkill
 
     IEnumerator FallDown(Bullet bullet)
     {
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         float t = 0;
         for (int i = 0; i < 7; i++)
         {
@@ -36,7 +37,7 @@ public class MicDropSkill : PlayerSkill
                 if (!bullet.gameObject.activeSelf)
                     yield break;
             }
-            Shoot(bullet.transform.position, 4f, 180, _skillDamage);
+            Shoot(bullet.transform.position, 4f, 180, _skillDamage + 20).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             t = 0;
         }
         yield return null;
@@ -54,6 +55,7 @@ public class MicDropSkill : PlayerSkill
 
     IEnumerator FallDown2(Bullet bullet)
     {
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         float t = 0;
         for (int i = 0; i < 7; i++)
         {
@@ -64,9 +66,9 @@ public class MicDropSkill : PlayerSkill
                 if (!bullet.gameObject.activeSelf)
                     yield break;
             }
-            Shoot(bullet.transform.position, 4f, 180, _skillDamage);
-            Shoot(bullet.transform.position, 4f, 160, _skillDamage);
-            Shoot(bullet.transform.position, 4f, 200, _skillDamage);
+            Shoot(bullet.transform.position, 4f, 180, _skillDamage + 20).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+            Shoot(bullet.transform.position, 4f, 160, _skillDamage + 20).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+            Shoot(bullet.transform.position, 4f, 200, _skillDamage + 20).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             t = 0;
         }
         yield return null;

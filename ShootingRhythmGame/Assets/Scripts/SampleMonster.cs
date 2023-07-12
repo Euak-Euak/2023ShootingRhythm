@@ -16,7 +16,7 @@ public class SampleMonster : Monster
 
     public override void Attack()
     {
-        StartCoroutine(AttackCircle2());
+        StartCoroutine(AttackCircle3());
     }
 
     IEnumerator AttackCircle()

@@ -19,6 +19,7 @@ public class WalpurgisNightSkill : PlayerSkill
         for (int i = 0; i < 360; i+= 5)
         {
             Bullet bullet = Shoot(transform.position, 20, i, _skillDamage);
+            bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             StartCoroutine(RandShoot(bullet, i, 3));
         }
         yield return null;
@@ -51,11 +52,11 @@ public class WalpurgisNightSkill : PlayerSkill
 
             if (Rn)
             {
-                Shoot(bullet.transform.position, 6, Random.Range(0, 360), _skillDamage);
+                Shoot(bullet.transform.position, 6, Random.Range(0, 360), _skillDamage * 2 /3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             }
             else
             {
-                Shoot(bullet.transform.position, 6, angle, _skillDamage);
+                Shoot(bullet.transform.position, 6, angle, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             }
             Rn = !Rn;
         }
@@ -71,6 +72,8 @@ public class WalpurgisNightSkill : PlayerSkill
         {
             Bullet bullet = Shoot(transform.position, 20, i, _skillDamage);
             Bullet bullet2 = Shoot(transform.position, 30, i, _skillDamage);
+            bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+            bullet2.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             StartCoroutine(RandShoot(bullet, i, 5));
             StartCoroutine(RandShoot(bullet2, i, 4));
         }

@@ -24,18 +24,18 @@ public class ShareDataSkill : PlayerSkill
             for (float i = -0.4f; i <= 0.4f; i += 0.2f)
             {
                 trans = new Vector3(vector.x + i, vector.y);
-                Shoot(trans, 5f, 0, _skillDamage);
+                Shoot(trans, 5f, 0, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
 
 
                 trans = new Vector3(vector.x - i, vector.y);
-                Shoot(trans, 5f, 0, _skillDamage);
+                Shoot(trans, 5f, 0, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
 
                 yield return new WaitForSeconds(0.07f);
             }
             trans = new Vector3(vector.x - 0.13f, vector.y + 0.23f);
-            Shoot(trans, 5f, 0, _skillDamage);
+            Shoot(trans, 5f, 0, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             trans = new Vector3(vector.x + 0.13f, vector.y + 0.23f);
-            Shoot(trans, 5f, 0, _skillDamage);
+            Shoot(trans, 5f, 0, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         }
         yield return null;
     }
@@ -67,6 +67,7 @@ public class ShareDataSkill : PlayerSkill
 
     IEnumerator PowerUpSkill_s(Bullet bullet)
     {
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         float t = 0;
         while (t <= 1.5f)
         {
@@ -77,8 +78,8 @@ public class ShareDataSkill : PlayerSkill
         }
         float angle = Random.Range(0, 360);
 
-        Shoot(bullet.transform.position, 5f, angle, _skillDamage);
-        Shoot(bullet.transform.position, 5f, angle + 180, _skillDamage);
+        Shoot(bullet.transform.position, 5f, angle, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+        Shoot(bullet.transform.position, 5f, angle + 180, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
         bullet.gameObject.SetActive(false);
 
         yield return null;

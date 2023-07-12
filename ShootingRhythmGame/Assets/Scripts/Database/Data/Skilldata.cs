@@ -45,10 +45,17 @@ public class SkillData : Data
         return reader.GetString(0);
     }
 
-    public int BulletType(int ID)
+    public string BulletType(int ID)
     {
         string sql = $"Select BulletType {_tableName} Where ID = '{ID}'";
         ExecuteSQL(sql);
-        return reader.GetInt32(0);
+        return reader.GetString(0);
+    }
+
+    public string BulletType2(int ID)
+    {
+        string sql = $"Select BulletType2 {_tableName} Where ID = '{ID}'";
+        ExecuteSQL(sql);
+        return reader.GetString(0);
     }
 }

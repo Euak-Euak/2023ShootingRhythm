@@ -27,6 +27,7 @@ public class SupernovaSkill : PlayerSkill
             float dis = Vector2.Distance(transform.position, vector);
 
             Bullet bullet = Shoot(transform.position, dis / 3, de, _skillDamage);
+            bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             StartCoroutine(ShrinkAndBoom(bullet, de, dis / 3, false));
         }
         yield return null;
@@ -59,14 +60,14 @@ public class SupernovaSkill : PlayerSkill
         Vector2 vector = bullet.transform.position;
 
         bullet.gameObject.SetActive(false);
-        Shoot(vector, Random.Range(8.0f, 15.0f), randAngle, _skillDamage);
-        Shoot(vector, Random.Range(8.0f, 15.0f), randAngle + 180, _skillDamage);
+        Shoot(vector, Random.Range(8.0f, 15.0f), randAngle, _skillDamage * 3 / 5).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+        Shoot(vector, Random.Range(8.0f, 15.0f), randAngle + 180, _skillDamage * 3 / 5).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
 
         if (isPowerUp)
         {
             yield return new WaitForSecondsRealtime(1f);
-            Shoot(vector, Random.Range(8.0f, 15.0f), randAngle, _skillDamage);
-            Shoot(vector, Random.Range(8.0f, 15.0f), randAngle + 180, _skillDamage);
+            Shoot(vector, Random.Range(8.0f, 15.0f), randAngle, _skillDamage * 3 / 5).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+            Shoot(vector, Random.Range(8.0f, 15.0f), randAngle + 180, _skillDamage * 3 / 5).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
         }
 
         yield return null;
@@ -84,7 +85,7 @@ public class SupernovaSkill : PlayerSkill
             float de = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg + 90;
             float dis = Vector2.Distance(transform.position, vector);
 
-            Shoot(transform.position, dis / 3, de, _skillDamage);
+            Shoot(transform.position, dis / 3, de, _skillDamage).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         }
 
         for (float t = 0; t < 2 * Mathf.PI; t += 0.05f * Mathf.PI)
@@ -98,6 +99,7 @@ public class SupernovaSkill : PlayerSkill
             float dis = Vector2.Distance(transform.position, vector);
 
             Bullet bullet = Shoot(transform.position, dis / 3, de, _skillDamage);
+            bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
             StartCoroutine(ShrinkAndBoom(bullet, de, dis / 3, true));
         }
         yield return null;

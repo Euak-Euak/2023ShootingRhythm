@@ -17,6 +17,7 @@ public class MMDSkill : PlayerSkill
     IEnumerator NormalSkill()
     {
         Bullet bullet = Shoot(transform.position, 4f, 0, _skillDamage);
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
 
         float ti = 0f;
 
@@ -39,7 +40,7 @@ public class MMDSkill : PlayerSkill
             float de = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg + 90;
             float dis = Vector2.Distance(transform.position, vector);
 
-            Shoot(bullet.transform.position, dis / 3, de, _skillDamage);
+            Shoot(bullet.transform.position, dis / 3, de, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
         }
         yield return null;
     }
@@ -53,6 +54,10 @@ public class MMDSkill : PlayerSkill
         Bullet bullet2 = Shoot(vectorA, 3f, 0, _skillDamage);
         Bullet bullet3 = Shoot(vectorB, 3f, 0, _skillDamage);
 
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+        bullet2.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+        bullet3.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+
         float ti = 0f;
 
         while (ti < 1f)
@@ -74,9 +79,9 @@ public class MMDSkill : PlayerSkill
             float de = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg + 90;
             float dis = Vector2.Distance(transform.position, vector);
 
-            Shoot(bullet.transform.position, dis / 3, de, _skillDamage);
-            Shoot(bullet2.transform.position, dis / 3, de, _skillDamage);
-            Shoot(bullet3.transform.position, dis / 3, de, _skillDamage);
+            Shoot(bullet.transform.position, dis / 3, de, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+            Shoot(bullet2.transform.position, dis / 3, de, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+            Shoot(bullet3.transform.position, dis / 3, de, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
         }
         yield return null;
     }

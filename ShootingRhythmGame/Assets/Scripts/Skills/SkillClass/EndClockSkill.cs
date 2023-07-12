@@ -25,6 +25,7 @@ public class EndClockSkill : PlayerSkill
                 float dis = Vector2.Distance(transform.position, vector);
                 float angle = Mathf.Atan2(transform.position.y - vector.y, transform.position.x - vector.x) * Mathf.Rad2Deg;
                 Bullet bullet = Shoot(transform.position, dis * 3, angle + 90, _skillDamage);
+                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 StartCoroutine(Skill_s(bullet, LR));
                 LR = !LR;
             }
@@ -66,6 +67,7 @@ public class EndClockSkill : PlayerSkill
                 float dis = Vector2.Distance(transform.position, vector);
                 float angle = Mathf.Atan2(transform.position.y - vector.y, transform.position.x - vector.x) * Mathf.Rad2Deg;
                 Bullet bullet = Shoot(transform.position, dis * 3, angle + 90, _skillDamage);
+                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
                 StartCoroutine(Skill_s(bullet, LR));
                 LR = !LR;
             }

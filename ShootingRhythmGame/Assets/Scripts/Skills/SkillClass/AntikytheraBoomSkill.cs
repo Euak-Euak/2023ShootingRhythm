@@ -17,6 +17,7 @@ public class AntikytheraBoomSkill : PlayerSkill
     IEnumerator NormalSkill()
     {
         Bullet bullet = Shoot(transform.position, 5f, 0, _skillDamage);
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         float t = 0f;
         while (t < 0.5f)
         {
@@ -31,7 +32,7 @@ public class AntikytheraBoomSkill : PlayerSkill
         {
             for (int i = 0; i <= 360; i += 10)
             {
-                Shoot(bullet.transform.position, 5f, i, _skillDamage);
+                Shoot(bullet.transform.position, 5f, i, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             }
             j++;
             yield return new WaitForSecondsRealtime(0.5f);
@@ -42,6 +43,7 @@ public class AntikytheraBoomSkill : PlayerSkill
     IEnumerator PowerUpSkill()
     {
         Bullet bullet = Shoot(transform.position, 6f, 0, _skillDamage);
+        bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         float t = 0f;
         while (t < 0.5f)
         {
@@ -54,7 +56,7 @@ public class AntikytheraBoomSkill : PlayerSkill
         {
             for (int i = 0; i <= 360; i += 15)
             {
-                Shoot(bullet.transform.position, 5f, i, _skillDamage);
+                Shoot(bullet.transform.position, 5f, i, _skillDamage * 2 / 3).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
             }
             j++;
             yield return new WaitForSecondsRealtime(0.2f);
