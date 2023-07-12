@@ -390,7 +390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e10bc493cbbf948be0dadb7d1fdcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  _maxHp: 0
+  _hp: 0
+  _bulletSprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 2357932940ce475418afb9d41f7e23a6, type: 3}
 --- !u!1001 &66898028
 PrefabInstance:
   m_ObjectHideFlags: 0

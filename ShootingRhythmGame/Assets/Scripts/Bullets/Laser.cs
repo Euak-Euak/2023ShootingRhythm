@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
@@ -8,15 +9,23 @@ public class Laser : MonoBehaviour
     private int _damage;
 
     SpriteRenderer _renderer;
+    private CapsuleCollider2D _spriteCollider;
     private CapsuleCollider2D _collider;
 
     bool _isAttackable = true;
 
+    private float _distance;
     private void Awake()
     {
-        _renderer = GetComponentInChildren<SpriteRenderer>();
-        _collider = GetComponentInChildren<CapsuleCollider2D>();
+        _renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        _spriteCollider = transform.GetChild(0).GetComponent<CapsuleCollider2D>();
+
+        _collider = GetComponent<CapsuleCollider2D>();
         gameObject.SetActive(false);
+
+        _collider.offset = transform.GetChild(0).position;
+
+        _distance = transform.GetChild(0).position.y;
     }
 
 
@@ -45,10 +54,12 @@ public class Laser : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
             _renderer.material.SetFloat("_Y", t / time);
-
-            _collider.size = new Vector2(1, t / time);
-            _collider.offset = new Vector2(0, -0.5f + (t / time) / 2);
+            _collider.size = new Vector2(_spriteCollider.size.x, (t / time) * _spriteCollider.size.y);
+            _collider.offset = new Vector2(0, (t / time) * _distance);
         }
+
+        _collider.size = _spriteCollider.size;
+        _collider.offset = Vector2.up * _distance;
 
         yield return new WaitForSeconds(stayTime);
 
@@ -65,7 +76,8 @@ public class Laser : MonoBehaviour
 
     public void SetBulletData(BulletData bulletData)
     {
-        _collider.size = bulletData.Size;
+        _collider.size = bulletData.Size.size;
+        _collider.direction = bulletData.Size.direction;
         _renderer.sprite = bulletData.Sprite;
     }
 

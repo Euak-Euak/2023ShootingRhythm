@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletData(BulletData bulletData, bool isPenetrate)
     {
-        _collider.size = bulletData.Size;
+        _collider.size = bulletData.Size.size;
         _renderer.sprite = bulletData.Sprite;
         _penetrate = isPenetrate;
     }
