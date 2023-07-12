@@ -102,6 +102,8 @@ public class CommandManager : MonoBehaviour
             else
             {
                 NowKeyList[i] = null;
+                Text coolTimeBySkillText = _coolTimeObject[i].transform.GetChild(0).gameObject.GetComponent<Text>();
+                coolTimeBySkillText.text = _skillCntToActivate[i].ToString();
                 if (_skillCntToActivate[i] == 0) SkillActivation(i);
             }
         }
@@ -118,7 +120,7 @@ public class CommandManager : MonoBehaviour
 
         for (int i = 0; i < _selectedSkillList.Count; i++)
         {
-            if (IsCmdCoolTime[i])
+            if (IsCmdCoolTime[i] && skillNum != i)
             {
                 _skillCntToActivate[i]--;
             }
@@ -137,7 +139,6 @@ public class CommandManager : MonoBehaviour
     {
         IsCmdCoolTime[skillNum] = true;
 
-        //GameObject coolTimeImgGameObject = _skillPanels[skillNum].transform.GetChild(2).gameObject;
         _coolTimeObject[skillNum].SetActive(true);
 
         _skillCntToActivate[skillNum] = _skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeBySkill;
@@ -149,15 +150,15 @@ public class CommandManager : MonoBehaviour
     {
         float cool = _skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime;
         Image coolTimeImg = _coolTimeObject[skillNum].GetComponent<Image>();
-        /*
-        while (0 < cool)
+
+        float remain = cool;
+        while (0 < remain)
         {
-            Debug.Log(cool);
-            //cool -= Time.deltaTime;
-            coolTimeImg.fillAmount = 1 / cool
+            remain -= Time.deltaTime;
+            coolTimeImg.fillAmount = remain / cool;
+            yield return null;
         }
-        Debug.Log("ÀÌ°Ô¹¹¾ß½Ã¤¿¤²¤©");*/
-        yield return new WaitForSeconds(_skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime);
+        //yield return new WaitForSeconds(_skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime);
         SkillActivation(skillNum);
     }
 

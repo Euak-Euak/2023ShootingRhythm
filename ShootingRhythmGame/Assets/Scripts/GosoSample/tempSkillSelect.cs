@@ -18,7 +18,6 @@ public class tempSkillSelect : MonoBehaviour
         {
             _btnParent.transform.GetChild(i).GetComponent<SkillSelectionButton>()._idNum = i + 1;
         }
-
     }
 
     void Update()

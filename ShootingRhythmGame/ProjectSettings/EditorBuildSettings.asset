@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Rhythm.unity
     guid: 2896fcfe6e2b38045a98ec6faf6ee72d
   - enabled: 1
-    path: Assets/Scenes/GosorPwlfkf.unity
+    path: Assets/Scenes/TempSkillSelect.unity
     guid: 044fd536154d89a47bed27f66a35319b
   m_configObjects: {}

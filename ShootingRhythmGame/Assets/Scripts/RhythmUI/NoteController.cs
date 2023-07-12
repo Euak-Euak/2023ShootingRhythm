@@ -60,7 +60,7 @@ public class NoteController : MonoBehaviour
 
         if (_canUsed && !_isUsed)
         {
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !PauseOnStage.IsPause)
             {
                 for (int i = 0; i < _nowKeyList.Count; i++)
                 {   
@@ -103,10 +103,7 @@ public class NoteController : MonoBehaviour
                 }
             }
         }
-        else if (other.name == "Dismiss")
-        {
-            ReturnObject();
-        }
+        
     }
 
 
@@ -120,7 +117,10 @@ public class NoteController : MonoBehaviour
         {
             _judge = judges.Near;
         }
-        
+        else if (other.name != "Miss" && other.name == "Dismiss")
+        {
+            ReturnObject();
+        }
     }
 
 
@@ -175,6 +175,7 @@ public class NoteController : MonoBehaviour
 
     public void ReturnObject()
     {
+        NoteSpawner.IsUsed[_noteCnt] = true;
         NoteManager.Instance.ReturnObject(this);
         gameObject.SetActive(false);
     }
