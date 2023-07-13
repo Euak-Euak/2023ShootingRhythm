@@ -4,22 +4,29 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SkillContent : MonoBehaviour
 {
-    [SerializeField] private Button _button;
+    [SerializeField] public Button _button;
     [SerializeField] private Text _level;
     [SerializeField] private Text _name;
     [SerializeField] private Text _command;
     [SerializeField] private Image _powerUp;
+    [SerializeField] private Transform _trans;
 
     public int ID;
+    public CanvasGroup canvasGroop;
     private bool _isPowerUp;
+    private Transform ItemPos;
 
-    public void Init(int id, Action<int> action)
+    public void Init(int id, Action<int> action, Action<int> action2, Transform transform)
     {
         ID = id;
+        ItemPos = transform;
         _button.onClick.AddListener(() => { action.Invoke(ID); });
+        _button.onClick.AddListener(() => { action2.Invoke(ID); });
+        _button.onClick.AddListener(ExpandIcon);
         if (DataManager.Instance.SkillLevel(ID) == 0)
             NotOpenedSkill();
         else
@@ -28,6 +35,18 @@ public class SkillContent : MonoBehaviour
             _name.text = DataManager.Instance.SkillName(ID);
             PowerUpChange();
         }
+    }
+
+    public void ExpandIcon()
+    {
+        _trans.DOMove(ItemPos.position, 1f).SetEase(Ease.OutBack);
+        _trans.DOScale(new Vector3(2,2), 0.5f).SetEase(Ease.OutSine);
+    }
+
+    public void ShrinkIcon()
+    {
+        _trans.DOLocalMove(new Vector3(0, 0), 0.7f).SetEase(Ease.InBack);
+        _trans.DOScale(new Vector3(1, 1), 0.5f).SetEase(Ease.InSine);
     }
 
     public void PowerUpChange()

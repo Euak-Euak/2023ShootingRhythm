@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class SkilInfo : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] public Button PowerUpOnOffButton;
     [SerializeField] public Button LevelUpButton;
+    [SerializeField] public Button GoBackButton;
 
     [Header("ID")]
     public int ID;
@@ -147,5 +149,10 @@ public class SkilInfo : MonoBehaviour
     public void GetSkillInfoDictionary(Dictionary<int, SkillContent> dic)
     {
         _skillInfoByID = dic;
+    }
+
+    public void SetGoBackButton(Action action)
+    {
+        GoBackButton.onClick.AddListener(action.Invoke);
     }
 }
