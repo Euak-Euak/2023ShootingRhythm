@@ -8,19 +8,21 @@ public class BGMManager : MonoBehaviour
 
     static public bool _isMusicStart = false;
 
-    private AudioClip _bgm;
+    [SerializeField] private AudioClip _bgm;
     AudioSource musicPlayer;
 
     
     private void Awake()
     {
-        Bpm = 130;
+        if (_bgm == null)
+        {
+            _bgm = Resources.Load<AudioClip>("BGM/Idonthaveanymusic");
+            Bpm = 130;
+        }
     }
 
     void Start()
     {
-        _bgm = Resources.Load<AudioClip>("BGM/Idonthaveanymusic");
-
         musicPlayer = GetComponent<AudioSource>();
         musicPlayer.clip = _bgm;
     }
@@ -34,6 +36,10 @@ public class BGMManager : MonoBehaviour
 
     public void MusicStart()
     {
-        musicPlayer.Play();
+        if (!_isMusicStart)
+        {
+            musicPlayer.Play();
+            _isMusicStart = true;
+        }
     }
 }

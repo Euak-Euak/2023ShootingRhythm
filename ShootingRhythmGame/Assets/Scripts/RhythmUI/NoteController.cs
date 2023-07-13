@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NoteController : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    private float _speed;
 
     private enum judges { None, Near, Just, Pass, Miss };
     private judges _judge;
@@ -23,6 +23,7 @@ public class NoteController : MonoBehaviour
 
     private BGMManager _BGMManager;
     private CommandManager _commandManager;
+    private AudioSource _perfBeat;
 
 
     public void Init(Transform pos)
@@ -43,21 +44,21 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
-        _commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
+        _perfBeat = GetComponent<AudioSource>();
+
+        if (GameObject.Find("Player") != null)_commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
 
 
     void Update()
     {
-        _isUsed = NoteSpawner.IsUsed[_noteCnt];
-
         transform.Translate(new Vector2(_speed * Time.deltaTime, 0f));
+
+        _isUsed = NoteSpawner.IsUsed[_noteCnt];
 
         _nowKeyList = CommandManager.NowKeyList;
         _inputKeyCode = Input.inputString.ToUpper();
-
-
         if (_canUsed && !_isUsed)
         {
             if (Input.anyKeyDown && !PauseOnStage.IsPause)
@@ -84,8 +85,12 @@ public class NoteController : MonoBehaviour
     {
         if (other.name == "Perf")
         {
-            _BGMManager.GetComponent<BGMManager>().MusicStart();
-            Destroy(other.gameObject);
+            if (!BGMManager._isMusicStart)
+            {
+                _BGMManager.GetComponent<BGMManager>().MusicStart();
+            }
+            _perfBeat.Play();
+            //Destroy(other.gameObject);
         }
         else if (other.name == "Miss")
         {

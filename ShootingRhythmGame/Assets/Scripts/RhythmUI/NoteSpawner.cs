@@ -32,8 +32,6 @@ public class NoteSpawner : MonoBehaviour
         _bpm = BGMManager.Bpm;
         _beatInterval = 60 * _beat / (float)_bpm;
 
-        //_rhythm = new List<bool> { true, true, true, false };
-
         StartCoroutine(MakeNoteCor());
     }
 

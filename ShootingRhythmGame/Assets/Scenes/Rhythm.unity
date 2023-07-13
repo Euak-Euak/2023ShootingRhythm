@@ -256,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 0}
+  m_AnchoredPosition: {x: 4, y: 0}
   m_SizeDelta: {x: 6, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &47238970
@@ -1868,6 +1868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d773a9690a1a746adcfcb640d0d521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bgm: {fileID: 0}
 --- !u!82 &519420034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7417,6 +7418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04ca29ee5a86c7489739653bce89459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isGame: 1
   _skillPanels:
   - {fileID: 724787475}
   - {fileID: 1023527125}
