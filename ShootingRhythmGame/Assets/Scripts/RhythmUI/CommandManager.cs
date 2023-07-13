@@ -125,6 +125,7 @@ public class CommandManager : MonoBehaviour
                 _skillCntToActivate[i]--;
             }
         }
+        UltimateCharge.UltCharge++;
     }
 
 
@@ -151,14 +152,20 @@ public class CommandManager : MonoBehaviour
         float cool = _skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime;
         Image coolTimeImg = _coolTimeObject[skillNum].GetComponent<Image>();
 
+        coolTimeImg.fillAmount = 1;
+
         float remain = cool;
         while (0 < remain)
         {
-            remain -= Time.deltaTime;
             coolTimeImg.fillAmount = remain / cool;
+            remain -= Time.deltaTime;
+
+            if (!IsCmdCoolTime[skillNum])
+            {
+                break;
+            }
             yield return null;
         }
-        //yield return new WaitForSeconds(_skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime);
         SkillActivation(skillNum);
     }
 
