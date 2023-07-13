@@ -12,6 +12,8 @@ public class HoldingCommandData
 
 public class CommandManager : MonoBehaviour
 {
+    [SerializeField] private bool _isGame = true;
+
     [SerializeField] private GameObject[] _skillPanels;
 
     private SkillManager _skillManager;
@@ -29,7 +31,6 @@ public class CommandManager : MonoBehaviour
     private List<bool> _comboStart = new List<bool>();
 
 
-
     void Awake()
     {
         Reset();
@@ -38,43 +39,46 @@ public class CommandManager : MonoBehaviour
 
     private void Start()
     {
-        _skillManager = GetComponent<SkillManager>();
-        _skillManager.Init();
-
-        if (tempSkillSelect.SelectedSkillIdList.Count != 0) _selectedSkillList = tempSkillSelect.SelectedSkillIdList;
-        else _selectedSkillList = new List<int> { 1, 2, 3, 4 };
-
-        for (int i = 0; i < _skillPanels.Length; i++)
+        if (_isGame)
         {
-            Image skillImageSr = (_skillPanels[i].transform.GetChild(0)).GetComponent<Image>();
-            Text skillNameUI = (_skillPanels[i].transform.GetChild(1)).GetComponent<Text>();
+            _skillManager = GetComponent<SkillManager>();
+            _skillManager.Init();
 
-            if (i < _selectedSkillList.Count)
+            if (tempSkillSelect.SelectedSkillIdList.Count != 0) _selectedSkillList = tempSkillSelect.SelectedSkillIdList;
+            else _selectedSkillList = new List<int> { 1, 2, 3, 4 };
+
+            for (int i = 0; i < _skillPanels.Length; i++)
             {
-                CmdList.Add(new HoldingCommandData());
-                ComboList.Add(0);
-                _comboStart.Add(false);
+                Image skillImageSr = (_skillPanels[i].transform.GetChild(0)).GetComponent<Image>();
+                Text skillNameUI = (_skillPanels[i].transform.GetChild(1)).GetComponent<Text>();
 
-                foreach (char cmd in _skillManager.SkillSet[_selectedSkillList[i]]._commandNormal)
+                if (i < _selectedSkillList.Count)
                 {
-                    CmdList[i].Skill.Add(cmd.ToString());
+                    CmdList.Add(new HoldingCommandData());
+                    ComboList.Add(0);
+                    _comboStart.Add(false);
+
+                    foreach (char cmd in _skillManager.SkillSet[_selectedSkillList[i]]._commandNormal)
+                    {
+                        CmdList[i].Skill.Add(cmd.ToString());
+                    }
+
+                    MakeSkillPanel(i);
+
+                    skillNameUI.text = _skillManager.SkillSet[_selectedSkillList[i]]._skillName;
+                    _cooltimeBySkillList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeBySkill);
+                    _cooltimeByTimeList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeByTime);
+                    IsCmdCoolTime.Add(false);
+                    _coolTimeObject.Add(_skillPanels[i].transform.GetChild(2).gameObject);
+                    _skillCntToActivate.Add(0);
+
+                    NowKeyList.Add(CmdList[i].Skill[0]);
                 }
-
-                MakeSkillPanel(i);
-
-                skillNameUI.text = _skillManager.SkillSet[_selectedSkillList[i]]._skillName;
-                _cooltimeBySkillList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeBySkill);
-                _cooltimeByTimeList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeByTime);
-                IsCmdCoolTime.Add(false);
-                _coolTimeObject.Add(_skillPanels[i].transform.GetChild(2).gameObject);
-                _skillCntToActivate.Add(0);
-
-                NowKeyList.Add(CmdList[i].Skill[0]);
-            }
-            else
-            {
-                skillImageSr.color = Color.gray;
-                skillNameUI.text = " ";
+                else
+                {
+                    skillImageSr.color = Color.gray;
+                    skillNameUI.text = " ";
+                }
             }
         }
     }
@@ -82,29 +86,32 @@ public class CommandManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < _selectedSkillList.Count; i++)
+        if (_isGame)
         {
-            if (!IsCmdCoolTime[i])
+            for (int i = 0; i < _selectedSkillList.Count; i++)
             {
-                if (ComboList[i] == 1) _comboStart[i] = true;
-
-                if (ComboList[i] == CmdList[i].Skill.Count)
+                if (!IsCmdCoolTime[i])
                 {
-                    ComboSucceeded(i);
-                }
+                    if (ComboList[i] == 1) _comboStart[i] = true;
 
-                else if (_comboStart[i] && ComboList[i] == 0)
-                {
-                    ComboFailed(i);
+                    if (ComboList[i] == CmdList[i].Skill.Count)
+                    {
+                        ComboSucceeded(i);
+                    }
+
+                    else if (_comboStart[i] && ComboList[i] == 0)
+                    {
+                        ComboFailed(i);
+                    }
+                    NowKeyList[i] = CmdList[i].Skill[ComboList[i]];
                 }
-                NowKeyList[i] = CmdList[i].Skill[ComboList[i]];
-            }
-            else
-            {
-                NowKeyList[i] = null;
-                Text coolTimeBySkillText = _coolTimeObject[i].transform.GetChild(0).gameObject.GetComponent<Text>();
-                coolTimeBySkillText.text = _skillCntToActivate[i].ToString();
-                if (_skillCntToActivate[i] == 0) SkillActivation(i);
+                else
+                {
+                    NowKeyList[i] = null;
+                    Text coolTimeBySkillText = _coolTimeObject[i].transform.GetChild(0).gameObject.GetComponent<Text>();
+                    coolTimeBySkillText.text = _skillCntToActivate[i].ToString();
+                    if (_skillCntToActivate[i] == 0) SkillActivation(i);
+                }
             }
         }
     }
@@ -125,6 +132,7 @@ public class CommandManager : MonoBehaviour
                 _skillCntToActivate[i]--;
             }
         }
+        UltimateCharge.UltCharge++;
     }
 
 
@@ -151,14 +159,20 @@ public class CommandManager : MonoBehaviour
         float cool = _skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime;
         Image coolTimeImg = _coolTimeObject[skillNum].GetComponent<Image>();
 
+        coolTimeImg.fillAmount = 1;
+
         float remain = cool;
         while (0 < remain)
         {
-            remain -= Time.deltaTime;
             coolTimeImg.fillAmount = remain / cool;
+            remain -= Time.deltaTime;
+
+            if (!IsCmdCoolTime[skillNum])
+            {
+                break;
+            }
             yield return null;
         }
-        //yield return new WaitForSeconds(_skillManager.SkillSet[_selectedSkillList[skillNum]]._cooltimeByTime);
         SkillActivation(skillNum);
     }
 
