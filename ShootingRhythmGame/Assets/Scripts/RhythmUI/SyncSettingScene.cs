@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SyncSettingScene : MonoBehaviour
 {
-    static public string BeforeScene;
     [SerializeField] private Text _curSyncText;
     
 
@@ -51,6 +50,6 @@ public class SyncSettingScene : MonoBehaviour
 
     public void PressBackBtn()
     {
-        SceneManager.LoadScene(BeforeScene);
+        SceneManager.LoadScene("TitleScene");
     }
 }

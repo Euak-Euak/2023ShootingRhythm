@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+    static private bool _isFistAccess = true;
     [SerializeField] private GameObject _skipText;
     [SerializeField] private GameObject _cutScene;
 
@@ -15,7 +16,18 @@ public class Title : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("BlinkSkipText");
+        if (_isFistAccess)
+        {
+            StartCoroutine("BlinkSkipText");
+            _isFistAccess = false;
+
+        }
+        else
+        {
+            _skipText.SetActive(false);
+            _cutScene.SetActive(false);
+            _title.SetActive(true);
+        }
     }
 
 
@@ -39,7 +51,7 @@ public class Title : MonoBehaviour
 
     public void PressRearrangementBtn()
     {
-        Debug.Log(":)");
+        SceneManager.LoadScene("MunjiTestScene");
     }
 
 
@@ -61,6 +73,12 @@ public class Title : MonoBehaviour
     {
         _option.SetActive(false);
         _title.SetActive(true);
+    }
+
+
+    public void PressSyncSettingBtn()
+    {
+        SceneManager.LoadScene("SyncSettingScene");
     }
 
 

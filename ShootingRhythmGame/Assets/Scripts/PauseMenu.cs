@@ -20,6 +20,7 @@ public class PauseMenu : PauseOnStage
     {
         OnResumeGame();
         Destroy(GameObject.Find("BulletManager"));
+        Destroy(GameObject.Find("GameObject (1)"));
         SceneManager.LoadScene("Rhythm");
     }
 
@@ -31,6 +32,13 @@ public class PauseMenu : PauseOnStage
         _optionMenu.SetActive(true);
         _pauseMenu.SetActive(false);
     }
+
+
+    /*public void PressSyncSettingBtn()
+    {
+        DontDestroyOnLoad(GameObject.Find(" "));
+        SceneManager.LoadScene("SyncSettingScene");
+    }*/
 
 
     public void PressQuitBtn()

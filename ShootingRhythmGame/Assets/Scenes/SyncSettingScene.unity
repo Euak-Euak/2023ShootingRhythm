@@ -893,7 +893,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC6D0\uACFC \uC6D0\uC774 \uACB9\uCCD0\uC84C\uC744 \uB54C \uBC15\uC218
-    \uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB3C4\uB85D \uC870\uC808\uD558\uC138\uC694.\n(\uC77C\uB2E8\uD654\uC0B4\uD45C\uB85C\uD558\uC148)"
+    \uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB3C4\uB85D \uC870\uC808\uD558\uC138\uC694.\n(\uC77C\uB2E8\uBC29\uD5A5\uD0A4\uB85C\uD558\uC148)"
 --- !u!222 &940423179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.00
+  m_Text: 0.000
 --- !u!222 &1036912132
 CanvasRenderer:
   m_ObjectHideFlags: 0

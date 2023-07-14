@@ -14,7 +14,10 @@ public class SampleMonster : Monster
     {
         StartCoroutine(AttackCircle());
     }
-
+    public void Update()
+    {
+        transform.Rotate(0,0,-0.1f);
+    }
     IEnumerator AttackCircle()
     {
         yield return null;

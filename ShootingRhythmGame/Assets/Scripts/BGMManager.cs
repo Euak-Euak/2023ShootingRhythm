@@ -6,7 +6,7 @@ public class BGMManager : MonoBehaviour
 {
     static public int Bpm;
 
-    static public bool _isMusicStart = false;
+    static public bool _isMusicStart;
 
     [SerializeField] private AudioClip _bgm;
     AudioSource musicPlayer;
@@ -23,6 +23,7 @@ public class BGMManager : MonoBehaviour
 
     void Start()
     {
+        _isMusicStart = false;
         musicPlayer = GetComponent<AudioSource>();
         musicPlayer.clip = _bgm;
     }

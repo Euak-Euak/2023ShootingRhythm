@@ -7,11 +7,10 @@ public class SyncController : MonoBehaviour
 {
     [SerializeField] private GameObject[] _judgementZones;
     private List<BoxCollider2D> _colliders = new List<BoxCollider2D>();
-    // ±¸°£ -0.3 ~ 0.3
     static public float Sync;
 
 
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < _judgementZones.Length; i++)
         {
@@ -24,7 +23,7 @@ public class SyncController : MonoBehaviour
     {
         for (int i = 0; i < _judgementZones.Length; i++)
         {
-            _colliders[i].offset = new Vector2(Sync * NoteSpawner.NoteSpeed , 0);
+            _colliders[i].offset = new Vector2(Sync * 10 * NoteSpawner.NoteSpeed , 0);
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UltimateCharge : MonoBehaviour
 {
+    private TempUltimate _ultimate;
     static public int UltCharge;
     [SerializeField] private float _maxUltCharge;
     private bool isUltready = false;
@@ -17,6 +18,9 @@ public class UltimateCharge : MonoBehaviour
 
     private void Start()
     {
+        UltCharge = 0;
+        _ultimate = GetComponent<TempUltimate>();
+
         _gaugeFilled = _gaugeObj.GetComponent<Image>();
         _gaugeOriginalColor = _gaugeFilled.color;
     }
@@ -39,7 +43,7 @@ public class UltimateCharge : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("±Ã¹ß½Î");
+                _ultimate.UltimateUse();
                 UltCharge = 0;
                 _gaugeFilled.color = _gaugeOriginalColor;
                 isUltready = false;
