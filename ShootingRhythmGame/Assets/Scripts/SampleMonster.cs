@@ -9,29 +9,21 @@ public class SampleMonster : Monster
     private Sprite _sprite;
     [SerializeField]
     private GameObject _bullet;
-    private void Start()
-    {
-        Attack();
-    }
 
     public override void Attack()
     {
-        StartCoroutine(AttackCircle3());
+        StartCoroutine(AttackCircle());
     }
 
     IEnumerator AttackCircle()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
+        yield return null;
 
             for (int i = 0; i <= 360; i += 5)
             {
                 Shoot(transform.position, 5f, i, 1);
                 Shoot(transform.position, 5f, i + 180, 1);
-                yield return new WaitForSeconds(0.1f);
             }
-        }
     }
 
     IEnumerator AttackCircle2()

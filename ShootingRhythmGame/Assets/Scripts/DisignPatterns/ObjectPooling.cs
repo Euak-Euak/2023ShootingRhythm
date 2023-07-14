@@ -12,7 +12,7 @@ public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
 
     protected Queue<T> _poolingObjects;
 
-    private void Start()
+    protected void Start()
     {
         if (_parent == null)
             _parent = this.transform;
