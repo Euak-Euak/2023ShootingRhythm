@@ -16,63 +16,30 @@ public class EndClockSkill : PlayerSkill
 
     IEnumerator NormalSkill()
     {
-        bool LR = true;
-        for (float i = -0.3f; i <= 0.3f; i += 0.2f) 
-        {
-            for (float t = 0; t < 3.2f; t += 0.4f)
-            {
-                Vector2 vector = new Vector2(transform.position.x + i , transform.position.y + t);
-                float dis = Vector2.Distance(transform.position, vector);
-                float angle = Mathf.Atan2(transform.position.y - vector.y, transform.position.x - vector.x) * Mathf.Rad2Deg;
-                Bullet bullet = Shoot(transform.position, dis * 3, angle + 90, _skillDamage);
-                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
-                StartCoroutine(Skill_s(bullet, LR));
-                LR = !LR;
-            }
-        }
-            
-        yield return null;
-    }
+        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
+        laser.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
 
-    IEnumerator Skill_s(Bullet bullet, bool LR)
-    {
-        float t = 0;
-        while (t < 0.5f)
+        for (int i = 0; i < 360; i++)
         {
-            t += Time.deltaTime;
-            yield return null;
-            if (!bullet.gameObject.activeSelf)
-                yield break;
+            laser.Init(laser.transform.position, i, _skillDamage);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
-        if (LR)
-        {
-            bullet.Init(bullet.transform.position, 7f, 90, _skillDamage);
-        }
-        else
-        {
-            bullet.Init(bullet.transform.position, 7f, -90, _skillDamage);
-        }
-
         yield return null;
     }
 
     IEnumerator PowerUpSkill()
     {
-        bool LR = true;
-        for (float i = -0.5f; i <= 0.5f; i += 0.2f)
+        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
+        Laser laser2 = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
+        laser.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+        laser2.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
+
+        for (int i = 0; i < 360; i++)
         {
-            for (float t = 0; t < 4.8f; t += 0.4f)
-            {
-                Vector2 vector = new Vector2(transform.position.x + i, transform.position.y + t);
-                float dis = Vector2.Distance(transform.position, vector);
-                float angle = Mathf.Atan2(transform.position.y - vector.y, transform.position.x - vector.x) * Mathf.Rad2Deg;
-                Bullet bullet = Shoot(transform.position, dis * 3, angle + 90, _skillDamage);
-                bullet.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
-                StartCoroutine(Skill_s(bullet, LR));
-                LR = !LR;
-            }
+            laser.Init(laser.transform.position, i, _skillDamage);
+            laser2.Init(laser.transform.position, i * 2, _skillDamage);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         yield return null;
-
     }
 }

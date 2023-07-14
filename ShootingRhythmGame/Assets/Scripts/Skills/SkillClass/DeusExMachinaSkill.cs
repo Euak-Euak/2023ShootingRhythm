@@ -16,13 +16,24 @@ public class DeusExMachinaSkill : PlayerSkill
 
     IEnumerator NormalSkill()
     {
-        Beam(transform.position, 0, _skillDamage, 0.2f, 1f);
+        Vector3 vector = new Vector3(transform.position.x, transform.position.y + 0.5f);
+        Beam(vector, 0, _skillDamage, 0.2f, 1f).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         yield return null;
     }
 
     IEnumerator PowerUpSkill()
     {
-
+        Vector3 vector = new Vector3(transform.position.x, transform.position.y + 0.5f);
+        Beam(vector, 0, _skillDamage, 0.2f, 1f).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+        
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 vector2 = new Vector3(vector.x + i, vector.y);
+            Beam(vector2, 0, _skillDamage, 0.2f, 1f).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+            vector2 = new Vector3(vector.x + -i, vector.y);
+            Beam(vector2, 0, _skillDamage, 0.2f, 1f).SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
+            yield return new WaitForSecondsRealtime(0.2f);
+        }
         yield return null;
     }
 }

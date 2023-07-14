@@ -21,7 +21,8 @@ public class SkilInfo : MonoBehaviour
     [SerializeField] public Button PowerUpOnOffButton;
     [SerializeField] public Button LevelUpButton;
     [SerializeField] public Button GoBackButton;
-
+    [SerializeField] public Slider LevelSlider;
+    //todo Slider
     [Header("ID")]
     public int ID;
 
@@ -66,7 +67,8 @@ public class SkilInfo : MonoBehaviour
 
         DataManager.Instance.SetSkillLevelUp(ID);
         _skillInfoByID[ID].SkillLevelChange();
-        SkillLevelText.text = DataManager.Instance.SkillLevel(ID).ToString();
+        SkillLevelText.text = $"Lv.{DataManager.Instance.SkillLevel(ID)}";
+        LevelSlider.value = DataManager.Instance.SkillLevel(ID);
         UpgradeMoneyText.text = $"{DataManager.Instance.SkillUpgradeMoney(ID)}원";
 
         if (DataManager.Instance.SkillLevel(ID) == 15)
@@ -99,23 +101,24 @@ public class SkilInfo : MonoBehaviour
             SkillLevelText.text = "";
             CommandText.text = "???";
             PowerUpCommandText.text = "???";
-            CoolTimeCommandText.text = "??번 / ??초";
+            CoolTimeCommandText.text = "??초 | 스킬 ??회 사용";
             UpgradeMoneyText.text = "???";
-            SkillGrowthText.text = "???";
+            SkillGrowthText.text = "기본치 ?? / 성장계수 ??";
             PowerUpOnOffButton.gameObject.SetActive(false);
             LevelUpButton.gameObject.SetActive(false);
             DataManager.Instance.CloseDB();
             return;
         }
 
+        LevelSlider.value = DataManager.Instance.SkillLevel(ID);
         SkillNameText.text = DataManager.Instance.SkillName(ID);
         SkillDescriptText.text = DataManager.Instance.SkillDescript(ID);
         SkillUseDescriptText.text = DataManager.Instance.SkillUseDescript(ID);
-        SkillLevelText.text = DataManager.Instance.SkillLevel(ID).ToString();
+        SkillLevelText.text = $"Lv.{DataManager.Instance.SkillLevel(ID)}";
         CommandText.text = DataManager.Instance.CommandNormal(ID);
-        CoolTimeCommandText.text = $"{DataManager.Instance.CooltimeBySkill(ID)}번 / {DataManager.Instance.CooltimeByTime(ID)}초";
+        CoolTimeCommandText.text = $"{DataManager.Instance.CooltimeByTime(ID)}초 | {DataManager.Instance.CooltimeBySkill(ID)}회 사용";
         UpgradeMoneyText.text = $"{DataManager.Instance.SkillUpgradeMoney(ID)}원";
-        SkillGrowthText.text = $"{DataManager.Instance.SkillInitValue(ID)}/{DataManager.Instance.SkillGrowthValue(ID)}";
+        SkillGrowthText.text = $"기본치 {DataManager.Instance.SkillInitValue(ID)} / 성장계수 {DataManager.Instance.SkillGrowthValue(ID)}";
         LevelUpButton.gameObject.SetActive(true);
 
 

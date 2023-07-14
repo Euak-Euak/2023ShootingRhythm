@@ -68,9 +68,7 @@ public class SkillContentManager : MonoBehaviour
         {
             t += Time.deltaTime;
             yield return null;
-        }
-
-        _skillInfoByID[ID].canvasGroop.interactable = true;
+        } 
         _skillInfoByID[ID].canvasGroop.blocksRaycasts = true;
         if (b)
             _skillInfoByID[ID]._button.interactable = true;

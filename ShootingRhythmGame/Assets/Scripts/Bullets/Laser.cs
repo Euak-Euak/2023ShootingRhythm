@@ -41,6 +41,15 @@ public class Laser : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Init(Vector3 pos, float angle, int damage)
+    {
+        transform.position = pos;
+        _angle = angle;
+        transform.rotation = Quaternion.Euler(0, 0, -angle);
+        _damage = damage;
+        gameObject.SetActive(true);
+    }
+
     public void SetBulletData(GameObject game)
     {
         BulletData bulletData = BulletDataManager.Instance.ReturnData(game.name);
