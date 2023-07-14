@@ -52,6 +52,7 @@ public class MonsterManager : ObjectPooling<Monster>
             {
                 Monster monster = SpawnObject();
                 monster.Init(enemyData, _start.position + new Vector3(_gap.x * enemyData.HandleX, _gap.y * enemyData.HandleY));
+                monster.gameObject.SetActive(true);
                 monster.Move(_transform[enemyData.StartPosition - 1], _transform[enemyData.EndPosition - 1]);
             }
             yield return wait;

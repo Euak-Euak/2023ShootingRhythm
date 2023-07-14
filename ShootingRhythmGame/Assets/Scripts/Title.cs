@@ -65,7 +65,7 @@ public class Title : MonoBehaviour
     public void PressQuitBtn()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
 

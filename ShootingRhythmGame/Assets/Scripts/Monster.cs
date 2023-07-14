@@ -72,6 +72,9 @@ public abstract class Monster : Attackable
             transform.position = GetBezierPosition(pos1, _handle, _handle, pos2, t / _enemyData.MoveTime);
             yield return null;
         }
+
+        gameObject.SetActive(false);
+        MonsterManager.Instance.ReturnObject(this);
     }
 
     private Vector3 GetBezierPosition(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
