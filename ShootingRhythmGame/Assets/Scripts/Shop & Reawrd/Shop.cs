@@ -18,6 +18,7 @@ public class Shop : MonoBehaviour
 
     Animator _animator;
 
+
     private void Start()
     {
         _animator = GetComponent<Animator>();

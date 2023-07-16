@@ -57,6 +57,8 @@ public class MonsterManager : ObjectPooling<Monster>
             }
             yield return wait;
         }
+
+        SceneLoadManager.LoadScene("RewardScene");
     }
 }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,8 +45,7 @@ public class CommandManager : MonoBehaviour
             _skillManager = GetComponent<SkillManager>();
             _skillManager.Init();
 
-            if (tempSkillSelect.SelectedSkillIdList.Count != 0) _selectedSkillList = tempSkillSelect.SelectedSkillIdList;
-            else _selectedSkillList = new List<int> { 1, 2, 3, 4 };
+            _selectedSkillList = PlayerDataManager.Instance._haveSkill.ToList();
 
             for (int i = 0; i < _skillPanels.Length; i++)
             {
