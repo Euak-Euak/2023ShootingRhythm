@@ -16,7 +16,7 @@ public class EndClockSkill : PlayerSkill
 
     IEnumerator NormalSkill()
     {
-        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
+        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 5f);
         laser.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
 
         for (int i = 0; i < 360; i++)
@@ -29,8 +29,8 @@ public class EndClockSkill : PlayerSkill
 
     IEnumerator PowerUpSkill()
     {
-        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
-        Laser laser2 = Beam(transform.position, 0, _skillDamage, 0.3f, 4f);
+        Laser laser = Beam(transform.position, 0, _skillDamage, 0.3f, 5f);
+        Laser laser2 = Beam(transform.position, 0, _skillDamage, 0.3f, 5f);
         laser.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType}"));
         laser2.SetBulletData(Resources.Load<GameObject>($"BulletData/{_bulletType2}"));
 

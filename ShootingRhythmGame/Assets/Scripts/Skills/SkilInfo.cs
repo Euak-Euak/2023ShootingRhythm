@@ -103,7 +103,8 @@ public class SkilInfo : MonoBehaviour
             PowerUpCommandText.text = "???";
             CoolTimeCommandText.text = "??초 | 스킬 ??회 사용";
             UpgradeMoneyText.text = "???";
-            SkillGrowthText.text = "기본치 ?? / 성장계수 ??";
+            SkillGrowthText.text = "기본치 ??/성장계수 ??";
+            LevelSlider.value = 0;
             PowerUpOnOffButton.gameObject.SetActive(false);
             LevelUpButton.gameObject.SetActive(false);
             DataManager.Instance.CloseDB();
@@ -118,7 +119,7 @@ public class SkilInfo : MonoBehaviour
         CommandText.text = DataManager.Instance.CommandNormal(ID);
         CoolTimeCommandText.text = $"{DataManager.Instance.CooltimeByTime(ID)}초 | {DataManager.Instance.CooltimeBySkill(ID)}회 사용";
         UpgradeMoneyText.text = $"{DataManager.Instance.SkillUpgradeMoney(ID)}원";
-        SkillGrowthText.text = $"기본치 {DataManager.Instance.SkillInitValue(ID)} / 성장계수 {DataManager.Instance.SkillGrowthValue(ID)}";
+        SkillGrowthText.text = $"기본치 {DataManager.Instance.SkillInitValue(ID)}/성장계수 {DataManager.Instance.SkillGrowthValue(ID)}";
         LevelUpButton.gameObject.SetActive(true);
 
 

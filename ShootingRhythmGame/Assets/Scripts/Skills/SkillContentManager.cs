@@ -44,21 +44,23 @@ public class SkillContentManager : MonoBehaviour
 
         for (int i = 1; i < _skillInfoByID.Count + 1; i++)
         {
+            ChangeSkillInfoByID(i, false);
             if (!(i == ID))
             {
                 StartCoroutine(SkillFade(i));
-                _skillInfoByID[i].canvasGroop.interactable = false;
-                _skillInfoByID[i].canvasGroop.blocksRaycasts = false;
-                _skillInfoByID[i]._button.interactable = false;
             }
             else
             {
-                _skillInfoByID[i].canvasGroop.interactable = false;
-                _skillInfoByID[i].canvasGroop.blocksRaycasts = false;
-                _skillInfoByID[i]._button.interactable = false;
                 StartCoroutine(AllowButton(i, 0.7f, false));
             }
         }
+    }
+
+    private void ChangeSkillInfoByID(int ID, bool TF)
+    {
+        _skillInfoByID[ID].canvasGroop.interactable = TF;
+        _skillInfoByID[ID].canvasGroop.blocksRaycasts = TF;
+        _skillInfoByID[ID]._button.interactable = TF;
     }
 
     IEnumerator AllowButton(int ID, float time, bool b)
@@ -68,10 +70,9 @@ public class SkillContentManager : MonoBehaviour
         {
             t += Time.deltaTime;
             yield return null;
-        } 
-        _skillInfoByID[ID].canvasGroop.blocksRaycasts = true;
-        if (b)
-            _skillInfoByID[ID]._button.interactable = true;
+        }
+
+        ChangeSkillInfoByID(ID, b);
         yield return null;
     }
 
@@ -86,9 +87,7 @@ public class SkillContentManager : MonoBehaviour
 
     public void AcceptScroll()
     {
-        _skillInfoByID[_currentSelectID].canvasGroop.interactable = false;
-        _skillInfoByID[_currentSelectID].canvasGroop.blocksRaycasts = false;
-        _skillInfoByID[_currentSelectID]._button.interactable = false;
+        ChangeSkillInfoByID(_currentSelectID, false);
         _skillInfo.GoBackButton.interactable = false;
         StartCoroutine(AllowButton(_currentSelectID, 1.6f, true));
 
@@ -126,9 +125,7 @@ public class SkillContentManager : MonoBehaviour
             yield return null;
         }
 
-        _skillInfoByID[ID].canvasGroop.interactable = true;
-        _skillInfoByID[ID].canvasGroop.blocksRaycasts = true;
-        _skillInfoByID[ID]._button.interactable = true;
+        ChangeSkillInfoByID(ID, true);
         _skillInfo.GoBackButton.interactable = true;
     }
 }
