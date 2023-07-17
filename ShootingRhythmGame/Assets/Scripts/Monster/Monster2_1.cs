@@ -26,17 +26,21 @@ public class Monster2_1 : Monster
 
     public override void Attack()
     {
-        StartCoroutine(Colon());
+        StartCoroutine(X());
     }
 
 
-    IEnumerator Colon()
+    IEnumerator X()
     {
         yield return null;
         for (int i = 0; i < 2; i++)
         {
-            Shoot(transform.position - new Vector3(0f, 0.4f, 0f), 3f, -180, 1);
-            yield return new WaitForSeconds(0.3f);
+            for (int j = 45; j <= 315; j += 90)
+            {
+                Shoot(transform.position - new Vector3(0f, 0.4f, 0f), 3f, j, 1);
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
