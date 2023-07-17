@@ -7,6 +7,10 @@ public class Monster3_2 : Monster
     //////////////////////// 수정할거 ㅈㄴ많음
     private float delta;
     private SpriteRenderer sr;
+    private Animator anim;
+
+    private int move = 0;
+    private bool up = true;
 
     private float originalBGMVolume;
 
@@ -14,6 +18,8 @@ public class Monster3_2 : Monster
     public void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
         originalBGMVolume = BGMManager.MusicPlayer.volume; // 나중에 옵션창에서 가져와라...
     }
 
@@ -24,6 +30,22 @@ public class Monster3_2 : Monster
         else if (this.transform.position.x - delta < 0) sr.flipX = false;
 
         delta = this.gameObject.transform.position.x;
+
+
+        if (up)
+        {
+            transform.position += new Vector3(0f, 0.001f);
+        }
+        else
+        {
+            transform.position += new Vector3(0f, -0.001f);
+        }
+        move++;
+        if (move == 500)
+        {
+            move = 0;
+            up = !up;
+        } //ㅋㅋ
     }
 
 
@@ -35,7 +57,7 @@ public class Monster3_2 : Monster
 
     IEnumerator vibration()
     {
-        yield return null;
+        anim.SetTrigger("shoot");
         StartCoroutine(Mute());
         for (int i = 0; i <= 360; i += 20)
         {

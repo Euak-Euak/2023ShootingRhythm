@@ -1520,6 +1520,11 @@ MonoBehaviour:
   _haveSkill: 
   _useSkill: 
   RoundType: 0
+  NormalDamagePlus: 0
+  SkillDamagePlus: 0
+  UltimateMinus: 4
+  InvincibilityTime: 1
+  MoneyPlus: 0
 --- !u!4 &865915543
 Transform:
   m_ObjectHideFlags: 0

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Monster3_3 : Monster
 {
+    private float delta;
+    private SpriteRenderer sr;
+    private Animator anim;
+
+    [SerializeField]
+    private GameObject _bombSprite;
+
     private List<Bullet> _shoot = new List<Bullet>();
     private bool init = true;
     private bool alreadyGiven = false;
@@ -17,6 +24,13 @@ public class Monster3_3 : Monster
     }
 
 
+    public void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+    }
+
+
     public void Update()
     {
         if (init)
@@ -25,6 +39,11 @@ public class Monster3_3 : Monster
             StartCoroutine(GiftForYou());
             init = false;
         }
+
+        if (this.transform.position.x - delta > 0) sr.flipX = true;
+        else if (this.transform.position.x - delta < 0) sr.flipX = false;
+
+        delta = this.gameObject.transform.position.x;
     }
 
 
@@ -36,12 +55,14 @@ public class Monster3_3 : Monster
 
     IEnumerator GiftForYou()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.5f);
         while (true)
         {
             if (!alreadyGiven)
             {
-                Bullet shoot = Shoot(transform.position, 0, 0, 1);
+                anim.SetTrigger("set");
+                Bullet shoot = Shoot(transform.position, 0, 0, 2);
+                shoot.SetBulletData(_bombSprite);
                 _shoot.Add(shoot);
                 yield return new WaitForSeconds(1.4f);
             }
@@ -53,8 +74,9 @@ public class Monster3_3 : Monster
     IEnumerator Laetitia()
     {
         alreadyGiven = true;
+        anim.SetTrigger("shoot");
 
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < _shoot.Count; i++)
         {
             for (int j = 0; j <= 360; j += 40)

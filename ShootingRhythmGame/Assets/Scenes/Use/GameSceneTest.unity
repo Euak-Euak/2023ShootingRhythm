@@ -3436,8 +3436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5562089f0c1dfa240927b3fc7fa2002b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 3632812341411434241, guid: f4888a94d2335a4488a5e920b5f00639, type: 3}
+  _object: {fileID: 3632812341411434241, guid: 4bdffd4e9c077fa408a410cdca1caba3, type: 3}
   _parent: {fileID: 0}
+  _playerTransform: {fileID: 0}
   _start: {fileID: 811137589}
   _end: {fileID: 1181805018}
   _gap: {x: 0, y: 0}

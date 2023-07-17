@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3632812341411434246}
   - component: {fileID: 580741587}
   - component: {fileID: 7803049877254474382}
+  - component: {fileID: 8294223988530261996}
   m_Layer: 6
   m_Name: monster3-2
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 78494744, guid: 8274ba5b577cbfc439a4592b2caea1f2, type: 3}
-  m_Color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+  m_Sprite: {fileID: 521295722, guid: 751a31cdd27b67a4cbd31525c5e320c6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
-  m_Size: {x: 1.2, y: 0.55}
+  m_Offset: {x: 0.03, y: 0}
+  m_Size: {x: 1.2, y: 1.2}
   m_Direction: 1
 --- !u!114 &7803049877254474382
 MonoBehaviour:
@@ -117,3 +118,24 @@ MonoBehaviour:
   _maxHp: 100
   _hp: 0
   _bulletSprite: {fileID: 6417792805886708221, guid: 2696d58d1e893ff458ffc908be9c1588, type: 3}
+--- !u!95 &8294223988530261996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632812341411434241}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69ae2ed4bf0e6804a9ea668e572f6398, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
