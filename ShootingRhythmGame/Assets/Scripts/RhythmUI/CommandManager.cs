@@ -45,7 +45,7 @@ public class CommandManager : MonoBehaviour
             _skillManager = GetComponent<SkillManager>();
             _skillManager.Init();
 
-            _selectedSkillList = PlayerDataManager.Instance._haveSkill.ToList();
+            _selectedSkillList = PlayerDataManager.Instance._useSkill.ToList();
 
             for (int i = 0; i < _skillPanels.Length; i++)
             {

@@ -18,11 +18,18 @@ public class Shop : MonoBehaviour
 
     Animator _animator;
 
+    [SerializeField]
+    private List<Button> _buttons;
+
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _script.text = _enterScript[Random.Range(0, _enterScript.Count)];
+
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+        }
     }
 
     public void BuyItem()
@@ -47,5 +54,13 @@ public class Shop : MonoBehaviour
     {
         _animator.SetTrigger("Exit");
         _script.text = "다음에도 만나죠. 그럼 이만...";
+
+        StartCoroutine(Animation());
+    }
+
+    IEnumerator Animation()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneLoadManager.LoadScene("SkillSelectScene");
     }
 }

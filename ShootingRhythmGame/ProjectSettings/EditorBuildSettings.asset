@@ -18,8 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/SyncSettingScene.unity
     guid: 1fbde6345c6c54049be9ab345fb96a95
   - enabled: 1
+    path: Assets/Scenes/Use/SkillSelectScene.unity
+    guid: 29b5ded036ef38a40bb225b15d5efbca
+  - enabled: 1
+    path: Assets/Scenes/Use/ShopScene.unity
+    guid: ed8de17008d40044cb4ba8db60a98a4b
+  - enabled: 1
     path: Assets/Scenes/MunjiTestScene.unity
     guid: ed414ad144d414f49986e86da5f4914e
+  - enabled: 1
+    path: Assets/Scenes/Use/SampleTitleScene.unity
+    guid: e6730962ed8f28e44bc663ac0efe150d
   - enabled: 1
     path: Assets/Scenes/Use/GameSceneTest.unity
     guid: 3ee0ada741baa494bbb43b7cae7eed1c

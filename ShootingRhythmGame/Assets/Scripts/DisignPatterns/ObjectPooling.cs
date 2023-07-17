@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
+public class ObjectPooling<T> : MonoBehaviour
 {
     [SerializeField]
     private GameObject _object;
@@ -12,8 +13,12 @@ public class ObjectPooling<T> : Singleton<ObjectPooling<T>>
 
     protected Queue<T> _poolingObjects;
 
+    public static ObjectPooling<T> Instance { private set; get; }
+
     protected void Start()
     {
+        Instance = this;
+
         if (_parent == null)
             _parent = this.transform;
 
