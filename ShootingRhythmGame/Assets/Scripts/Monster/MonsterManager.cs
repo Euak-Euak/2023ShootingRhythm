@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MonsterManager : ObjectPooling<Monster>
@@ -21,6 +22,9 @@ public class MonsterManager : ObjectPooling<Monster>
     [SerializeField]
     private List<GameObject> _monsters;
 
+    [SerializeField]
+    private BossController _boss;
+
     private void Start()
     {
         base.Start();
@@ -36,6 +40,25 @@ public class MonsterManager : ObjectPooling<Monster>
             _transform.Add(new Vector2(_start.position.x + _gap.x * i, _start.position.y));
         for (int i = 1; i <= 5; i++)
             _transform.Add(new Vector2(_start.position.x, _start.position.y + _gap.y * i));
+
+        switch (PlayerDataManager.Instance.RoundType)
+        {
+            case GameRoundType.Stage1Boss:
+            case GameRoundType.Stage2Boss:
+            case GameRoundType.Stage3Boss:
+            case GameRoundType.Stage4Boss:
+            case GameRoundType.Stage5Boss:
+            case GameRoundType.LastBoss:
+                _boss.Spawn();
+                break;
+            case GameRoundType.Stage1Field:
+            case GameRoundType.Stage2Field:
+            case GameRoundType.Stage3Field:
+            case GameRoundType.Stage4Field:
+            case GameRoundType.Stage5Field:
+                Init(Convert());
+                break;
+        }
     }
 
     public void Init(EnemyGameData data)
@@ -61,6 +84,25 @@ public class MonsterManager : ObjectPooling<Monster>
         }
 
         SceneLoadManager.LoadScene("ShopScene");
+    }
+
+    private EnemyGameData Convert()
+    {
+
+        string filePath = Path.Combine(Application.streamingAssetsPath, "MyFile.sed");
+
+        FileInfo fileInfo = new FileInfo(filePath);
+        string value = "";
+
+        if (fileInfo.Exists)
+        {
+            StreamReader reader = new StreamReader(filePath);
+            value = reader.ReadToEnd();
+            reader.Close();
+            return JsonUtility.FromJson<EnemyGameData>(value);
+        }
+
+        return null;
     }
 }
 

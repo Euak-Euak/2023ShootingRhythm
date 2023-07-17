@@ -39,7 +39,7 @@ public abstract class PlayerSkill : MonoBehaviour
         if (sprite == null)
             sprite = _bulletSprite;
 
-        bullet.Init(pos, speed, angle, damage, LayerMask.NameToLayer("Monster"));
+        bullet.Init(pos, speed, angle, damage + PlayerDataManager.Instance.SkillDamagePlus, LayerMask.NameToLayer("Monster"));
         return bullet;
     }
 
@@ -50,7 +50,7 @@ public abstract class PlayerSkill : MonoBehaviour
         if (sprite == null)
             sprite = _bulletSprite;
 
-        laser.Init(pos, angle, damage, sprite, LayerMask.NameToLayer("Monster"));
+        laser.Init(pos, angle, damage + PlayerDataManager.Instance.SkillDamagePlus, sprite, LayerMask.NameToLayer("Monster"));
         laser.Shoot(time, stayTime);
         return laser;
     }

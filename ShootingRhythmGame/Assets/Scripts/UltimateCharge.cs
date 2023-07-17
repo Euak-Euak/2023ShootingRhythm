@@ -19,6 +19,7 @@ public class UltimateCharge : MonoBehaviour
     private void Start()
     {
         UltCharge = 0;
+        _maxUltCharge = PlayerDataManager.Instance.UltimateMinus;
         _ultimate = GetComponent<TempUltimate>();
 
         _gaugeFilled = _gaugeObj.GetComponent<Image>();

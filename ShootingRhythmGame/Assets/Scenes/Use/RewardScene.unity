@@ -658,6 +658,7 @@ GameObject:
   - component: {fileID: 377526180}
   - component: {fileID: 377526182}
   - component: {fileID: 377526183}
+  - component: {fileID: 377526184}
   m_Layer: 5
   m_Name: ItemPopup
   m_TagString: Untagged
@@ -748,6 +749,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a009c4f1f9104da4c89e2e28b02ae1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &377526184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377526177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fad016f95cfa8c40bc2c2ce28097fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemImage: {fileID: 1850574816}
+  _itemText: {fileID: 1488988673}
 --- !u!1 &442639270
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,10 +815,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05cdb7d01ed2c44abeda1da2f845317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewardID: 0
   _image: {fileID: 858124236}
   _name: {fileID: 715121577}
   _rewardSelect: {fileID: 1270037875}
+  _itemSelect: {fileID: 377526184}
 --- !u!1 &457598405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,10 +1026,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05cdb7d01ed2c44abeda1da2f845317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewardID: 0
   _image: {fileID: 457598407}
   _name: {fileID: 821028703}
   _rewardSelect: {fileID: 1270037875}
+  _itemSelect: {fileID: 377526184}
 --- !u!1 &645580078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,10 +1304,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05cdb7d01ed2c44abeda1da2f845317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewardID: 0
   _image: {fileID: 194246517}
   _name: {fileID: 682685395}
   _rewardSelect: {fileID: 1270037875}
+  _itemSelect: {fileID: 377526184}
 --- !u!1 &682685393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1819,6 @@ MonoBehaviour:
   - {fileID: 442639272}
   - {fileID: 620709658}
   _rewardList: 0100000002000000030000000400000005000000
-  _nowSelect: 0
   _rewardSprite:
   - {fileID: 21300000, guid: beb412eb4b9269140a221e29a2f5ba3d, type: 3}
   - {fileID: 21300000, guid: f878605d55fa8334ea3eba4beb437fb9, type: 3}

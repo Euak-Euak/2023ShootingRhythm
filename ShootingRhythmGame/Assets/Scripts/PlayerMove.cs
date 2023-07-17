@@ -32,7 +32,10 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
             x = 1;
 
-        _rid.position += 5 * Time.deltaTime * new Vector2(x, y);
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            _rid.position += 2.5f * Time.deltaTime * new Vector2(x, y);
+        else
+            _rid.position += 5 * Time.deltaTime * new Vector2(x, y);
     }
 
     private IEnumerator BulletShoot()
@@ -40,7 +43,7 @@ public class PlayerMove : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            _bulletManager.SpawnObject().Init(transform.position, 10f, 0, 1, LayerMask.NameToLayer("Monster"));
+            _bulletManager.SpawnObject().Init(transform.position, 10f, 0, 10 + PlayerDataManager.Instance.NormalDamagePlus, LayerMask.NameToLayer("Monster"));
         }
     }
 }

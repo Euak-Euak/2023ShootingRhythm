@@ -5,7 +5,7 @@ using UnityEngine;
 public class RewardSelect : MonoBehaviour
 {
     [SerializeField]
-    private List<CellRewardSet> cellRewards;
+    private List<ItemSelectCell> cellRewards;
 
     [SerializeField]
     private List<int> _rewardList;
@@ -32,10 +32,10 @@ public class RewardSelect : MonoBehaviour
         _nowSelect = id;
     }
 
-    public void Decision()
+    public virtual void Decision()
     {
         PlayerDataManager.Instance._haveSkill.Add(_nowSelect);
-
+        PlayerDataManager.Instance.Next();
         SceneLoadManager.LoadScene("SkillSelectScene");
     }
 }

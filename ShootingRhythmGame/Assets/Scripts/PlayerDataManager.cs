@@ -26,11 +26,25 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public List<int> _haveSkill = new List<int>();
     public List<int> _useSkill = new List<int>();
 
-    public GameRoundType RoundType;
+    public GameRoundType RoundType = GameRoundType.None;
+
+    public int NormalDamagePlus = 0;
+    public int SkillDamagePlus = 0;
+    public int UltimateMinus = 4;
+    public float InvincibilityTime = 1f;
+    public int MoneyPlus = 0;
 
     void Start()
     {
         if(PlayerPrefs.HasKey(ConstData.PlayerSkillPointDataKey))
-        _skillPoint = PlayerPrefs.GetInt(ConstData.PlayerSkillPointDataKey);
+            _skillPoint = PlayerPrefs.GetInt(ConstData.PlayerSkillPointDataKey);
+    }
+    public void Money(int money)
+    {
+        _money += (money + MoneyPlus);
+    }
+    public void Next()
+    {
+        RoundType++;
     }
 }

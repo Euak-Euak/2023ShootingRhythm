@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class JsonDataConvert : MonoBehaviour
 {
-    [SerializeField]
-    MonsterManager _manager;
-    void Start()
+    public EnemyGameData Convert()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "MyFile.sed");
 
@@ -18,8 +16,10 @@ public class JsonDataConvert : MonoBehaviour
         {
             StreamReader reader = new StreamReader(filePath);
             value = reader.ReadToEnd();
-            _manager.Init(JsonUtility.FromJson<EnemyGameData>(value));
             reader.Close();
+            return JsonUtility.FromJson<EnemyGameData>(value);
         }
+
+        return null;
     }
 }

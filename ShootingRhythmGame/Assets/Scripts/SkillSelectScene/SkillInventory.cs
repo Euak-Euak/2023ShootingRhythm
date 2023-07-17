@@ -24,9 +24,14 @@ public class SkillInventory : MonoBehaviour
         for (int i = 0; i < PlayerDataManager.Instance._useSkill.Count; i++)
         {
             DataManager.Instance.OpenDB();
+
             _use[i].text = DataManager.Instance.SkillName(PlayerDataManager.Instance._useSkill[i]);
+
             DataManager.Instance.CloseDB();
-            _useSkill[i].onClick.AddListener(() => { CancleUseSkill(PlayerDataManager.Instance._useSkill[i], i); });
+
+            int id = PlayerDataManager.Instance._useSkill[i];
+
+            _useSkill[i].onClick.AddListener(() => { CancleUseSkill(id, i); });
         }
     }
 
