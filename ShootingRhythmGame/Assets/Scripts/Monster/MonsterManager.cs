@@ -6,6 +6,8 @@ public class MonsterManager : ObjectPooling<Monster>
 {
     EnemyGameData _enemyGameData;
 
+    public Transform _playerTransform;
+
     private List<Vector2> _transform;
     
     [SerializeField]

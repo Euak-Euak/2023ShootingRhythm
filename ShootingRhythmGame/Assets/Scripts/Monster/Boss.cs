@@ -6,7 +6,20 @@ public abstract class Boss : Attackable
 {
     [SerializeField]
     private GameObject _bulletSprite;
+    [SerializeField]
+    private GameObject _laserSprite;
+    public Transform _playerTransform;
 
+    [SerializeField] protected Transform _leftEdge;
+    [SerializeField] protected Transform _rightEdge;
+    [SerializeField] protected Transform _upEdge;
+    [SerializeField] protected Transform _downEdge;
+
+    private void Awake()
+    {
+        base.Awake();
+        _playerTransform = FindAnyObjectByType<PlayerMove>().GetComponent<Transform>();
+    }
     public override void Dead()
     {
         gameObject.SetActive(false);
@@ -28,6 +41,7 @@ public abstract class Boss : Attackable
         Laser laser = LaserManager.Instance.SpawnObject();
 
         laser.Init(pos, angle, damage, sprite, LayerMask.NameToLayer("Player"));
+        laser.SetBulletData(_laserSprite);
         laser.Shoot(time, stayTime);
         return laser;
     }

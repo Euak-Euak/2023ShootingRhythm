@@ -8,12 +8,12 @@ public abstract class Attackable : MonoBehaviour
     private int _maxHp;
     public int _hp;
 
-    private void Awake()
+    protected void Awake()
     {
         _hp = _maxHp;
     }
 
-    public void Attacked(int damage)
+    public virtual void Attacked(int damage)
     {
         _hp -= damage;
 
