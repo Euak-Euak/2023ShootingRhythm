@@ -36,7 +36,7 @@ public abstract class Monster : Attackable
         return laser;
     }
 
-    public void Init(EnemyData enemy, Vector2 handle)
+    public virtual void Init(EnemyData enemy, Vector2 handle)
     {
         _enemyData = enemy;
         _handle = handle;

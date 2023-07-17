@@ -56,6 +56,7 @@ public class Bullet : MonoBehaviour
         _collider.direction = bulletData.Size.direction;
         _renderer.sprite = bulletData.Sprite;
         _penetrate = bulletData.IsPenetrate;
+        transform.localScale = game.transform.localScale;
     }
 
     void Update()

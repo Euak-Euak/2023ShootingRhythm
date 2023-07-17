@@ -42,7 +42,7 @@ public class Monster2_3 : Monster
         anim.SetTrigger("shoot");
 
         yield return new WaitForSeconds(0.2f);
-        for (int i = 0; i < 360; i += 45)
+        for (int i = 0; i < 360; i += 20)
         {
             Shoot(transform.position, 6f, i, 1);
         }

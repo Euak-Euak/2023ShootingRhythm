@@ -9,7 +9,7 @@ public class BGMManager : MonoBehaviour
     static public bool _isMusicStart;
 
     [SerializeField] private AudioClip _bgm;
-    AudioSource musicPlayer;
+    static public AudioSource MusicPlayer;
 
     
     private void Awake()
@@ -24,8 +24,8 @@ public class BGMManager : MonoBehaviour
     void Start()
     {
         _isMusicStart = false;
-        musicPlayer = GetComponent<AudioSource>();
-        musicPlayer.clip = _bgm;
+        MusicPlayer = GetComponent<AudioSource>();
+        MusicPlayer.clip = _bgm;
     }
 
 
@@ -39,7 +39,7 @@ public class BGMManager : MonoBehaviour
     {
         if (!_isMusicStart)
         {
-            musicPlayer.Play();
+            MusicPlayer.Play();
             _isMusicStart = true;
         }
     }
