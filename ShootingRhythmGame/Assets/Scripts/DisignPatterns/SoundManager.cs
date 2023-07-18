@@ -73,6 +73,11 @@ public class SoundManager : Singleton<SoundManager>
         _BGMSource.Pause();
     }
 
+    public void BGMStop()
+    {
+        _BGMSource.Stop();
+    }
+
     public void SFXPlay(string soundName)
     {
         foreach (AudioSource a in _SFXSource)
@@ -97,5 +102,4 @@ public class SoundManager : Singleton<SoundManager>
     {
         _BGMSource.volume = value;
     }
-
 }

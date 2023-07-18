@@ -43,9 +43,8 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
-
-        if (GameObject.Find("Player") != null)_commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
+        if (GameObject.Find("Player") != null)_commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
     }
 
 
@@ -83,7 +82,7 @@ public class NoteController : MonoBehaviour
     {
         if (other.name == "Perf")
         {
-            if (!BGMManager._isMusicStart)
+            if (_BGMManager && !BGMManager._isMusicStart)
             {
                 _BGMManager.GetComponent<BGMManager>().MusicStart();
             }

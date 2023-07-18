@@ -63,7 +63,7 @@ public class Monster4_1 : Monster
 
     IEnumerator Tack(Bullet rotate, float angle)
     {
-        Bullet shoot = Shoot(rotate.gameObject.transform.position, 3f, angle, 1);
+        Bullet shoot = Shoot(rotate.gameObject.transform.position, 5f, angle, 1);
         _stop.Remove(rotate);
         _angle.Remove(angle);
         rotate.ReturnObject();

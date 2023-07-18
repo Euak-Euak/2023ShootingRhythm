@@ -8,4 +8,9 @@ public class ButtonSceneMove : MonoBehaviour
     {
         SceneLoadManager.LoadScene(name);
     }
+
+    public void OnOffPopup(GameObject obj)
+    {
+        obj.SetActive(!obj.activeSelf);
+    }
 }

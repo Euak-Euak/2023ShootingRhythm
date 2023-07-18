@@ -63,7 +63,7 @@ public class Monster3_2 : Monster
             Shoot(transform.position, 10f, i, 1);
         }
 
-        for (int i = 0; i <= 360; i += 30)
+        for (int i = 0; i <= 330; i += 30)
         {
             Bullet shoot = Shoot(transform.position, 1.2f, i, 1);
             StartCoroutine(emememem(shoot));
@@ -89,8 +89,8 @@ public class Monster3_2 : Monster
 
     IEnumerator Mute()
     {
-        SoundManager.Instance.BGMVolume(0f);
-        SoundManager.Instance.SFXVolume(0f);
+        SoundManager.Instance.BGMVolume(0.2f);
+        SoundManager.Instance.SFXVolume(0.2f);
 
         yield return new WaitForSeconds(BGMManager.Bpm/60);
         SoundManager.Instance.BGMVolume(_originalVolume);

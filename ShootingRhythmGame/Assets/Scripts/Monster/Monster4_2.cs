@@ -80,7 +80,7 @@ public class Monster4_2 : Monster
         {
             Bullet shoot = Shoot(_pos, 1.5f, -180, 1);
             _shoot.Add(shoot);
-            yield return new WaitForSeconds(0.13f);
+            yield return new WaitForSeconds(0.16f);
         }
 
         yield return new WaitForSeconds(Random.Range(0.1f, 1.2f));

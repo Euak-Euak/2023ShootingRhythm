@@ -76,7 +76,7 @@ public class Monster3_3 : Monster
         alreadyGiven = true;
         anim.SetTrigger("shoot");
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = 0; i < _shoot.Count; i++)
         {
             for (int j = 0; j <= 360; j += 40)

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : PauseOnStage
 {
-    [SerializeField] private GameObject[] _PauseMenuBtn;
     [SerializeField] private GameObject _optionMenu;
     private GameObject nowPage;
 
@@ -27,8 +26,6 @@ public class PauseMenu : PauseOnStage
 
     public void PressOptionBtn()
     {
-        nowPage = _optionMenu;
-
         _optionMenu.SetActive(true);
         _pauseMenu.SetActive(false);
     }
@@ -47,7 +44,7 @@ public class PauseMenu : PauseOnStage
 
     public void ReturnPauseMenu()
     {
-        nowPage.SetActive(false);
+        _optionMenu.SetActive(false);
         _pauseMenu.SetActive(true);
     }
 }

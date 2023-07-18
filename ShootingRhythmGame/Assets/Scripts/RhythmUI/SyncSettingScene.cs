@@ -23,33 +23,28 @@ public class SyncSettingScene : MonoBehaviour
         {
             if (-0.3 < SyncController.Sync)
             {
-                PressLateBtn();
+                Late();
             }
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             if (SyncController.Sync < 0.3)
             {
-                PressEarlyBtn();
+                Early();
             }
         }
     }
 
 
-    public void PressEarlyBtn()
+    public void Early()
     {
         SyncController.Sync += 0.0002f;
     }
 
 
-    public void PressLateBtn()
+    public void Late()
     {
         SyncController.Sync -= 0.0002f;
     }
 
-
-    public void PressBackBtn()
-    {
-        SceneManager.LoadScene("TitleScene");
-    }
 }

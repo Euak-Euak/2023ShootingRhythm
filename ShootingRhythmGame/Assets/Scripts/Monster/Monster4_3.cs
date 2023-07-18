@@ -56,7 +56,7 @@ public class Monster4_3 : Monster
     {
 
         yield return new WaitForSeconds(1f - 0.1f * order);
-        Bullet shoot = Shoot(_pos, 7.77f, _midAngle + del, 1);
+        Bullet shoot = Shoot(_pos, 12f, _midAngle + del, 1);
         shoot.SetBulletData(_handSprite[order]);
         dan.ReturnObject();
     }
