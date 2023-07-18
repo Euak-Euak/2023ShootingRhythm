@@ -9,7 +9,7 @@ using DG.Tweening;
 public class SkillContent : MonoBehaviour
 {
     [SerializeField] public Button _button;
-    [SerializeField] private Text _level;
+    //[SerializeField] private Text _level;
     [SerializeField] private Text _name;
     [SerializeField] private Text _command;
     [SerializeField] private Image _powerUp;
@@ -19,9 +19,11 @@ public class SkillContent : MonoBehaviour
     public CanvasGroup canvasGroop;
     private bool _isPowerUp;
     private Transform ItemPos;
+    private Image _skillImage;
 
     public void Init(int id, Action<int> action, Action<int> action2, Transform transform)
     {
+        _skillImage = _button.GetComponent<Image>();
         ID = id;
         ItemPos = transform;
         _button.onClick.AddListener(() => { action.Invoke(ID); });
@@ -31,8 +33,9 @@ public class SkillContent : MonoBehaviour
             NotOpenedSkill();
         else
         {
-            _level.text = DataManager.Instance.SkillLevel(ID).ToString();
+            //_level.text = DataManager.Instance.SkillLevel(ID).ToString();
             _name.text = DataManager.Instance.SkillName(ID);
+            _skillImage.sprite = DataManager.Instance.SpriteByID(ID);
             PowerUpChange();
         }
     }
@@ -55,25 +58,26 @@ public class SkillContent : MonoBehaviour
         if (_isPowerUp)
         {
             _command.text = DataManager.Instance.CommandPowerUp(ID);
-            _powerUp.color = new Color(0.9f,0.8f,0.1f);
+            _powerUp.sprite = Resources.Load<Sprite>("Sprites/Skills/Skill_BG_After");
         }
         else
         {
             _command.text = DataManager.Instance.CommandNormal(ID);
-            _powerUp.color = new Color(0.4f, 0.4f, 0.4f);
+            _powerUp.sprite = Resources.Load<Sprite>("Sprites/Skills/Skill_BG_Before");
         }
     }
 
     private void NotOpenedSkill()
     {
-        _level.text = string.Empty;
+        //_level.text = string.Empty;
         _name.text = "???";
         _command.text = "???";
-        _powerUp.color = new Color(0.4f, 0.4f, 0.4f);
+        _powerUp.sprite = Resources.Load<Sprite>("Sprites/Skills/Skill_BG_Before");
+        _skillImage.sprite = Resources.Load<Sprite>("Sprites/Skills/Skill0");
     }
 
-    public void SkillLevelChange()
-    {
-        _level.text = DataManager.Instance.SkillLevel(ID).ToString();
-    }
+    //public void SkillLevelChange()
+    //{
+    //    _level.text = DataManager.Instance.SkillLevel(ID).ToString();
+    //}
 }
