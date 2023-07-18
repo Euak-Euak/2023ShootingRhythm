@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Boss1 : Boss
 {
-    private void Start()
-    {
-        Invoke("Attack", 0.1f);
-    }
-
-    public override void Phase2()
-    {
+    public override void Phase1() {
 
         switch (Random.Range(0, 5))
         {
@@ -33,7 +27,8 @@ public class Boss1 : Boss
                 break;
         }
     }
-    public override void Phase1()
+
+    public override void Phase2()
     {
         switch (Random.Range(0, 4))
         {

@@ -12,7 +12,7 @@ public class Boss3 : Boss
         Invoke("Attack", 0.1f);
     }
 
-    public override void Phase2()
+    public override void Phase1()
     {
         switch (Random.Range(0, 3))
         {
@@ -29,7 +29,8 @@ public class Boss3 : Boss
                 break;
         }
     }
-    public override void Phase1()
+
+    public override void Phase2()
     {
         switch (Random.Range(0, 3))
         {
@@ -42,6 +43,7 @@ public class Boss3 : Boss
             case 2:
                 StartCoroutine(Phase1_Pattern3());
                 break;
+            case 3:
             default:
                 break;
         }
