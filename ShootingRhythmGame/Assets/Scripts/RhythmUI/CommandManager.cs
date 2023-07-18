@@ -201,9 +201,21 @@ public class CommandManager : MonoBehaviour
     {
         for (int i = 0; i < CmdList[skillNum].Skill.Count; i++)
         {
-            GameObject _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command"), _skillPanels[skillNum].transform);
+            GameObject _cmdPanel = null;
+            if (CmdList[skillNum].Skill[i] == "A")
+                _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command1"), _skillPanels[skillNum].transform);
+            if (CmdList[skillNum].Skill[i] == "S")
+                _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command2"), _skillPanels[skillNum].transform);
+            if (CmdList[skillNum].Skill[i] == "D")
+                _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command3"), _skillPanels[skillNum].transform);
+            if (CmdList[skillNum].Skill[i] == "F")
+                _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command4"), _skillPanels[skillNum].transform);
+
+            if (CmdList[skillNum].Skill[i] == "-")
+                _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command5"), _skillPanels[skillNum].transform);
+
             RectTransform pos = _cmdPanel.GetComponent<RectTransform>();
-            pos.anchoredPosition = new Vector2(- 225 + 64 * i, 204);
+            pos.anchoredPosition = new Vector2(-250 + 64 * i, -30);
 
             _cmdPanel.GetComponent<LightUpSkillCmdPanel>().PanelSkillNum = skillNum;
             _cmdPanel.GetComponent<LightUpSkillCmdPanel>().PanelCmdNum = i;
