@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class Monster4_3 : Monster
 {
+    private Animator anim;
+
+    [SerializeField]
+    private GameObject[] _handSprite;
+
     private int _midAngle;
     private Vector3 _pos;
+
+    private List<Bullet> _stop = new List<Bullet>();
+
+
+    public override void Init(EnemyData enemy, Vector2 handle)
+    {
+        base.Init(enemy, handle);
+        _stop.Clear();
+    }
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
 
     public override void Attack()
@@ -19,23 +38,36 @@ public class Monster4_3 : Monster
 
     IEnumerator Dantehe()
     {
-        StartCoroutine(Chimichimi(Shoot(_pos, 0f, _midAngle - 30, 1), 0, -30));
-        //Shoot(_pos, 0f, _midAngle - 30, 1);
-        yield return new WaitForSeconds(0.1f);
+        anim.SetTrigger("shoot");
 
-        StartCoroutine(Chimichimi(Shoot(_pos, 0f, _midAngle, 1), 1, 0));
-        //Shoot(_pos, 0f, _midAngle, 1);
-        yield return new WaitForSeconds(0.1f);
+        for (int i = -1; i < 2; i++)
+        {
+            Bullet shoot = Shoot(_pos, 0f, _midAngle + i * 30, 1);
+            shoot.SetBulletData(_handSprite[i+1]);
+            StartCoroutine(Chimichimi(shoot, i+ 1 , i * 30));
+            _stop.Add(shoot);
 
-        StartCoroutine(Chimichimi(Shoot(_pos, 0f, _midAngle + 30, 1), 2, 30));
-        //Shoot(_pos, 0f, _midAngle + 30, 1);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
 
-    IEnumerator Chimichimi(Bullet shoot, int order, int del)
+    IEnumerator Chimichimi(Bullet dan, int order, int del)
     {
+
         yield return new WaitForSeconds(1f - 0.1f * order);
-        Shoot(_pos, 6.66f, _midAngle + del, 1);
-        shoot.ReturnObject();
+        Bullet shoot = Shoot(_pos, 7.77f, _midAngle + del, 1);
+        shoot.SetBulletData(_handSprite[order]);
+        dan.ReturnObject();
+    }
+
+
+    public override void Dead()
+    {
+        for (int i = 0; i < _stop.Count; i++)
+        {
+            _stop[i].ReturnObject();
+        }
+        base.Dead();
     }
 }

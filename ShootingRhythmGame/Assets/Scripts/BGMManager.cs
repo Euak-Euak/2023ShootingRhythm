@@ -5,33 +5,50 @@ using UnityEngine;
 public class BGMManager : MonoBehaviour
 {
     static public int Bpm;
+    private string _bgmName;
 
     static public bool _isMusicStart;
-
-    [SerializeField] private AudioClip _bgm;
-    static public AudioSource MusicPlayer;
 
     
     private void Awake()
     {
-        if (_bgm == null)
+        switch (PlayerDataManager.Instance.RoundType)
         {
-            _bgm = Resources.Load<AudioClip>("BGM/Idonthaveanymusic");
-            Bpm = 130;
+            case GameRoundType.Stage1Field:
+            case GameRoundType.Stage2Field:
+            case GameRoundType.Stage3Field:
+            case GameRoundType.Stage4Field:
+            case GameRoundType.Stage5Field:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 130;
+                break;
+
+            case GameRoundType.Stage1Boss:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 260;
+                break;
+            case GameRoundType.Stage2Boss:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 260;
+                break;
+            case GameRoundType.Stage3Boss:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 260;
+                break;
+            case GameRoundType.Stage4Boss:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 260;
+                break;
+            case GameRoundType.Stage5Boss:
+                _bgmName = "Idonthaveanymusic";
+                Bpm = 260;
+                break;
         }
     }
 
     void Start()
     {
         _isMusicStart = false;
-        MusicPlayer = GetComponent<AudioSource>();
-        MusicPlayer.clip = _bgm;
-    }
-
-
-    void Update()
-    {
-
     }
 
 
@@ -39,7 +56,7 @@ public class BGMManager : MonoBehaviour
     {
         if (!_isMusicStart)
         {
-            MusicPlayer.Play();
+            SoundManager.Instance.BGMPlay(_bgmName);
             _isMusicStart = true;
         }
     }

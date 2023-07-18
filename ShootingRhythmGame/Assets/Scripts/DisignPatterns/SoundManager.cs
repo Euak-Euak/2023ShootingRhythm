@@ -48,8 +48,8 @@ public class SoundManager : Singleton<SoundManager>
             foreach (AudioSource a in _SFXSource)
                 a.volume = volume;
 
-            BGM.value = _BGMSource.volume;
-            SFX.value = volume;
+            //BGM.value = _BGMSource.volume;
+            //SFX.value = volume;
 
             SoundManager.Instance.BGMPlay("Main");
         }

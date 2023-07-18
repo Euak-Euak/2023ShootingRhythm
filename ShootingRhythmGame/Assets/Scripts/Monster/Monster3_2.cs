@@ -20,7 +20,7 @@ public class Monster3_2 : Monster
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
-        originalBGMVolume = BGMManager.MusicPlayer.volume; // 나중에 옵션창에서 가져와라...
+        //originalBGMVolume = BGMManager.MusicPlayer.volume; // 나중에 옵션창에서 가져와라...
     }
 
 
@@ -90,16 +90,16 @@ public class Monster3_2 : Monster
 
     IEnumerator Mute()
     {
-        BGMManager.MusicPlayer.volume = originalBGMVolume / 5; //일단 임시로 브금만 하고 언젠가 전체적인 효과음도
+        //BGMManager.MusicPlayer.volume = originalBGMVolume / 5; //일단 임시로 브금만 하고 언젠가 전체적인 효과음도
         
         yield return new WaitForSeconds(BGMManager.Bpm/30);
-        BGMManager.MusicPlayer.volume = originalBGMVolume;
+        //BGMManager.MusicPlayer.volume = originalBGMVolume;
     }
 
 
     public override void Dead()
     {
-        BGMManager.MusicPlayer.volume = originalBGMVolume;
+        //BGMManager.MusicPlayer.volume = originalBGMVolume;
         base.Dead();
     }
 }

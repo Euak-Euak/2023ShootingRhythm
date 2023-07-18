@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Monster4_2 : Monster
 {
+    private Animator anim;
+    private int _rotate;
+
     private Vector3 _pos;
     private int _dir;
 
@@ -16,6 +19,19 @@ public class Monster4_2 : Monster
         base.Init(enemy, handle);
         _shoot.Clear();
         _record.Clear();
+    }
+
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+        StartCoroutine(Rotate());
+    }
+
+
+    public void Update()
+    {
+        this.gameObject.transform.Rotate(new Vector3(0, 0, _rotate * 0.08f));
     }
 
 
@@ -67,29 +83,50 @@ public class Monster4_2 : Monster
             yield return new WaitForSeconds(0.13f);
         }
 
-        yield return new WaitForSeconds(Random.Range(0f, 1.5f));
+        yield return new WaitForSeconds(Random.Range(0.1f, 1.2f));
         StartCoroutine(Record());
     }
 
 
     IEnumerator Record()
     {
+        anim.SetTrigger("record");
+
+        yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < _shoot.Count; i++)
         {
             _record.Add(_shoot[i].gameObject.transform.position);
         }
 
-        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        yield return new WaitForSeconds(Random.Range(1f, 2.5f));
         StartCoroutine(LoadRecord());
     }
 
 
     IEnumerator LoadRecord()
     {
-        yield return null;
+        anim.SetTrigger("load");
+
+        yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < _record.Count; i++)
         {
             Shoot(_record[i], 1.5f, -180, 1);
+        }
+    }
+
+
+    IEnumerator Rotate()
+    {
+        while (true)
+        {
+            _rotate = 2;
+            yield return new WaitForSeconds(Random.Range(1.6f, 2.5f));
+            _rotate = 1;
+            yield return new WaitForSeconds(Random.Range(0.5f, 1.1f));
+            _rotate = -2;
+            yield return new WaitForSeconds(Random.Range(1.6f, 2.5f));
+            _rotate = -1;
+            yield return new WaitForSeconds(Random.Range(1.6f, 2.5f));
         }
     }
 }

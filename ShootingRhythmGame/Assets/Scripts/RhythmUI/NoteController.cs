@@ -23,7 +23,6 @@ public class NoteController : MonoBehaviour
 
     private BGMManager _BGMManager;
     private CommandManager _commandManager;
-    private AudioSource _perfBeat;
 
 
     public void Init(Transform pos)
@@ -44,7 +43,6 @@ public class NoteController : MonoBehaviour
     void Start()
     {
         _speed = NoteSpawner.NoteSpeed;
-        _perfBeat = GetComponent<AudioSource>();
 
         if (GameObject.Find("Player") != null)_commandManager = GameObject.Find("Player").GetComponent<CommandManager>();
         _BGMManager = GameObject.Find("Main Camera").GetComponent<BGMManager>();
@@ -89,10 +87,9 @@ public class NoteController : MonoBehaviour
             {
                 _BGMManager.GetComponent<BGMManager>().MusicStart();
             }
-            _perfBeat.Play();
-            //Destroy(other.gameObject);
+            SoundManager.Instance.SFXPlay("jjack");
         }
-        else if (other.name == "Miss")
+    else if (other.name == "Miss")
         {
             for (int i = 0; i < _nowKeyList.Count; i++)
             {

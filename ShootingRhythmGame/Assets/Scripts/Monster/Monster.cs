@@ -14,7 +14,7 @@ public abstract class Monster : Attackable
     public override void Dead()
     {
         MonsterManager.Instance.ReturnObject(this);
-        ItemManager.Instance.Equals(this);
+        //ItemManager.Instance.Equals(this); ///////////
         gameObject.SetActive(false);
     }
 
