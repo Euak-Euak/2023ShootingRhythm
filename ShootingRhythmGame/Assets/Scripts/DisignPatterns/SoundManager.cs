@@ -68,6 +68,11 @@ public class SoundManager : Singleton<SoundManager>
         _BGMSource.Play();
     }
 
+    public void BGMPause()
+    {
+        _BGMSource.Pause();
+    }
+
     public void SFXPlay(string soundName)
     {
         foreach (AudioSource a in _SFXSource)
@@ -81,14 +86,14 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void SFXBolum(float value)
+    public void SFXVolume(float value)
     {
         foreach (AudioSource a in _SFXSource)
         {
             a.volume = value;
         }
     }
-    public void BGMBolum(float value)
+    public void BGMVolume(float value)
     {
         _BGMSource.volume = value;
     }

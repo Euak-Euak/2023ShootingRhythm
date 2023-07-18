@@ -5,7 +5,7 @@ using UnityEngine;
 public class BGMManager : MonoBehaviour
 {
     static public int Bpm;
-    private string _bgmName;
+    static public string _bgmName;
 
     static public bool _isMusicStart;
 

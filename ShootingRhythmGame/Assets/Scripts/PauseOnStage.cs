@@ -10,13 +10,7 @@ public class PauseOnStage : MonoBehaviour
     [SerializeField] protected GameObject _pauseMenu;
     protected AudioSource _bgm;
 
-
-    void Start()
-    {
-        _bgm = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-    }
-
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -25,7 +19,6 @@ public class PauseOnStage : MonoBehaviour
             {
                 OnPauseGame();
             }
-            //else OnResumeGame();
         }
     }
 
@@ -35,7 +28,7 @@ public class PauseOnStage : MonoBehaviour
         _pause.SetActive(true);
 
         Time.timeScale = 0f;
-        _bgm.Pause();
+        SoundManager.Instance.BGMPause();
         IsPause = true;
     }
 
@@ -45,7 +38,7 @@ public class PauseOnStage : MonoBehaviour
         _pause.SetActive(false);
 
         Time.timeScale = 1f;
-        _bgm.Play();
+        SoundManager.Instance.BGMPlay(BGMManager._bgmName);
         IsPause = false;
     }
 }

@@ -34,20 +34,14 @@ public class PauseMenu : PauseOnStage
     }
 
 
-    /*public void PressSyncSettingBtn()
-    {
-        DontDestroyOnLoad(GameObject.Find(" "));
-        SceneManager.LoadScene("SyncSettingScene");
-    }*/
-
-
     public void PressQuitBtn()
     {
         OnResumeGame();
         tempSkillSelect.SelectedSkillIdList.Clear();
         Destroy(GameObject.Find("BulletManager"));
         Destroy(GameObject.Find("DataManager"));
-        SceneManager.LoadScene("TempSkillSelect");
+        SoundManager.Instance.BGMPlay("Main");
+        SceneManager.LoadScene("SampleTitleScene");
     }
 
 
