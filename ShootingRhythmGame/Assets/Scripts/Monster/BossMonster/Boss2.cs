@@ -13,7 +13,7 @@ public class Boss2 : Boss
         Invoke("Attack", 0.1f);
     }
 
-    public override void Phase1()
+    public override void Phase2()
     {
         switch (Random.Range(0, 2))
         {
@@ -32,13 +32,13 @@ public class Boss2 : Boss
         }
     }
 
-    public override void Phase2()
+    public override void Phase1()
     {
         int a = Random.Range(0, 5);
         switch (a)
         {
             case 0:
-                StartCoroutine(Phase2_Pattern1());
+                StartCoroutine(Phase1_Pattern1());
                 break;
             case 1:
                 StartCoroutine(Phase1_Pattern2_Right());

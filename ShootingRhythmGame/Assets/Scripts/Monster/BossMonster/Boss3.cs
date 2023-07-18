@@ -12,7 +12,7 @@ public class Boss3 : Boss
         Invoke("Attack", 0.1f);
     }
 
-    public override void Phase1()
+    public override void Phase2()
     {
         switch (Random.Range(0, 3))
         {
@@ -30,7 +30,7 @@ public class Boss3 : Boss
         }
     }
 
-    public override void Phase2()
+    public override void Phase1()
     {
         switch (Random.Range(0, 3))
         {

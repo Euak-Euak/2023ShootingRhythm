@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss1 : Boss
 {
-    public override void Phase1() {
+    public override void Phase2() {
 
         switch (Random.Range(0, 5))
         {
@@ -28,7 +28,7 @@ public class Boss1 : Boss
         }
     }
 
-    public override void Phase2()
+    public override void Phase1()
     {
         switch (Random.Range(0, 4))
         {

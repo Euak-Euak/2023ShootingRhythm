@@ -19,6 +19,7 @@ public abstract class Boss : Attackable
     {
         base.Awake();
         _playerTransform = FindAnyObjectByType<PlayerMove>().GetComponent<Transform>();
+        Attack();
     }
     public override void Dead()
     {
