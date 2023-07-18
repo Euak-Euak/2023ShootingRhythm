@@ -49,7 +49,7 @@ public class DataManager : Singleton<DataManager>
 
     public Sprite SpriteByID(int ID)
     {
-        return (Sprite)Resources.Load("Sprites/Skills/"+ _skillData.SkillImage(ID));
+        return Resources.Load<Sprite>("Sprites/Skills/"+ _skillData.SkillImage(ID));
     }
 
     public string SkillName(int ID)

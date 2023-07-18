@@ -66,7 +66,7 @@ public class SkilInfo : MonoBehaviour
         }
 
         DataManager.Instance.SetSkillLevelUp(ID);
-        _skillInfoByID[ID].SkillLevelChange();
+        //_skillInfoByID[ID].SkillLevelChange();
         SkillLevelText.text = $"Lv.{DataManager.Instance.SkillLevel(ID)}";
         LevelSlider.value = DataManager.Instance.SkillLevel(ID);
         UpgradeMoneyText.text = $"{DataManager.Instance.SkillUpgradeMoney(ID)}¿ø";
