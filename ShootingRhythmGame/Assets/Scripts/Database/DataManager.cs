@@ -47,6 +47,11 @@ public class DataManager : Singleton<DataManager>
         return _skillData.SkilCountName();
     }
 
+    public Sprite SpriteByID(int ID)
+    {
+        return (Sprite)Resources.Load("Sprites/Skills/"+ _skillData.SkillImage(ID));
+    }
+
     public string SkillName(int ID)
     {
         return _skillData.SkillName(ID);
