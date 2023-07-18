@@ -15,9 +15,6 @@ public abstract class Monster : Attackable
     public override void Dead()
     {
         MonsterManager.Instance.ReturnObject(this);
-<<<<<<< Updated upstream
-        //ItemManager.Instance.Equals(this); ///////////
-=======
 
         if (_enemyData.DropItemPersent >= Random.Range(0, 100))
         {
@@ -28,8 +25,6 @@ public abstract class Monster : Attackable
             coin.transform.position = transform.position;
             coin.Push();
         }
-
->>>>>>> Stashed changes
         gameObject.SetActive(false);
     }
 

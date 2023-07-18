@@ -25,7 +25,7 @@ public abstract class Boss : Attackable
         gameObject.SetActive(false);
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         if (_hp / (float)_maxHp >= 0.5f)
             Phase1();

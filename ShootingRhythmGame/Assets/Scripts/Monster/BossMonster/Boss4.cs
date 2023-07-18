@@ -228,4 +228,14 @@ public class Boss4 : Boss
             transform.DOMove(randVec, 2f).OnComplete(() => transform.DOMove(OriginalPos, 0.5f)); })));
         yield return null;
     }
+
+    public override void Phase1()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Phase2()
+    {
+        throw new System.NotImplementedException();
+    }
 }
