@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomNamespace;
+using Unity.VisualScripting;
 
 public abstract class Monster : Attackable
 {
@@ -14,7 +15,21 @@ public abstract class Monster : Attackable
     public override void Dead()
     {
         MonsterManager.Instance.ReturnObject(this);
+<<<<<<< Updated upstream
         //ItemManager.Instance.Equals(this); ///////////
+=======
+
+        if (_enemyData.DropItemPersent >= Random.Range(0, 100))
+        {
+            var coin = ItemManager.Instance.SpawnObject();
+            coin.Init(_enemyData.DropItemCount);
+            coin.gameObject.SetActive(true);
+
+            coin.transform.position = transform.position;
+            coin.Push();
+        }
+
+>>>>>>> Stashed changes
         gameObject.SetActive(false);
     }
 

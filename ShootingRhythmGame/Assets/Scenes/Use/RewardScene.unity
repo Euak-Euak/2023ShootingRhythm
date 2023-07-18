@@ -2543,7 +2543,7 @@ GameObject:
   - component: {fileID: 1764891556}
   - component: {fileID: 1764891555}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerDataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2571,6 +2571,7 @@ MonoBehaviour:
   UltimateMinus: 4
   InvincibilityTime: 1
   MoneyPlus: 0
+  PlayerHP: 3
 --- !u!4 &1764891556
 Transform:
   m_ObjectHideFlags: 0

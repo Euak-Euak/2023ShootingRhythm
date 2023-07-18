@@ -25,7 +25,17 @@ public abstract class Boss : Attackable
         gameObject.SetActive(false);
     }
 
-    public abstract void Attack();
+    public void Attack()
+    {
+        if (_hp / (float)_maxHp >= 0.5f)
+            Phase1();
+        else
+            Phase2();
+
+        Invoke("Attack", 5f);
+    }
+    public abstract void Phase1();
+    public abstract void Phase2();
 
     public Bullet Shoot(Vector3 pos, float speed, float angle, int damage)
     {

@@ -34,6 +34,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public float InvincibilityTime = 1f;
     public int MoneyPlus = 0;
 
+    public int PlayerHP = 3;
+
     void Start()
     {
         if(PlayerPrefs.HasKey(ConstData.PlayerSkillPointDataKey))

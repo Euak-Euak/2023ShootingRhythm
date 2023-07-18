@@ -5,21 +5,37 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     [SerializeField]
+    private List<GameObject> _bossList;
+
     private GameObject _boss;
-    private GameObject _boss1;
 
     public void Spawn()
     {
-        _boss1 = Instantiate(_boss);
-        _boss1.transform.position = new Vector3(3, 4);
+        switch (PlayerDataManager.Instance.RoundType)
+        {
+            case GameRoundType.Stage1Boss:
+                _boss = _bossList[0];
+                break;
+            case GameRoundType.Stage2Boss:
+                _boss = _bossList[1];
+                break;
+            case GameRoundType.Stage3Boss:
+                _boss = _bossList[2];
+                break;
+            case GameRoundType.Stage4Boss:
+                _boss = _bossList[3];
+                break;
+        }
+
+        _boss.SetActive(true);
     }
 
     private void Update()
     {
-        if (_boss1 == null)
+        if (_boss == null)
             return;
-
-        if (!_boss1.activeSelf)
+        
+        if (!_boss.activeSelf)
             BossDown();
     }
 

@@ -9,7 +9,7 @@ public class Boss1 : Boss
         Invoke("Attack", 0.1f);
     }
 
-    public override void Attack()
+    public override void Phase2()
     {
 
         switch (Random.Range(0, 5))
@@ -32,9 +32,9 @@ public class Boss1 : Boss
             default:
                 break;
         }
-        
-        Invoke("Attack", 5f);
-        /*
+    }
+    public override void Phase1()
+    {
         switch (Random.Range(0, 4))
         {
             case 0:
@@ -52,7 +52,6 @@ public class Boss1 : Boss
             default:
                 break;
         }
-        */
     }
 
     IEnumerator Phase1_Pattern1()

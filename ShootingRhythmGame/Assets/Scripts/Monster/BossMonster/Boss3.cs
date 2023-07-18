@@ -12,10 +12,9 @@ public class Boss3 : Boss
         Invoke("Attack", 0.1f);
     }
 
-    public override void Attack()
+    public override void Phase2()
     {
-        /*
-        switch (Random.Range(0, 5))
+        switch (Random.Range(0, 3))
         {
             case 0:
                 StartCoroutine(Phase2_Pattern1());
@@ -26,20 +25,13 @@ public class Boss3 : Boss
             case 2:
                 StartCoroutine(Phase2_Pattern3());
                 break;
-            case 3:
-                StartCoroutine(Phase2_Pattern4());
-                break;
-            case 4:
-                StartCoroutine(Phase2_Pattern5());
-                break;
             default:
                 break;
         }
-        */
-        StartCoroutine(Phase2_Pattern3());
-        Invoke("Attack", 5f);
-        /*
-        switch (Random.Range(0, 4))
+    }
+    public override void Phase1()
+    {
+        switch (Random.Range(0, 3))
         {
             case 0:
                 StartCoroutine(Phase1_Pattern1());
@@ -50,13 +42,9 @@ public class Boss3 : Boss
             case 2:
                 StartCoroutine(Phase1_Pattern3());
                 break;
-            case 3:
-                StartCoroutine(Phase1_Pattern4());
-                break;
             default:
                 break;
         }
-        */
     }
 
     IEnumerator Phase1_Pattern1()

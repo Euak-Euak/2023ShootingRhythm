@@ -18,6 +18,12 @@ public class PlayerAttack : Attackable
 
     private bool _isAttackedAble = true;
 
+    private void Start()
+    {
+        _hp = PlayerDataManager.Instance.PlayerHP;
+        _hpBar.value = _hp;
+    }
+
     public override void Dead()
     {
         Debug.Log("플레이어 충돌 당함");

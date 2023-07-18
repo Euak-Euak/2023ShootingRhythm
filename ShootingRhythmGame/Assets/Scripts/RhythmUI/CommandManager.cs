@@ -31,6 +31,9 @@ public class CommandManager : MonoBehaviour
     static public List<int> ComboList = new List<int>();
     private List<bool> _comboStart = new List<bool>();
 
+    [SerializeField]
+    private List<Sprite> _sprite;
+
 
     void Awake()
     {
@@ -52,6 +55,7 @@ public class CommandManager : MonoBehaviour
             {
                 Image skillImageSr = (_skillPanels[i].transform.GetChild(0)).GetComponent<Image>();
                 Text skillNameUI = (_skillPanels[i].transform.GetChild(1)).GetComponent<Text>();
+                Image skillImage = (_skillPanels[i].transform.GetChild(2)).GetComponent<Image>();
 
                 if (i < _selectedSkillList.Count)
                 {
@@ -67,17 +71,22 @@ public class CommandManager : MonoBehaviour
                     MakeSkillPanel(i);
 
                     skillNameUI.text = _skillManager.SkillSet[_selectedSkillList[i]]._skillName;
+                    
+                    Debug.Log(_selectedSkillList[i]);
+
+                    skillImage.sprite = _sprite[_selectedSkillList[i] - 1];
                     _cooltimeBySkillList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeBySkill);
                     _cooltimeByTimeList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeByTime);
                     IsCmdCoolTime.Add(false);
-                    _coolTimeObject.Add(_skillPanels[i].transform.GetChild(2).gameObject);
+                    _coolTimeObject.Add(_skillPanels[i].transform.GetChild(3).gameObject);
                     _skillCntToActivate.Add(0);
 
                     NowKeyList.Add(CmdList[i].Skill[0]);
                 }
                 else
                 {
-                    skillImageSr.color = Color.gray;
+                    skillImageSr.color = Color.clear;
+                    skillImage.color = Color.clear;
                     skillNameUI.text = " ";
                 }
             }
@@ -183,7 +192,7 @@ public class CommandManager : MonoBehaviour
         IsCmdCoolTime[skillNum] = false;
         _skillCntToActivate[skillNum] = 0;
 
-        GameObject coolTimeImg = _skillPanels[skillNum].transform.GetChild(2).gameObject;
+        GameObject coolTimeImg = _skillPanels[skillNum].transform.GetChild(3).gameObject;
         coolTimeImg.SetActive(false);
     }
 
@@ -194,7 +203,7 @@ public class CommandManager : MonoBehaviour
         {
             GameObject _cmdPanel = Instantiate(Resources.Load<GameObject>("Prefabs/Command"), _skillPanels[skillNum].transform);
             RectTransform pos = _cmdPanel.GetComponent<RectTransform>();
-            pos.anchoredPosition = new Vector2(- 225 + 84 * i, 204);
+            pos.anchoredPosition = new Vector2(- 225 + 64 * i, 204);
 
             _cmdPanel.GetComponent<LightUpSkillCmdPanel>().PanelSkillNum = skillNum;
             _cmdPanel.GetComponent<LightUpSkillCmdPanel>().PanelCmdNum = i;

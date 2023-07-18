@@ -25,6 +25,7 @@ public class MonsterManager : ObjectPooling<Monster>
     [SerializeField]
     private BossController _boss;
 
+
     private void Start()
     {
         base.Start();

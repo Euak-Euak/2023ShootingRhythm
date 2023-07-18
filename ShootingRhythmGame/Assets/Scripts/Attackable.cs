@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Attackable : MonoBehaviour
 {
     [SerializeField]
-    private int _maxHp;
+    protected int _maxHp;
     public int _hp;
 
     protected void Awake()

@@ -21,8 +21,8 @@ public class Shop : MonoBehaviour
     Animator _animator;
 
     [SerializeField]
-    private List<ItemSelectCell> cellRewards;
-
+    private List<CellShopSet> cellRewards;
+    
     [SerializeField]
     private List<int> _rewardList;
 
@@ -32,6 +32,7 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private List<Sprite> _rewardSprite;
 
+    int index;
 
     private void Start()
     {
@@ -47,10 +48,11 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void Select(int id, int price)
+    public void Select(int id, int price, int index)
     {
         _nowSelect = id;
         _price = price;
+        this.index = index;
     }
 
     public void Decision()
@@ -62,6 +64,8 @@ public class Shop : MonoBehaviour
         }
         PlayerDataManager.Instance._money -= _price;
         BuyItem();
+
+        cellRewards[index].SlodOut();
 
         switch (_nowSelect)
         {
@@ -79,6 +83,9 @@ public class Shop : MonoBehaviour
                 break;
             case 19:
                 PlayerDataManager.Instance.MoneyPlus += 10;
+                break;
+            case 20:
+                PlayerDataManager.Instance.PlayerHP++;
                 break;
 
             default:
