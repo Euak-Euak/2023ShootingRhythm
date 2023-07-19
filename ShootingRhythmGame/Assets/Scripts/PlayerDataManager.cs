@@ -49,4 +49,9 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     {
         RoundType++;
     }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt(ConstData.PlayerSkillPointDataKey, _skillPoint);
+    }
 }

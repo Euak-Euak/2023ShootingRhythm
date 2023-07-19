@@ -26,16 +26,26 @@ public class PlayerAttack : Attackable
 
     public override void Dead()
     {
-        Debug.Log("플레이어 충돌 당함");
+        SceneChangeEffect.Instance.Enter();
+        StartCoroutine(DeadC());
+    }
+    IEnumerator DeadC()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneLoadManager.LoadScene("EndScene");
     }
 
     public override void Attacked(int damage)
     {
+
         if (!_isAttackedAble)
             return;
 
         base.Attacked(damage);
+
         _hpBar.value = _hp;
+
+        PlayerDataManager.Instance.PlayerHP = _hp;
         StartCoroutine(ReStart());
     }
 
