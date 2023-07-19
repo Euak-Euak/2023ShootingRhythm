@@ -12,6 +12,8 @@ public class Monster3_2 : Monster
     private int move = 0;
     private bool up = true;
 
+    private AudioListener _listener;
+
     private float _originalVolume;
 
 
@@ -89,6 +91,7 @@ public class Monster3_2 : Monster
 
     IEnumerator Mute()
     {
+        //_listener.
         SoundManager.Instance.BGMVolume(0.2f);
         SoundManager.Instance.SFXVolume(0.2f);
 

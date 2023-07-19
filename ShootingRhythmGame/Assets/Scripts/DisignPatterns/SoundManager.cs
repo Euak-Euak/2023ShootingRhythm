@@ -102,4 +102,10 @@ public class SoundManager : Singleton<SoundManager>
     {
         _BGMSource.volume = value;
     }
+
+    public float Volume(string type)
+    {
+        if (type == "BGM") return _BGMSource.volume;
+        else return _SFXSource[0].volume;
+    }
 }
