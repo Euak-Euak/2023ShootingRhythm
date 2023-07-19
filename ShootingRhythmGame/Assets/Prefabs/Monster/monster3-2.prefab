@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 100
   _hp: 0
-  _bulletSprite: {fileID: 6417792805886708221, guid: 2696d58d1e893ff458ffc908be9c1588, type: 3}
+  _bulletSprite: {fileID: 6417792805886708221, guid: 6452bb03cb07c91458e67feeab2f3980, type: 3}
 --- !u!95 &8294223988530261996
 Animator:
   serializedVersion: 5

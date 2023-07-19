@@ -6,6 +6,7 @@ Shader "Custom/SceneChange"
 		_X("X", float) = 0
 		_Y("Y", float) = 0
 		_Fill("Fill", float) = 0
+		_Color("Color", color) = (0, 0, 0 ,0 )
 	}
 	SubShader
 	{
@@ -61,6 +62,7 @@ Shader "Custom/SceneChange"
 			//위에 있는 것과 밑에 있는거 맞춰주기
 			//sampler2D 로 이미지를 담을 수 있음
 			sampler2D _MainTex;
+			float4 _Color;
 			float _X;
 			float _Y;
 			float _Fill;
@@ -69,14 +71,11 @@ Shader "Custom/SceneChange"
 			float4 frag(v2f IN) : COLOR
 			{
 				float4 texcol = tex2D(_MainTex, IN.texcoord);
-				float a = texcol.a;
-				float x = lerp(0, _X, _Fill);
-				float y = lerp(0, _Y, 1 - _Fill);
-				
-				float xCheck = step(texcol.x, x);
-				float yCheck = step(texcol.y, y);
-	
-				texcol.a = lerp(0, a, min(xCheck, yCheck));
+				float y = fmod(abs(IN.texcoord.y + _Time.x), 1);
+				float4 texcol2 = tex2D(_MainTex, float2(IN.texcoord.x, y));
+
+				texcol.rgba = texcol2.rgba * _Color;
+
 				return texcol;
 			}
 			ENDCG

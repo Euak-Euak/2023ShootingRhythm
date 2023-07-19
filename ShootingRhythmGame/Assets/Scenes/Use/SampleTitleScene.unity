@@ -3543,6 +3543,7 @@ GameObject:
   - component: {fileID: 1353792832}
   - component: {fileID: 1353792831}
   - component: {fileID: 1353792830}
+  - component: {fileID: 1353792835}
   - component: {fileID: 1353792834}
   m_Layer: 5
   m_Name: Canvas
@@ -3654,6 +3655,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1353792835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353792829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750e2c07b910ee5409db8990277c529e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1373088099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,18 +4062,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543695348}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1353792833}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2500, y: -1450}
-  m_SizeDelta: {x: 1900, y: 2200}
+  m_SizeDelta: {x: 3377.7778, y: 1900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543695350
 MonoBehaviour:
@@ -4075,14 +4088,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93725497, g: 0.91372555, b: 0.882353, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c55050e5e8e866b45b56d5e1f493b94e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

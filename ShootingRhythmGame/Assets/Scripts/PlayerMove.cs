@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D _rid;
 
     [SerializeField]
-    private Sprite _sprite;
+    private GameObject _sprite;
 
     private void Start()
     {
@@ -43,7 +43,9 @@ public class PlayerMove : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            _bulletManager.SpawnObject().Init(transform.position, 10f, 0, 10 + PlayerDataManager.Instance.NormalDamagePlus, LayerMask.NameToLayer("Monster"));
+            var a = _bulletManager.SpawnObject();
+            a.SetBulletData(_sprite);
+            a.Init(transform.position, 10f, 0, 10 + PlayerDataManager.Instance.NormalDamagePlus, LayerMask.NameToLayer("Monster"));
         }
     }
 }

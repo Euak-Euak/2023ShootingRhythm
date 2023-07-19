@@ -94,13 +94,6 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public virtual void NextScene()
-    {
-        PlayerDataManager.Instance.Next();
-        SceneLoadManager.LoadScene("SkillSelectScene");
-    }
-
-
     public void BuyItem()
     {
         _animator.SetTrigger("Speech");
@@ -129,6 +122,7 @@ public class Shop : MonoBehaviour
     {
         _animator.SetTrigger("Exit");
         _script.text = "다음에도 만나죠. 그럼 이만...";
+        PlayerDataManager.Instance.Next();
 
         StartCoroutine(Animation());
     }

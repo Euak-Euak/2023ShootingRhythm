@@ -36,6 +36,13 @@ public class RewardSelect : MonoBehaviour
     {
         PlayerDataManager.Instance._haveSkill.Add(_nowSelect);
         PlayerDataManager.Instance.Next();
+
+        Invoke("D", 3f);
+
+    }
+
+    public void D()
+    {
         SceneLoadManager.LoadScene("SkillSelectScene");
     }
 }

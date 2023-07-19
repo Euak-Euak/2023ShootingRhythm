@@ -84,6 +84,11 @@ public class MonsterManager : ObjectPooling<Monster>
             yield return wait;
         }
 
+        Invoke("D", 3f);
+    }
+
+    public void D()
+    {
         SceneLoadManager.LoadScene("ShopScene");
     }
 
