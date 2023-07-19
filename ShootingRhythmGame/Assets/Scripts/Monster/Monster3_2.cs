@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Monster3_2 : Monster
 {
-    //////////////////////// 수정할거 ㅈㄴ많음
     private float delta;
     private SpriteRenderer sr;
     private Animator anim;
@@ -12,16 +11,14 @@ public class Monster3_2 : Monster
     private int move = 0;
     private bool up = true;
 
-    private AudioListener _listener;
-
-    private float _originalVolume;
+    private BGMManager _BGM;
 
 
     public void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        _originalVolume = 1f; //
+        _BGM = GameObject.Find("Main Camera").GetComponent<BGMManager>();
     }
 
 
@@ -59,7 +56,7 @@ public class Monster3_2 : Monster
     IEnumerator vibration()
     {
         anim.SetTrigger("shoot");
-        StartCoroutine(Mute());
+        _BGM.Mute(BGMManager.Bpm / 60);
         for (int i = 0; i <= 360; i += 20)
         {
             Shoot(transform.position, 10f, i, 1);
@@ -86,24 +83,5 @@ public class Monster3_2 : Monster
             }
             dir = -dir;
         }
-    }
-
-
-    IEnumerator Mute()
-    {
-        //_listener.
-        SoundManager.Instance.BGMVolume(0.2f);
-        SoundManager.Instance.SFXVolume(0.2f);
-
-        yield return new WaitForSeconds(BGMManager.Bpm/60);
-        SoundManager.Instance.BGMVolume(_originalVolume);
-    }
-
-
-    public override void Dead()
-    {
-        SoundManager.Instance.BGMVolume(_originalVolume);
-        SoundManager.Instance.SFXVolume(_originalVolume);
-        base.Dead();
     }
 }

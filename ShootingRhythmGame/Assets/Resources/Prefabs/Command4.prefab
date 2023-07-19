@@ -148,7 +148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e90727932b3df54d81f7c7b6176a687, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b30c39fdbdeaf1f408d8eb5303eedfbf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -172,3 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PanelSkillNum: 1
   PanelCmdNum: 7
+  _rightUp: {fileID: 21300000, guid: c571af64469a96a4e8311f5c9b716c69, type: 3}

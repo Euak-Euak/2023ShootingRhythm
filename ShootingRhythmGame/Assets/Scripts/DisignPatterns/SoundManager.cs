@@ -108,4 +108,13 @@ public class SoundManager : Singleton<SoundManager>
         if (type == "BGM") return _BGMSource.volume;
         else return _SFXSource[0].volume;
     }
+
+    public void MuteSound(bool muteOn)
+    {
+        _BGMSource.mute = muteOn;
+        foreach (AudioSource a in _SFXSource)
+        {
+            a.mute = muteOn;
+        }
+    }
 }

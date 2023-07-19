@@ -172,3 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PanelSkillNum: 1
   PanelCmdNum: 7
+  _rightUp: {fileID: 21300000, guid: c571af64469a96a4e8311f5c9b716c69, type: 3}

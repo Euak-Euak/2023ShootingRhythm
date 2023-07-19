@@ -12,8 +12,6 @@ public class SetVolume : MonoBehaviour
     {
         _BGMSlider.value = SoundManager.Instance.Volume("BGM");
         _SFXSlider.value = SoundManager.Instance.Volume("SFX");
-        AudioListener a;
-        a.
     }
 
     public void SetBGMVolume(float value)

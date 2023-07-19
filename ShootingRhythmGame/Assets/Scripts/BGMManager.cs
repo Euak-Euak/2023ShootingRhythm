@@ -62,4 +62,17 @@ public class BGMManager : MonoBehaviour
             _isMusicStart = true;
         }
     }
+
+
+    public void Mute(float duration)
+    {
+        StartCoroutine(MuteCor(duration));
+    }
+
+    IEnumerator MuteCor(float duration)
+    {
+        SoundManager.Instance.MuteSound(true);
+        yield return new WaitForSeconds(duration);
+        SoundManager.Instance.MuteSound(false);
+    }
 }

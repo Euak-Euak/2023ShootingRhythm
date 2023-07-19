@@ -7,15 +7,15 @@ public class LightUpSkillCmdPanel : MonoBehaviour
 {
     public int PanelSkillNum;
     public int PanelCmdNum;
-
-    private Image Img;
-    private Color _rightDownColor;
-
+    
+    private Image _img;
+    private Sprite _original;
+    [SerializeField] private Sprite _rightUp;
 
     void Start()
     {
-        Img = GetComponent<Image>();
-        _rightDownColor = Img.color;
+        _img = GetComponent<Image>();
+        _original = _img.sprite;
     }
 
 
@@ -23,18 +23,8 @@ public class LightUpSkillCmdPanel : MonoBehaviour
     {
         if (CommandManager.ComboList[PanelSkillNum] == PanelCmdNum)
         {
-            Img.color = Color.white;
+            _img.sprite = _rightUp;
         }
-        else Img.color = _rightDownColor;
+        else _img.sprite= _original;
     }
-
-    /*
-    public void OnLigth(bool lightup)
-    {
-        if (lightup)
-        {
-            Img.color = Color.white;
-        }
-        else Img.color = _rightDownColor;
-    }*/
 }

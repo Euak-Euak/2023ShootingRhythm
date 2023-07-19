@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SyncController : MonoBehaviour
+public class SyncController : MonoBehaviour //Singleton<SyncController>
 {
     [SerializeField] private GameObject[] _judgementZones;
     private List<BoxCollider2D> _colliders = new List<BoxCollider2D>();
@@ -16,8 +16,12 @@ public class SyncController : MonoBehaviour
         {
             _colliders.Add(_judgementZones[i].GetComponent<BoxCollider2D>());
         }
-    }
 
+        if (PlayerPrefs.HasKey(ConstData.Sync))//(PlayerPrefs.GetFloat(ConstData.Sync) != 0)//
+        {
+            Sync = PlayerPrefs.GetFloat(ConstData.Sync);
+        }
+    }
 
     void Update()
     {
@@ -26,4 +30,5 @@ public class SyncController : MonoBehaviour
             _colliders[i].offset = new Vector2(Sync * 10 * NoteSpawner.NoteSpeed , 0);
         }
     }
+
 }

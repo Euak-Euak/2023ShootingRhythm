@@ -17,10 +17,8 @@ public class PauseMenu : PauseOnStage
 
     public void PressRetryBtn()
     {
-        OnResumeGame();
-        Destroy(GameObject.Find("BulletManager"));
-        Destroy(GameObject.Find("GameObject (1)"));
-        SceneManager.LoadScene("Rhythm");
+        initOnMoveScene("Main");
+        SceneManager.LoadScene("RewardScene");
     }
 
 
@@ -33,11 +31,7 @@ public class PauseMenu : PauseOnStage
 
     public void PressQuitBtn()
     {
-        OnResumeGame();
-        tempSkillSelect.SelectedSkillIdList.Clear();
-        Destroy(GameObject.Find("BulletManager"));
-        Destroy(GameObject.Find("DataManager"));
-        SoundManager.Instance.BGMPlay("Main");
+        initOnMoveScene("Main");
         SceneManager.LoadScene("SampleTitleScene");
     }
 
@@ -46,5 +40,15 @@ public class PauseMenu : PauseOnStage
     {
         _optionMenu.SetActive(false);
         _pauseMenu.SetActive(true);
+    }
+
+    private void initOnMoveScene(string bgm)
+    {
+        OnResumeGame();
+        Destroy(GameObject.Find("BulletManager"));
+        PlayerDataManager.Instance._useSkill.Clear();
+        PlayerDataManager.Instance._haveSkill.Clear();
+        PlayerDataManager.Instance.RoundType = GameRoundType.None;
+        SoundManager.Instance.BGMPlay(bgm);
     }
 }

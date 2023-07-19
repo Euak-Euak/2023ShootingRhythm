@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class SyncSettingScene : MonoBehaviour
 {
     [SerializeField] private Text _curSyncText;
-    
+
 
     void Start()
     {
         _curSyncText = _curSyncText.GetComponent<Text>();
+        SoundManager.Instance.BGMStop();
     }
 
 
@@ -47,4 +48,16 @@ public class SyncSettingScene : MonoBehaviour
         SyncController.Sync -= 0.0002f;
     }
 
+    
+    public void ResetSync()
+    {
+        SyncController.Sync = 0;
+    }
+
+
+    public void SaveSync()
+    {
+        Debug.Log(SyncController.Sync);
+        PlayerPrefs.SetFloat(ConstData.Sync, SyncController.Sync);
+    }
 }
