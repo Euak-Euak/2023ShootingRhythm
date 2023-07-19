@@ -2998,7 +2998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 475}
+  m_AnchoredPosition: {x: -460, y: 441}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &612569279
@@ -3553,7 +3553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -731, y: 468}
+  m_AnchoredPosition: {x: -691, y: 441}
   m_SizeDelta: {x: 390.63, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650653820
@@ -4099,7 +4099,21 @@ MonoBehaviour:
   _end: {fileID: 1181805018}
   _gap: {x: 0, y: 0}
   _monsters:
+  - {fileID: 3632812341411434241, guid: e6a58c598500dac45bbc37091ff356f2, type: 3}
+  - {fileID: 3632812341411434241, guid: fef569fdfad38814ea6eccd54b7b2ae4, type: 3}
+  - {fileID: 3632812341411434241, guid: 47435cc1431577148a4e3ce7aaaae738, type: 3}
+  - {fileID: 3632812341411434241, guid: 9449fdbec320a8a4bb7fd67b45df4045, type: 3}
+  - {fileID: 3632812341411434241, guid: 092363898386f4149a6f91b94b3ebe14, type: 3}
+  - {fileID: 3632812341411434241, guid: 2846502c1c5049f4bb1c74ddb756fc3b, type: 3}
+  - {fileID: 3632812341411434241, guid: b7c59b3df50e8ff4488acf11ae9c6c32, type: 3}
+  - {fileID: 3632812341411434241, guid: 7cee5f33a8edacd41a57bdc74ba8f564, type: 3}
+  - {fileID: 3632812341411434241, guid: f4888a94d2335a4488a5e920b5f00639, type: 3}
+  - {fileID: 3632812341411434241, guid: c83e117783a9e0c4885e6d586961913c, type: 3}
+  - {fileID: 3632812341411434241, guid: 6eda7abd54acbcb458a7c2189b8b8fdb, type: 3}
+  - {fileID: 3632812341411434241, guid: 4bdffd4e9c077fa408a410cdca1caba3, type: 3}
+  - {fileID: 3632812341411434241, guid: 874e36b30d348c343a1b9b3d98837ccb, type: 3}
   - {fileID: 3632812341411434241, guid: a23c1d1dfc035c743ad21a692b9607c1, type: 3}
+  - {fileID: 3632812341411434241, guid: 08e027619ca1a3c4ebdb0872549b36f9, type: 3}
   _boss: {fileID: 692347818}
 --- !u!4 &692347817
 Transform:

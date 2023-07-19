@@ -3,8 +3,21 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Circle,
-    Straight
+    Monter01,
+    Monter02,
+    Monter03,
+    Monter11,
+    Monter12,
+    Monter13,
+    Monter21,
+    Monter22,
+    Monter23,
+    Monter31,
+    Monter32,
+    Monter33,
+    Monter41,
+    Monter42,
+    Monter43
 }
 
 [Serializable]

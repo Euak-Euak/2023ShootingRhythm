@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class MonsterManager : ObjectPooling<Monster>
@@ -25,12 +26,16 @@ public class MonsterManager : ObjectPooling<Monster>
     [SerializeField]
     private BossController _boss;
 
+    private Dictionary<EnemyType, Queue<Monster>> _monster;
 
     private void Start()
     {
         base.Start();
         _gap = (_end.position - _start.position) / 6;
-
+        _monster = new Dictionary<EnemyType, Queue<Monster>>();
+        for (int i = 0; i < (int)EnemyType.Monter43; i++)
+            _monster[(EnemyType)i] = new Queue<Monster>();
+        
         _transform = new List<Vector2>();
 
         for (int i = 1; i <= 5; i++)
@@ -76,7 +81,7 @@ public class MonsterManager : ObjectPooling<Monster>
         {
             foreach (EnemyData enemyData in data.EnemyDatas)
             {
-                Monster monster = SpawnObject();
+                Monster monster = Spwan(enemyData.EnemyType);
                 monster.Init(enemyData, _start.position + new Vector3(_gap.x * enemyData.HandleX, _gap.y * enemyData.HandleY));
                 monster.gameObject.SetActive(true);
                 monster.Move(_transform[enemyData.StartPosition - 1], _transform[enemyData.EndPosition - 1]);
@@ -109,6 +114,23 @@ public class MonsterManager : ObjectPooling<Monster>
         }
 
         return null;
+    }
+
+    public Monster Spwan(EnemyType enemyType)
+    {
+        if (_poolingObjects.Count == 0)
+        {
+            Monster o = Instantiate(_monsters[(int)enemyType], _parent).GetComponent<Monster>();
+            return o;
+        }
+
+        Monster p = _monster[enemyType].Dequeue();
+        return p;
+    }
+
+    public override void ReturnObject(Monster p)
+    {
+        _monster[p.GetMonsterType()].Enqueue(p);
     }
 }
 

@@ -11,6 +11,11 @@ public abstract class Monster : Attackable
     private EnemyData _enemyData;
     private Vector2 _handle;
 
+    public EnemyType GetMonsterType()
+    {
+        return _enemyData.EnemyType;
+    }
+
     public override void Dead()
     {
         MonsterManager.Instance.ReturnObject(this);
@@ -52,6 +57,7 @@ public abstract class Monster : Attackable
     {
         _enemyData = enemy;
         _handle = handle;
+        _hp = _maxHp;
     }
 
     public void Move(Vector2 pos1, Vector2 pos2)

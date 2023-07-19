@@ -47,7 +47,7 @@ public class ObjectPooling<T> : MonoBehaviour
         return p;
     }
 
-    public void ReturnObject(T p)
+    public virtual void ReturnObject(T p)
     {
         _poolingObjects.Enqueue(p);
     }
