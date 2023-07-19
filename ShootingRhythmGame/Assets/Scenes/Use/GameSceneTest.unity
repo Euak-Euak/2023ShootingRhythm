@@ -4537,6 +4537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d773a9690a1a746adcfcb640d0d521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isGame: 1
+  _bgmName: 
 --- !u!4 &990110782
 Transform:
   m_ObjectHideFlags: 0
@@ -6099,7 +6101,6 @@ GameObject:
   - component: {fileID: 1354705500}
   - component: {fileID: 1354705499}
   - component: {fileID: 1354705498}
-  - component: {fileID: 1354705497}
   - component: {fileID: 1354705496}
   - component: {fileID: 1354705495}
   - component: {fileID: 1354705504}
@@ -6157,18 +6158,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d71479ee3eab66147a8aee753dc5c3a5, type: 3}
   - {fileID: 21300000, guid: a9ccb8313a5931349b6fdc73ec9a381c, type: 3}
   - {fileID: 21300000, guid: af714e80cacc4fb47bf69f2b383aaab1, type: 3}
---- !u!114 &1354705497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354705494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25a7034c2a7b12428a54daf9adedf6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1354705498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6232,7 +6221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletManager: {fileID: 60724309}
-  _sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  _sprite: {fileID: 6417792805886708221, guid: 1845b955bc502cf4b882c54befbb5773, type: 3}
 --- !u!212 &1354705502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6698,7 +6687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 73.9, y: 0}
+  m_AnchoredPosition: {x: 72.1, y: 0}
   m_SizeDelta: {x: 6, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1519533221

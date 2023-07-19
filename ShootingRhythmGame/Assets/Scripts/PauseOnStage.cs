@@ -38,7 +38,7 @@ public class PauseOnStage : MonoBehaviour
         _pause.SetActive(false);
 
         Time.timeScale = 1f;
-        SoundManager.Instance.BGMPlay(BGMManager._bgmName);
+        SoundManager.Instance.BGMPlay(BGMManager.BgmName);
         IsPause = false;
     }
 }

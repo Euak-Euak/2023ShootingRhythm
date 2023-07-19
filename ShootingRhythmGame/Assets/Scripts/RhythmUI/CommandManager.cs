@@ -49,12 +49,12 @@ public class CommandManager : MonoBehaviour
             _skillManager.Init();
 
 
-            //_selectedSkillList = PlayerDataManager.Instance._useSkill.ToList();
-            _selectedSkillList = new List<int>();
-            _selectedSkillList.Add(1);
-            _selectedSkillList.Add(2);
-            _selectedSkillList.Add(3);
-            _selectedSkillList.Add(5);
+            _selectedSkillList = PlayerDataManager.Instance._useSkill.ToList();
+            //_selectedSkillList = new List<int>();
+            //_selectedSkillList.Add(1);
+            //_selectedSkillList.Add(2);
+            //_selectedSkillList.Add(3);
+            //_selectedSkillList.Add(5);
 
             for (int i = 0; i < _skillPanels.Length; i++)
             {
@@ -68,17 +68,25 @@ public class CommandManager : MonoBehaviour
                     ComboList.Add(0);
                     _comboStart.Add(false);
 
-                    foreach (char cmd in _skillManager.SkillSet[_selectedSkillList[i]]._commandNormal)
+                    if (_skillManager.SkillSet[_selectedSkillList[i]]._isPowerUp)
                     {
-                        CmdList[i].Skill.Add(cmd.ToString());
+                        foreach (char cmd in _skillManager.SkillSet[_selectedSkillList[i]]._commandPowerUp)
+                        {
+                            CmdList[i].Skill.Add(cmd.ToString());
+                        }
+                    }
+                    else
+                    {
+                        foreach (char cmd in _skillManager.SkillSet[_selectedSkillList[i]]._commandNormal)
+                        {
+                            CmdList[i].Skill.Add(cmd.ToString());
+                        }
                     }
 
                     MakeSkillPanel(i);
 
                     skillNameUI.text = _skillManager.SkillSet[_selectedSkillList[i]]._skillName;
                     
-                    Debug.Log(_selectedSkillList[i]);
-
                     skillImage.sprite = _sprite[_selectedSkillList[i] - 1];
                     _cooltimeBySkillList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeBySkill);
                     _cooltimeByTimeList.Add(_skillManager.SkillSet[_selectedSkillList[i]]._cooltimeByTime);

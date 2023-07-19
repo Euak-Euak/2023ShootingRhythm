@@ -82,11 +82,11 @@ public class NoteController : MonoBehaviour
     {
         if (other.name == "Perf")
         {
-            if (_BGMManager && !BGMManager._isMusicStart)
+            if (_BGMManager && !BGMManager._isMusicStartOnStage)
             {
                 _BGMManager.GetComponent<BGMManager>().MusicStart();
             }
-            SoundManager.Instance.SFXPlay("jjack");
+            SoundManager.Instance.SFXPlay("note");
         }
     else if (other.name == "Miss")
         {

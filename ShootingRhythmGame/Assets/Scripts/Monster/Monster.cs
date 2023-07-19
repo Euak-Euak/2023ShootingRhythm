@@ -32,10 +32,10 @@ public abstract class Monster : Attackable
     public Bullet Shoot(Vector3 pos, float speed, float angle, int damage)
     {
         Bullet bullet = BulletManager.Instance.SpawnObject();
-        bullet.tag = "Monster";
         bullet.SetBulletData(_bulletSprite);
         
         bullet.Init(pos, speed, angle, damage, LayerMask.NameToLayer("Player"));
+        bullet.tag = "Monster";
         return bullet;
     }
 

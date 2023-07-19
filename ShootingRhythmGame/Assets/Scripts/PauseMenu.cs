@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : PauseOnStage
 {
     [SerializeField] private GameObject _optionMenu;
-    private GameObject nowPage;
 
 
     public void PressResumeBtn()

@@ -14,6 +14,10 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        //임시로 낑겨넣음
+        SceneChangeEffect.Instance.Out();
+        ////////
+
         _rid = GetComponent<Rigidbody2D>();
         StartCoroutine(BulletShoot());
     }

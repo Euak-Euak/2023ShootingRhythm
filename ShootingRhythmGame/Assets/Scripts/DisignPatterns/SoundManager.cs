@@ -51,7 +51,7 @@ public class SoundManager : Singleton<SoundManager>
             //BGM.value = _BGMSource.volume;
             //SFX.value = volume;
 
-            SoundManager.Instance.BGMPlay("Main");
+            BGMPlay("CutScene");
         }
     }
 

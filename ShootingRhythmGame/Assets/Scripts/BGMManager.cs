@@ -4,62 +4,72 @@ using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
+    [SerializeField] private bool _isGame;
     static public int Bpm = 120;
-    static public string _bgmName;
+    [SerializeField] private string _bgmName;
+    static public string BgmName;
 
-    static public bool _isMusicStart;
+    static public bool _isMusicStartOnStage;
 
 
     private void Awake()
     {
-        switch (PlayerDataManager.Instance.RoundType)
+        if (_isGame)
         {
-              case GameRoundType.Stage1Field:
-              case GameRoundType.Stage2Field:
-              case GameRoundType.Stage3Field:
-              case GameRoundType.Stage4Field:
-              case GameRoundType.Stage5Field:
-                  _bgmName = "Idonthaveanymusic";
-                  Bpm = 130;
-                  break;
+            switch (PlayerDataManager.Instance.RoundType)
+            {
+                case GameRoundType.None: break;
 
-              case GameRoundType.Stage1Boss:
-                  _bgmName = "Idonthaveanymusic";
-                  Bpm = 260;
-                  break;
-              case GameRoundType.Stage2Boss:
-                  _bgmName = "Idonthaveanymusic";
-                  Bpm = 260;
-                  break;
-              case GameRoundType.Stage3Boss:
-                  _bgmName = "Idonthaveanymusic";
-                  Bpm = 260;
-                  break;
-              case GameRoundType.Stage4Boss:
-                  _bgmName = "Idonthaveanymusic";
-                  Bpm = 260;
-                  break;
-              case GameRoundType.Stage5Boss:
-                  _bgmName = "Idonthaveanymusic";
-         Bpm = 130;
-         break;
+                case GameRoundType.Stage1Field:
+                case GameRoundType.Stage2Field:
+                case GameRoundType.Stage3Field:
+                case GameRoundType.Stage4Field:
+                case GameRoundType.Stage5Field:
+                    BgmName = "FaceTheStorm-EanGrimm";
+                    Bpm = 110;
+                    break;
+
+                case GameRoundType.Stage1Boss:
+                    BgmName = "Interstellar-RossBugden";
+                    Bpm = 120;
+                    break;
+                case GameRoundType.Stage2Boss:
+                    BgmName = "TheWorldMostEpicSeaShanty-AlexanderNakarada";
+                    Bpm = 140;
+                    break;
+                case GameRoundType.Stage3Boss:
+                    BgmName = "CircusThemeTrapVer-AlexanderNakarada";
+                    Bpm = 119;
+                    break;
+                case GameRoundType.Stage4Boss:
+                    BgmName = "DeadMan'sOpera-SilenCyde";
+                    Bpm = 140;
+                    break;
+                case GameRoundType.Stage5Boss:
+                    BgmName = "Idonthaveanymusic";
+                    Bpm = 130;
+                    break;
+            }
+
+            SoundManager.Instance.BGMStop();
+            _isMusicStartOnStage = false;
         }
-        Debug.Log(Bpm);
+        //else BgmName = "Main"; // _bgmName;
+        else BgmName = _bgmName;
     }
 
-    void Start()
+    private void Start() //스테이지아닐때만...
     {
-        SoundManager.Instance.BGMStop();
-        _isMusicStart = false;
+        if (!_isGame) SoundManager.Instance.BGMPlay(BgmName);
     }
 
 
-    public void MusicStart()
+    public void MusicStart() //스테이지에서만..
     {
-        if (!_isMusicStart)
+        if (!_isMusicStartOnStage)
         {
-            SoundManager.Instance.BGMPlay(_bgmName);
-            _isMusicStart = true;
+            SoundManager.Instance.BGMPlay(BgmName);
+            _isMusicStartOnStage = true;
         }
     }
 

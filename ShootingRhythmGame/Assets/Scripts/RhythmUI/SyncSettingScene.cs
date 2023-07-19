@@ -57,7 +57,7 @@ public class SyncSettingScene : MonoBehaviour
 
     public void SaveSync()
     {
-        Debug.Log(SyncController.Sync);
         PlayerPrefs.SetFloat(ConstData.Sync, SyncController.Sync);
+        SoundManager.Instance.BGMPlay("Main");
     }
 }
